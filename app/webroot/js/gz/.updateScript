@@ -1,0 +1,5 @@
+cd "$(dirname "$0")"
+wget http://cargografias.org/cargosdataendpoint3.php
+gzip -9 -f cargosdataendpoint3.php
+rm cargosdataendpoint3.js
+mv cargosdataendpoint3.php.gz cargosdataendpoint3.js

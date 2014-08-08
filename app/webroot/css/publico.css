@@ -1,0 +1,171 @@
+.counters h2 {
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.counters .no-well {
+	padding: 19px;
+}
+
+.counters .well h2,
+.counters .well h3 {
+	text-shadow: 2px 2px white;
+}
+
+.counters .no-well h2,
+.counters .no-well h3 {
+	text-shadow: 2px 2px #ccc;
+}
+
+.result-selected{
+	font-weight: bold;
+}
+
+.proyecto p {
+	text-align: justify;
+}
+
+footer {
+	margin-top: 10px;
+}
+
+.lead{
+	margin-top: 35px;
+}
+
+body{
+	font-size: 13px;
+	line-height: 17px;
+}
+
+h2, h3{
+	font-size:18px;
+	line-height: 32px;
+}
+
+
+blockquote{
+	margin:0px 0px 0px 20px;
+	padding:11px 80px 11px 31px;
+}
+blockquote p {
+	line-height: 19px;
+	font-size: 14.5px;
+}
+.nav-pills>li>a {
+		border: 1px solid #df382c;;
+}
+.nav-pills>.active>a, .nav-pills>.active>a:hover, .nav-pills>.active>a:focus{
+	background-color:#df382c;
+}
+
+.fondo-timeline{
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	background-color: #f6f6f6;
+	padding: 4px 0px 0px 4px;
+}
+
+.titulo-tab{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	float: left;
+}
+
+.titulo-tab-ul{
+	float: left;
+	margin: 0px 0px 0px 42px;
+}
+
+#timelineContainer{
+	padding: 8px 0px 0px 8px;
+}
+
+.line-alert-error{
+	border: 1px solid #fadfdd;
+}
+
+#linea-de-tiempo .accordion-group{
+	background-color: #f8f8f8;
+	border-color: #f8d0d4;
+	margin-bottom:15px;
+
+}
+
+#comparacion-reports .accordion-group{
+	background-color: #f8f8f8;
+	
+	
+}
+
+#buscador .accordion-group{
+	background-color: #f8f8f8;
+	border-color: #A0D1A7;
+	margin-bottom:15px;
+}
+
+#linea-de-tiempo .alert, #buscador .alert{
+	border: none;
+	border-radius: 0px;
+
+}
+
+
+
+		
+		.stripes {
+			
+			-webkit-background-size: 5px 5px;
+			-moz-background-size: 5px 5px;
+			background-size: 5px 5px; /* Controls the size of the stripes */
+					
+		}
+		
+		
+		.angled {
+			background-color: #E7E7E7;
+			background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+									color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
+									color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
+									color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
+			 						to(transparent));
+			background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+			background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
+								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
+								transparent 75%, transparent);
+		}
+		
+			
+
+.navbar-inner {
+			background-color: #d44413;
+			background-image: -moz-linear-gradient(top,#747474,#000);
+			background-image: -webkit-gradient(linear,0 0,0 100%,from(#747474),to(#000));
+			background-image: -webkit-linear-gradient(top,#747474,#000);
+			background-image: -o-linear-gradient(top,#747474,#000);
+			background-image: linear-gradient(to bottom,#747474,#000);
+			border: 1px solid #000;
+			-webkit-border-radius: 4px;
+			-moz-border-radius: 4px;
+			filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff747474',endColorstr='#ff000000',GradientType=0);
+}
+
+.navbar .brand, .navbar .nav>li>a{
+	text-shadow: 0 1px 0 #8F8F8F;
+}
+
+.accordion-group{
+	box-shadow: 2px 2px 8px #8F8F8F;	
+}

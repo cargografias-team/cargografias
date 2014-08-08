@@ -1,0 +1,115 @@
+   .axis path,
+    .axis line {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+    }
+
+    .axis text {
+      font-family: sans-serif;
+      font-size: 10px;
+    }
+
+    .timeline-label {
+      font-family: sans-serif;
+      font-size: 12px;
+	
+    }
+    
+    #timeline2 .axis {
+      transform: translate(0px,30px);
+      -ms-transform: translate(0px,30px); /* IE 9 */
+      -webkit-transform: translate(0px,30px); /* Safari and Chrome */
+      -o-transform: translate(0px,30px); /* Opera */
+      -moz-transform: translate(0px,30px); /* Firefox */
+    }
+
+    .coloredDiv {
+      height:20px; width:20px; float:left;
+
+    }
+	
+	.yearMarker {
+		fill: none;
+		stroke:black;
+		stroke-width:2px;
+	}
+
+	svg {
+		 pointer-events: all;
+	}
+	
+	
+    #hoverInfo {
+      position: fixed;
+      right: 30px;
+      top: 30px; 
+	  padding:20px;
+	  background-color:#77FFFF;
+	  border:dotted 1px;
+    }
+	
+	.cargo{
+		 -moz-user-select: -moz-none;
+		   -khtml-user-select: none;
+		   -webkit-user-select: none;
+		   cursor:cell;
+	
+		}
+	.ejecutivo{
+		fill:#F00;
+		fill-opacity:50%;
+		background-color:#FDACB8;		
+	}
+
+	.legislativo{
+		fill:#00F;
+		fill-opacity:50%;
+	  background-color:#AACAFF;
+	}
+	
+	.presidente{
+		fill:#F00;
+		fill-opacity:100%;
+		color:#FF0;
+	}
+	.vacio{
+		fill:rgba(140, 140, 140, 0.2);
+	
+	}
+
+	.miniLabels{
+		font-family:Tahoma, Geneva, sans-serif;
+		font-size:9px;
+		fill:#FFF;
+		text-rendering: optimizeSpeed;
+	}
+	.microLabels{
+		font-size:8px;
+		fill-opacity:0.7;
+	}
+	svg {
+  		shape-rendering: crispEdges;
+	}
+
+	.nombreLabel{
+		font-size:15px;
+		fill:#000;
+		fill-opacity:100%;
+		font-family:Tahoma, Geneva, sans-serif;
+	}
+
+#tooltip {   
+  position: absolute;           
+  text-align: center;           
+  padding: 5px;
+  min-width: 100px;             
+  font: 12px sans-serif;        
+  border: 0px;      
+  border-radius: 4px;           
+  pointer-events: none;
+       
+}
+.fecha{
+	font: 10px sans-serif;
+}

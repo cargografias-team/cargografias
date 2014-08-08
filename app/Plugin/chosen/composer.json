@@ -1,0 +1,33 @@
+{
+    "name": "paulredmond/chosen-cakephp",
+    "description": "Chosen CakePHP plugin for CakePHP 2",
+    "keywords": ["plugin", "cakephp"],
+    "homepage": "https://github.com/paulredmond/chosen-cakephp",
+    "version": "2.1.4",
+    "license": "MIT",
+    "type": "cakephp-plugin",
+    "authors": [
+        {
+            "name": "Paul Redmond",
+            "email": "paulrredmond@gmail.com"
+        },
+        {
+            "name": "Harvest HQ",
+            "homepage": "http://harvesthq.github.com/chosen"
+        },
+        {
+            "name": "Github Contributors",
+            "homepage": "https://github.com/paulredmond/chosen-cakephp/graphs/contributors"
+        }
+    ],
+    "require": {
+        "php": ">=5.2.6",
+        "composer/installers": "1.*"
+    },
+    "config": {
+        "vendor-dir": "Vendor"
+    },
+    "extra": {
+        "installer-name": "Chosen"
+    }
+}
