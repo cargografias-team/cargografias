@@ -3,7 +3,17 @@
 <div class="span6">
 	<p style="margin-left:10px;">Seleccione los filtros de la búsqueda:</p>
 	<div class="search-row clearfix span3">
-  		<autocomplete ng-model="pos" data="posts" on-type="fetchPosts"></autocomplete>
+  		<input type="text" ng-model="autocomplete">
+  		<div class="items">
+			  <div class="item" ng-repeat="item in rawOrganizations | filter:autocomplete  track by $index"
+
+			  	style="cursor:pointer"
+			  	ng-class="{active:isCurrent($index)}"
+			  	ng-mouseenter="setCurrent($index)">
+			    <p class="title"	ng-click="handleSelection($index)">{{item.name}}</p>
+			  </div>
+			</div>
+			<h3> Seleccionó: {{selectedOrganization.name}} </h3>
 	</div>
 </div>
 
