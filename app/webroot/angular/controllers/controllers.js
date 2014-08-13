@@ -13,4 +13,9 @@ angular.module('cargoApp.controllers')
         });
     }
 
+    $http.get('/js/gz/cargografias-organizations-popit-dump.json')
+       .then(function(res){
+          console.log(res.data);
+        });
+
   });
