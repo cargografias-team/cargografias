@@ -67,7 +67,7 @@ angular.module('cargoApp.controllers')
 		       				id : res.data[i].id,
 			       			nombre : res.data[i].name,
 			       			index: i
-		       		};
+			       		};
 		       		window.__cargos_data.territorios.push(p)
 
 		       	};
@@ -116,6 +116,7 @@ angular.module('cargoApp.controllers')
 
     	window.__cargos_data.personas = $scope.activePersons;
     	var idPersonas = [9999];
+    	idPersonas.push(person.id);
 			var timelineParams = {
 			   filtro: { idPersonas: idPersonas },
 			   mostrarPor: "cargo",
