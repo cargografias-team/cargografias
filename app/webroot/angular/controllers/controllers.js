@@ -3,6 +3,7 @@
 /* Controllers */
 angular.module('cargoApp.controllers')
   .controller('homeController', function($rootScope,$scope, $http,$filter) {
+  	$scope.ready= false;
   	$scope.autoPersons = [];
   	$scope.persons= [];
   	$scope.posts= [];
@@ -10,7 +11,7 @@ angular.module('cargoApp.controllers')
   	$scope.organizations= [];
   	$scope.selectedPersons = [];
   	$scope.activePersons = [];
-
+  	$scope.estado = "";
   	$rootScope.observers =[];
 
 
@@ -27,6 +28,7 @@ angular.module('cargoApp.controllers')
 
   $http.get('/js/gz/cargografias-persons-popit-dump.json')
      .then(function(res){
+     	$scope.estado = "Personas";
      	$scope.persons = res.data;
        	for (var i = 0; i < res.data.length; i++) {
        		var p = {	id : res.data[i].id,
@@ -41,6 +43,7 @@ angular.module('cargoApp.controllers')
 
     	$http.get('/js/gz/cargografias-memberships-popit-dump.json')
 	     .then(function(res){
+	     	$scope.estado = "Puestos";
 	     	$scope.memberships = res.data;
 	     			for (var i = 0; i < res.data.length; i++) {
 		       		var p = {
@@ -61,6 +64,7 @@ angular.module('cargoApp.controllers')
 	    }).then(function(){
 	    	$http.get('/js/gz/cargografias-organizations-popit-dump.json')
 	    		.then(function(res){
+	    			$scope.estado = "Organizaciones";
 	    			$scope.organizations = res.data;
 	     			for (var i = 0; i < res.data.length; i++) {
 		       		var p = {
@@ -77,7 +81,7 @@ angular.module('cargoApp.controllers')
 		    		$http.get('/js/gz/cargografias-posts-popit-dump.json')
 		    		.then(function(res){
 		    			$scope.posts = res.data;
-
+		    			$scope.estado = "Partidos";
 		     			for (var i = 0; i < res.data.length; i++) {
 			       		var p = {
 			       				id : res.data[i].id,
@@ -92,10 +96,14 @@ angular.module('cargoApp.controllers')
 
 		    	}).then(function(){
 		    	 console.log('then');
+		    	 $scope.estado = "Motor de Visualizacion";
 		    		for (var i = 0; i < $rootScope.observers.length; i++) {
 		    			var observer = $rootScope.observers[i];
 		    			observer();
 		    		};
+		    		$scope.estado = "Listo!";
+		    		$scope.ready= true;
+
 		    	});
 	    	});
 	    });
