@@ -4,11 +4,11 @@
   var thisYear = (new Date()).getFullYear();
 
   var tooltipTemplate =
-    '<b><%- persona.nombre + " " + persona.apellido %></b><br>' +
-    '<%- nominal.tipo %><br> ' +
+    '<b><%- persona.name %></b><br>' +
+    ' type <br> ' +
     '<span class="ctl-detalles">' +
-    '<%- fechainicioyear %> - <%- fechafinyear %><br>' +
-    '<%- territorio.nombre %>' +
+    'start - end <br>' +
+    'organization' +
     '</span>';
 
   var svgTemplate =
@@ -88,7 +88,11 @@
     this.update = function(newOpts) {
 
       try{
-        ga('send', 'event', 'updateTimeline', newOpts.mostrarPor, _.map( newOpts.filtro.idPersonas.slice().sort(function(a,b){ return parseInt(a,10) - parseInt(b,10); }) , function(idper){ return idper + '-' + data.hashPersonas[idper].apellido }).join("|"));
+        ga('send', 'event', 'updateTimeline',
+        	newOpts.mostrarPor,
+        	_.map( newOpts.filtro.idPersonas.slice().sort(function(a,b){
+        		return parseInt(a,10) - parseInt(b,10); }) ,
+        	function(idper){ return idper + '-' + data.hashPersonas[idper].name }).join("|"));
       }catch(ex){}
 
       var filtro = {
@@ -113,7 +117,7 @@
           });
 
           idsPorNombre = _.map(_.filter(data.personas, function(p) {
-            var nombre = (p.nombre + ' ' + p.apellido).toLowerCase();
+            var nombre = (p.name).toLowerCase();
             for (var i = 0; i < nombres.length; i++) {
               if (nombre.indexOf(nombres[i]) > -1) {
                 return true;
@@ -316,19 +320,20 @@
 
     function inicializarDataEjesCargos(data, ejes, ejesCargoData) {
 
+
       _.each(data.cargos, function(d) {
 
-        ejesCargoData.eje1[d.cargo_nominal_id] = {
+        ejesCargoData.eje1[d.cargonominal] = {
           altura: 0,
-          nombre: d.nominal.nombre,
+          nombre: d.cargonominal,
           display: false
         };
 
-        ejesCargoData.eje2[d.cargo_nominal_id + ' | ' + d.territorio_id] = {
+        ejesCargoData.eje2[d.cargonominal + ' | ' + d.organization_id] = {
           altura: 0,
-          nombre: d.territorio.nombre,
+          nombre: d.organization_id,
           display: false,
-          parentEje: ejesCargoData.eje1[d.cargo_nominal_id]
+          parentEje: ejesCargoData.eje1[d.cargonominal]
         };
 
       });
@@ -349,7 +354,8 @@
             .attr('y', 18)
             .attr('x', 5)
             .text(function(d) {
-              return d.nombre;
+            	console.log(d)
+              return d.name;
             });
 
           g.append("line")
@@ -376,7 +382,7 @@
           g.append('text')
             .attr('y', 18)
             .text(function(d) {
-              return d.nombre;
+              return d.name;
             });
 
         });
@@ -492,7 +498,7 @@
 
     function ordenarPorNombreyFechaInicioYear(cargos) {
       cargos.sort(function(a, b) {
-        return strCmp(a.nombre, b.nombre) || strCmp(a.territorio, b.territorio) || (a.fechainicioyear - b.fechainicioyear);
+        return strCmp(a.name, b.name) || strCmp(a.territorio, b.territorio) || (a.fechainicioyear - b.fechainicioyear);
       });
     }
 
@@ -669,7 +675,7 @@
             .attr('font-size', 8)
             .attr('class', 'ctl-nombre')
             .text(function(d) {
-              return d.persona.nombre + ' ' + d.persona.apellido;
+              return d.persona.name;
             });
 
         });
@@ -866,9 +872,7 @@
       cargosnominales: copyArr(origData.cargosnominales),
       partidos: copyArr(origData.partidos),
       territorios: copyArr(origData.territorios),
-      cargos: copyArr(_.filter(origData.cargos, function(c) {
-        return parseInt(c.fechainicio, 10) > 1970;
-      })),
+      cargos: copyArr(origData.cargos),
     };
     //data.cargos = data.cargos.slice(0,500);
 
@@ -890,13 +894,13 @@
     }, {});
 
     _.each(data.cargos, function(cargo) {
-      cargo.fechainicioyear = parseInt((cargo.fechainicio || '').substr(0, 4) || "", 10);
-      cargo.fechafinyear = parseInt((cargo.fechafin || '').substr(0, 4) || "", 10) || thisYear;
+      // cargo.fechainicioyear = parseInt((cargo.fechainicio || '').substr(0, 4) || "", 10);
+      // cargo.fechafinyear = parseInt((cargo.fechafin || '').substr(0, 4) || "", 10) || thisYear;
       cargo.__layout = {}; //Esto va a tener la info de layout
-      cargo.persona = data.hashPersonas[cargo.persona_id];
-      cargo.nominal = data.hashCargosNominales[cargo.cargo_nominal_id];
-      cargo.partido = data.hashPartidos[cargo.partido_id];
-      cargo.territorio = data.hashTerritorios[cargo.territorio_id];
+      // cargo.persona = data.hashPersonas[cargo.persona_id];
+      // cargo.nominal = data.hashCargosNominales[cargo.cargo_nominal_id];
+      // cargo.partido = data.hashPartidos[cargo.partido_id];
+      // cargo.territorio = data.hashTerritorios[cargo.territorio_id];
     });
 
     return data;
