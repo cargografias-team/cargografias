@@ -109,13 +109,12 @@ angular.module('cargoApp.controllers')
     $scope.handlePersonSelection = function(id){
     	console.log(id);
     	$scope.selectedPersons.push($scope.persons[id]);
+    	$scope.autocomplete= '';
     }
     $scope.add = function(person){
-    	console.log(person);
     	$scope.activePersons.push(person);
 
-    	window.__cargos_data.personas = $scope.activePersons;
-    	var idPersonas = [9999];
+    	var idPersonas = cargoTimeline.options.filtro.idPersonas;
     	idPersonas.push(person.id);
 			var timelineParams = {
 			   filtro: { idPersonas: idPersonas },
@@ -123,7 +122,24 @@ angular.module('cargoApp.controllers')
 			};
     	window.cargoTimeline.update(timelineParams);
 
-    }
+    };
+    $scope.remove = function(person){
+    	var indexOf = $scope.activePersons.indexOf(person);
+    	if (indexOf > -1){
+    		 $scope.activePersons.splice(indexOf, 1);
+    	}
+    	indexOf = cargoTimeline.options.filtro.idPersonas.indexOf(person.id);
+    	if (indexOf > -1){
+    		 cargoTimeline.options.filtro.idPersonas.splice(indexOf, 1);
+    	}
+    	var idPersonas = cargoTimeline.options.filtro.idPersonas;
+			var timelineParams = {
+			   filtro: { idPersonas: idPersonas },
+			   mostrarPor: "cargo",
+			};
+    	window.cargoTimeline.update(timelineParams);
+
+    };
 
 
 
