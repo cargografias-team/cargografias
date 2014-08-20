@@ -1,0 +1,63 @@
+.ctl-ejeCargos0,
+.ctl-ejeCargos1,
+.ctl-ejePersonas{
+	font-size: 15px;
+}
+.ctl-tooltip{
+	position: absolute;
+	display: none;
+	text-align: center;
+	background: black;
+	opacity: 0.9;
+	border-radius: 4px;
+	padding: 5px;
+	font-size: 12px;
+}
+.ctl-tooltip.ctl-legislativo,
+.ctl-tooltip.ctl-Legislativo{
+	background: #AACAFF;
+}
+.ctl-tooltip.ctl-ejecutivo,
+.ctl-tooltip.ctl-Ejecutivo{
+	background: #FDACB8;
+}
+.ctl-tooltip .ctl-detalles{
+	font-size: 10px;
+}
+.ctl-cargos rect{
+	opacity: 0.5;
+}
+.ctl-cargos rect.ctl-legislativo,
+.ctl-cargos rect.ctl-Legislativo{
+	fill: #00f;
+}
+.ctl-cargos rect.ctl-ejecutivo,
+.ctl-cargos rect.ctl-Ejecutivo{
+	fill: #f00;
+}
+.ctl-cargos text{
+	fill: #FFF;
+}
+.ctl-cargos text.ctl-nombre{
+	font-weight: bold;
+}
+.ctl-cargos text.ctl-cargo{
+}
+.ctl-axis path,
+.ctl-axis line {
+	fill: none;
+	stroke: black;
+	shape-rendering: crispEdges;
+}
+.ctl-axis text {
+	font-family: sans-serif;
+	font-size: 10px;
+}
+.ctl-timeline-label {
+	font-size: 12px;
+}
+.ctl-yearMarker {
+	fill: none;
+	stroke: #000;
+	stroke-width: 2px;
+}

@@ -1,0 +1,66 @@
+#search-resultados {
+	height: 280px;
+	overflow: auto;
+}
+
+#persona-reports .accordion-heading a.accordion-toggle {
+	float: left;
+	display: block;
+}
+#persona-reports .accordion-heading .accordion-close {
+	float: right;
+	padding: 8px 15px;
+}
+
+
+.charts div {
+	float: left;
+}
+
+.table td{
+	padding:2px 8px;
+}
+
+.btn-mini{
+	padding:1px 6px;
+}
+
+.accordion .accordion-heading{
+	background-color: #ddd;
+}
+
+.accordion-heading i{
+	background-image: url("../img/glyphicons-halflings-white.png");
+}
+.accordion{
+	margin-left:0px !important;
+}
+
+.search-row{
+	margin-left:10px !important;
+}
+
+#buscar-submit{
+	float:right;
+	width: 120px;
+	display: none;
+}
+
+.personas{
+	margin:0px !important;
+	width:100% !important;
+}
+
+.alert{
+	padding: 1px 20px 1px 10px;
+	margin-bottom:2px;
+}
+
+#search-resultados table td.actions { text-align: right; width: 150px; }
+#table-selected td:last-child { text-align: right; width: 85px; }
+#persona-reports .accordion-group .accordion-heading a.permalink { display: inline-block; padding: 8px; } 
+
+tr.Ejecutivo td { color: red; }
+tr.Legislativo td { color: blue; }
+td.Judicial{ color: green; }
+

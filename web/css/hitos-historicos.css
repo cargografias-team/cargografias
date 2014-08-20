@@ -1,0 +1,96 @@
+#hitos-loader {
+	display: none;
+}
+
+.cargo {
+	stroke-width:3;
+	opacity: 0.6;
+}
+
+.cargo.tipo-1 {
+	
+}
+
+.cargo.tipo-2 {
+
+}
+
+.cargo.clase-1 {
+
+}
+
+.cargo.clase-2 {
+
+}
+
+.cargo.cargo-presidente {
+	fill:red;
+}
+
+.cargo.cargo-diputado {
+	fill:blue;
+}
+
+.cargo.cargo-senador {
+	fill:green;
+}
+
+.cargo.cargo-gobernador {
+	fill:orange;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+
+.hito {
+	fill: none;
+	stroke: red;
+	shape-rendering: crispEdges;
+	stroke-width:4;
+}
+
+.texto-nombre {
+	font-size: 2em;
+	font-weight: bold;
+	fill:#FFF;
+}
+
+.texto-cargo {
+	font-size: 1em;
+	font-weight: bold;
+	fill:#FFF;
+}
+
+.texto-partido {
+	font-size: 1em;
+	fill:#FFF;
+}
+
+#hito-container p{
+	text-align: justify;
+}
+
+#hito-container {
+}
+
+.label-hito {
+	fill:red;
+}
+
+.hito-loader{
+	height: 11px;
+	width: 16px;
+	background-image: url('/img/loader.gif');
+	display: none;
+}
+
+#paginate-container {
+	text-align: center;
+}
+
+#expand-hitos-container{
+	display: none;
+}

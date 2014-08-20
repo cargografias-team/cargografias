@@ -1,0 +1,20 @@
+#trivia-loader,
+#trivia-playground,
+#trivia-resultado {
+	display: none;
+}
+
+.tipo-quiz{
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+#trivia-loader{
+	height: 11px;
+	width: 16px;
+	background-image: url('/img/loader.gif');
+}
+
+#trivia-playground {
+	min-height: 350px;
+}
