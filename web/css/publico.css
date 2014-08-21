@@ -11,7 +11,9 @@
 .counters .well h3 {
 	text-shadow: 2px 2px white;
 }
-
+.row{
+  margin-left: auto; 
+}
 .counters .no-well h2,
 .counters .no-well h3 {
 	text-shadow: 2px 2px #ccc;
@@ -70,7 +72,6 @@ blockquote p {
 .titulo-tab{
 	margin-top: 0px;
 	margin-bottom: 0px;
-	float: left;
 }
 
 .titulo-tab-ul{
