@@ -23,7 +23,8 @@ angular.module('cargoApp.controllers')
 					territorios: [],
 					cargos: []
 				};
-
+  
+  debugger;
 
 
   $http.get('/js/gz/cargografias-persons-popit-dump.json')
