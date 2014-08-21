@@ -1,0 +1,23 @@
+{
+  "name": "cargografias-runner",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "compression": "~1.0.11",
+    "express": "~4.8.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cargografias/cargografias"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/cargografias/cargografias/issues"
+  }
+}
