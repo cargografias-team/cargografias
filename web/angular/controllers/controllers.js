@@ -24,7 +24,6 @@ angular.module('cargoApp.controllers')
 					cargos: []
 				};
   
-  debugger;
 
 
   $http.get('/js/gz/cargografias-persons-popit-dump.json')
@@ -113,16 +112,11 @@ angular.module('cargoApp.controllers')
 
 
 
-
-
-    $scope.handlePersonSelection = function(id){
-    	console.log(id);
-    	$scope.selectedPersons.push($scope.persons[id]);
-    	$scope.autocomplete= '';
-    }
-    $scope.add = function(person){
-    	$scope.activePersons.push(person);
-
+    $scope.add = function(id){
+      $scope.autocomplete = '';
+    	
+      var person = $scope.persons[id];
+      $scope.activePersons.push(person);
     	var idPersonas = cargoTimeline.options.filtro.idPersonas;
     	idPersonas.push(person.id);
 			var timelineParams = {

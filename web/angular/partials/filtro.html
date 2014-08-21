@@ -4,36 +4,29 @@
 		<p style="margin-left:10px;">Seleccione los filtros de la búsqueda:</p>
 		<div class="search-row clearfix span3">
 	  		<input type="text" placeholder="Filtrar por Nombre y/​o Apellido"ng-model="autocomplete">
-	  		<div class="items">
-		  		<div ng-show="autocomplete.length > 3">
-					  <div class="item" ng-repeat="item in autoPersons | filter:autocomplete"
-					  	style="cursor:pointer">
-					    <p class="title"	ng-click="handlePersonSelection(item.index)">{{item.nombre}}</p>
-					  </div>
-					</div>
-				</div>
 		</div>
 	</div>
 	<div class="span6">
 	  <div class="items">
-	  <div ng-show="selectedPersons.length == 0">
+	  <div ng-hide="autocomplete.length > 4">
 	  	<div id="search-resultados" class="span5">
 				<h4>No hay resultados para mostrar.</h4>
 				<h4>Ingrese uno o más filtros o modifíquelos.</h4>
 				<h5>Y si faltan datos, o tienen errores, avísenos <a href="https://docs.google.com/a/soviet.com.ar/forms/d/1NoOYENvhHXqpLO3WpB8l6R8ofJkJiShLlx2A_DfrNd0/viewform" target="_blank">aqui</a></h5>
 			</div>
 	  </div>
-	  <div ng-hide="selectedPersons.length == 0">
+	  <div ng-show="autocomplete.length > 4">
 			  <table class="table" cellpadding="0" cellspacing="0">
-						<tbody>
+						<thead> <h3>Monstrando {{results.length}} resultados<h3></thead>
+            <tbody>
 							<tr>
 								<th><a>Nombre</a></th>
 								<th></th>
 						</tr>
-						<tr class="item" ng-repeat="p in selectedPersons">
-							<td>{{p.name}}</td>
+						<tr class="item" ng-repeat="item in results = (autoPersons | filter:autocomplete)">
+							<td>{{item.nombre}}</td>
 							<td class="actions">
-								<a class="btn btn-mini agregar-buscar btn-warning" href="" ng-click="add(p)">
+								<a class="btn btn-mini agregar-buscar btn-warning" href="" ng-click="add(item.index)">
 								Agregar <i class="icon-chevron-up icon-white"></i></a>
 							</td>
 						</tr>
