@@ -1,13 +1,11 @@
 <div class="row">
-	<!-- esto esta en filtro.ctp -->
 	<div class="span6">
-		<p style="margin-left:10px;">Seleccione los filtros de la búsqueda:</p>
+		<p style="margin-left:10px;">Ingrese el nombre del funcionario a buscar:</p>
 		<div class="search-row clearfix span3">
-	  		<input type="text" placeholder="Filtrar por Nombre y/​o Apellido"ng-model="autocomplete">
+	  		<input type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="autocomplete">
 	  		<div class="items">
 		  		<div ng-show="autocomplete.length > 3">
-					  <div class="item" ng-repeat="item in autoPersons | filter:autocomplete"
-					  	style="cursor:pointer">
+					  <div class="item" ng-repeat="item in autoPersons | filter:autocomplete" style="cursor:pointer">
 					    <p class="title"	ng-click="handlePersonSelection(item.index)">{{item.nombre}}</p>
 					  </div>
 					</div>
