@@ -85,7 +85,8 @@ angular.module('cargoApp.controllers')
 		     			for (var i = 0; i < res.data.length; i++) {
 			       		var p = {
 			       				id : res.data[i].id,
-				       			nombre : res.data[i].name,
+				       			nombre : res.data[i].cargonominal,
+                    label: res.data[i].label,
 				       			index: i,
 				       			duracion: res.data[i].duracioncargo,
 				       			clase: res.data[i].cargoclase,
