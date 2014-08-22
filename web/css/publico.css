@@ -41,8 +41,8 @@ body{
 }
 
 h2, h3{
-	font-size:18px;
-	line-height: 32px;
+	font-size:15px;
+	line-height: 17px;
 }
 
 
@@ -55,7 +55,13 @@ blockquote p {
 	font-size: 14.5px;
 }
 .nav-pills>li>a {
-		border: 1px solid #df382c;;
+		border: 1px solid #df382c;
+		margin-top: 0px;
+		margin-bottom: 0px;
+		line-height: 11px;
+		font-size: 11px;
+		padding-top: 3px;
+		padding-bottom: 3px;
 }
 .nav-pills>.active>a, .nav-pills>.active>a:hover, .nav-pills>.active>a:focus{
 	background-color:#df382c;
@@ -87,7 +93,7 @@ blockquote p {
 	border: 1px solid #fadfdd;
 }
 
-#linea-de-tiempo .accordion-group{
+.accordion-group{
 	background-color: #f8f8f8;
 	border-color: #f8d0d4;
 	margin-bottom:15px;
@@ -100,13 +106,13 @@ blockquote p {
 	
 }
 
-#buscador .accordion-group{
+#filtro .accordion-group{
 	background-color: #f8f8f8;
 	border-color: #A0D1A7;
 	margin-bottom:15px;
 }
 
-#linea-de-tiempo .alert, #buscador .alert{
+.accordion-group .alert{
 	border: none;
 	border-radius: 0px;
 
@@ -175,4 +181,18 @@ blockquote p {
   max-height: 166px;
   overflow-y: scroll;
   overflow-x: hidden;
+}
+
+.span6{
+	margin-left: 15px;
+}
+
+.table th, .table td{
+	line-height: 16px;	
+	padding: 4px;
+	vertical-align: middle;
+}
+
+.alert{
+	margin-bottom: 10px;
 }

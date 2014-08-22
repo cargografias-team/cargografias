@@ -1,5 +1,5 @@
 
-<div class="row" id="buscador">
+<div class="row" id="filtro">
 	<div class="accordion-group">
 		<div class="alert-success accordion-heading alert ">
 			<h3 class="titulo-tab">	Filtro de personas</h3>
@@ -13,7 +13,7 @@
 				</div>
 			</div>
 					
-			<div class="span6">
+			<div class="span6" style="width: 518px;margin-bottom: 7px;">
 		  		<div class="items">
 		  			<div ng-hide="autocomplete.length > 4">
 		  				<div id="search-resultados" class="span5">
@@ -34,7 +34,7 @@
   									<td>{{item.nombre}}</td>
   									<td class="actions">
   											<a class="btn btn-mini agregar-buscar btn-warning" href="" ng-click="add(item,item.index)">
-  											Agregar <i class="icon-chevron-up icon-white"></i></a>
+  											Agregar <i class="icon-chevron-down icon-white"></i></a>
   									</td>
   								</tr>
   							</tbody>
@@ -42,6 +42,18 @@
 					</div>
 				</div>
 			</div>
+			<div class="span10">
+				<span ng-show="activePersons.length > 0" class="label">Funcionarios Seleccionados: {{activePersons.length}} </span>&nbsp;<a id="limpiar-buscar-filtro" ng-click="clearAll()" ng-show="activePersons.length > 0" class="badge badge-warning"><i class="icon-remove icon-white"></i> Limpiar Selección</a>
+        		<div class"row" style="padding:14px">
+	          		<div class="span1" ng-repeat="active in activePersons">
+	            		<img class="photo" src="/img/person.png">
+	            		<a data-id="930" style="float:right" ng-click="remove(active)" class="btn btn-mini eliminar-buscar btn-danger">
+	                  	<i class="icon-remove icon-white"></i></a>
+	            		<p>{{active.name}}</p>
+	          		</div>
+        		</div>
+			</div>
+  
 		</div>
 		<div class="clearfix"></div>
 	</div>
