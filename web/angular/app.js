@@ -8,7 +8,8 @@ angular.module('cargoApp', [
   'cargoApp.services',
   'cargoApp.factories',
   'cargoApp.directives',
-  'cargoApp.controllers'
+  'cargoApp.controllers',
+  'angularMoment'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {templateUrl: '/angular/partials/buscador.html', controller: 'homeController'});

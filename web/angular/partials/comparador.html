@@ -9,8 +9,7 @@
 					<table class="table" cellpadding="0" cellspacing="0">
 						<tbody>
 						<tr>
-							<th>
-							</th>
+							<th></th>
 							<td></td>
 							<td>Cargos</td>
 							<td>Primero</td>
@@ -24,23 +23,16 @@
 						</tr>
 						<tr ng-repeat="active in activePersons">
 							<td>{{active.name}}</td>
-							<td>
-								<a data-id="242" style="float:right" class="btn btn-mini eliminar-buscar btn-danger">
-									<i class="icon-remove icon-white"  ng-click="remove(active)"></i>
-								</a>
-								<a class="btn btn-mini btn-primary" style="float:right" id="ver-persona-242" target="_blank">
-									Ver <i class="icon-user icon-white"></i>
-								</a>
-							</td>
+              <td></td>
 							<td>{{active.memberships.length}}</td>
-							<td>{{active.started}}</td>
-							<td>{{active.last}}</td>
-							<td>{{active.executives}}</td>
-							<td>{{active.legislative}}</td>
-							<td>{{active.judiciary}}</td>
-							<td>{{active.elected}}</td>
-							<td>{{active.notElected}}</td>
-							<td>{{active.reElected}}</td>
+							<td>{{active.periods.started}}</td>
+							<td>{{active.periods.last}}</td>
+							<td>{{active.summary.executives}}</td>
+							<td>{{active.summary.legislative}}</td>
+							<td>{{active.summary.judiciary}}</td>
+							<td>{{active.summary.elected}}</td>
+							<td>{{active.summary.notElected}}</td>
+							<td>{{active.summary.reElected}}</td>
 						</tr>
 						</tbody>
 					</table>

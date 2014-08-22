@@ -82,7 +82,7 @@
 			<div ng-app="cargoApp">
 				<div ng-view></div>
 			</div>
-
+      <div ng-include="'angular/partials/poderometro.html'"></div>
 			<footer class="well">				
 					<div class="span5">
 						<p style="line-height:20px">
@@ -114,17 +114,21 @@
 		</div> <!-- /container -->
 
 
-  <script type="text/javascript" src="js/lib/jquery-2.0.0.min.js"></script>
-  <script type="text/javascript" src="js/lib/jquery.hashchange.min.js"></script>
-  <script type="text/javascript" src="js/lib/modernizr-2.5.3.min.js"></script>
-  <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
+  <script src="js/lib/jquery-2.0.0.min.js"></script>
+  <script src="js/lib/jquery.hashchange.min.js"></script>
+  <script src="js/lib/modernizr-2.5.3.min.js"></script>
+  <script src="js/lib/bootstrap.min.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
-  <script type="text/javascript" src="js/lib/d3.v3.1.9.min.js"></script>
-  <script type="text/javascript" src="js/lib/underscore-min.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular-moment/angular-moment.js"></script>
+  <script src="bower_components/moment/lang/de.js"></script>
 
-  <script type="text/javascript" src="js/lib/v2/CargografiasTimeline.js"></script>
-  <script type="text/javascript" src="js/our_lib.js"></script>
+  <script src="js/lib/d3.v3.1.9.min.js"></script>
+  <script src="js/lib/underscore-min.js"></script>
+  
+  <script src="js/lib/v2/CargografiasTimeline.js"></script>
+  <script src="js/our_lib.js"></script>
   <script src="angular/app.js"></script>
   <script src="angular/services/services.js"></script>
   <script src="angular/controllers/controllers.js"></script>

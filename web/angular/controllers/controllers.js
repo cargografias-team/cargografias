@@ -4,14 +4,13 @@
 angular.module('cargoApp.controllers')
   .controller('homeController', function($rootScope,$scope,cargosFactory, $filter) {
   	$scope.ready= false;
-  	$scope.autoPersons = [];
-  	$scope.persons= [];
-  	$scope.posts= [];
-  	$scope.memberships= [];
-  	$scope.organizations= [];
-  	$scope.selectedPersons = [];
+  	
+    $scope.autoPersons = [];
+  	
+
+
   	$scope.activePersons = [];
-  	$scope.estado = "";
+    $scope.estado = "";
   	$rootScope.observers =[];
 
 
@@ -38,8 +37,10 @@ angular.module('cargoApp.controllers')
     $scope.add = function(id){
       $scope.autocomplete = '';
     	
-      var person = $scope.persons[id];
+      var person = cargosFactory.getFullPerson(id);
       $scope.activePersons.push(person);
+
+
     	var idPersonas = cargoTimeline.options.filtro.idPersonas;
     	idPersonas.push(person.id);
 			var timelineParams = {
