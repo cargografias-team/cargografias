@@ -1,19 +1,16 @@
 
 <div class="row" id="filtro">
 	<div class="accordion-group">
-		<div class="alert-success accordion-heading alert ">
-			<h3 class="titulo-tab">	Filtro de personas</h3>
-			<div class="clearfix"></div>
-  		</div>
+		
   		<div class="row">
   			<div class="span5">
-				<p style="margin-left:10px;">Ingrese el nombre del funcionario a buscar:</p>
+				<h3 style="margin-left:10px;">Ingrese el nombre del funcionario a buscar:</h3>
 				<div class="search-row clearfix span3">
 	  				<input type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="autocomplete">
 				</div>
 			</div>
 					
-			<div class="span6" style="width: 518px;margin-bottom: 7px;">
+			<div class="span6" style="width: 518px;margin-bottom: 7px; margin-top: 10px;">
 		  		<div class="items">
 		  			<div ng-hide="autocomplete.length > 4">
 		  				<div id="search-resultados" class="span5">
@@ -23,17 +20,17 @@
 						</div>
 							<div class="clearfix"></div>
 		  			</div>
-		  			<div class="resultados"ng-show="autocomplete.length > 4">
+		  			<div class="resultados"ng-show="autocomplete.length > 3" style="background:#fff">
   						<table class="table" cellpadding="0" cellspacing="0">
   			        		<tbody>
   								<tr>
-  									<th><a>Nombre</a> <small> {{results.length}} resultados</small></th>
+  									<th><small> {{results.length}} resultados</small></th>
   									<th></th>
   								</tr>
   								<tr class="item" ng-repeat="item in results = (autoPersons | filter:autocomplete)" ng-hide="item.agregada">
   									<td>{{item.nombre}}</td>
   									<td class="actions">
-  											<a class="btn btn-mini agregar-buscar btn-warning" href="" ng-click="add(item,item.index)">
+  											<a class="btn btn-mini agregar-buscar btn-primary" href="" ng-click="add(item,item.index)">
   											Agregar <i class="icon-chevron-down icon-white"></i></a>
   									</td>
   								</tr>

@@ -38,6 +38,7 @@ footer {
 body{
 	font-size: 13px;
 	line-height: 17px;
+	padding-top: 30px;
 }
 
 h2, h3{
@@ -55,7 +56,7 @@ blockquote p {
 	font-size: 14.5px;
 }
 .nav-pills>li>a {
-		border: 1px solid #df382c;
+		/*border: 1px solid #df382c;*/
 		margin-top: 0px;
 		margin-bottom: 0px;
 		line-height: 11px;
@@ -64,7 +65,8 @@ blockquote p {
 		padding-bottom: 3px;
 }
 .nav-pills>.active>a, .nav-pills>.active>a:hover, .nav-pills>.active>a:focus{
-	background-color:#df382c;
+	background-color:#646464;
+	color:#fafafa;
 }
 
 .fondo-timeline{
@@ -95,28 +97,40 @@ blockquote p {
 
 .accordion-group{
 	background-color: #f8f8f8;
-	border-color: #f8d0d4;
+	border-color: #B1B1B1;
 	margin-bottom:15px;
-
+	box-shadow: 2px 2px 8px #8F8F8F;	
 }
 
-#comparacion-reports .accordion-group{
-	background-color: #f8f8f8;
-	
-	
-}
-
-#filtro .accordion-group{
-	background-color: #f8f8f8;
-	border-color: #A0D1A7;
-	margin-bottom:15px;
+#comparador .accordion-group{
+	background-color: #E6E6E6;
 }
 
 .accordion-group .alert{
 	border: none;
 	border-radius: 0px;
+	border-color: #A0D1A7;
 
 }
+
+.accordion-group .alert-error{
+	color: #525252;
+	background-color: #DFDFDF;
+
+}
+
+
+#filtro .accordion-group{
+	background-color: #f2f2f2;
+	border-color: #E6E6E6;
+	margin-bottom:15px;
+	-moz-box-shadow:    inset 0 0 7px #8F8F8F;
+   -webkit-box-shadow: inset 0 0 7px #8F8F8F;
+   box-shadow:         inset 0 0 7px #8F8F8F;
+   padding-top: 30px;
+}
+
+
 
 
 
@@ -173,9 +187,6 @@ blockquote p {
 	text-shadow: 0 1px 0 #8F8F8F;
 }
 
-.accordion-group{
-	box-shadow: 2px 2px 8px #8F8F8F;	
-}
 
 .resultados{
   max-height: 166px;
