@@ -104,6 +104,13 @@ blockquote p {
 
 #comparador .accordion-group{
 	background-color: #E6E6E6;
+	-moz-box-shadow:    0 0 0px ;
+   -webkit-box-shadow:  0 0 0px ;
+   box-shadow:          0 0 0px ;
+	border-color: #CACACA;
+
+
+
 }
 
 .accordion-group .alert{
@@ -129,6 +136,12 @@ blockquote p {
    box-shadow:         inset 0 0 7px #8F8F8F;
    padding-top: 30px;
 }
+
+#linea-de-tiempo .accordion-group{
+	color:black;
+	border-color:black;
+}
+
 
 
 
