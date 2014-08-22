@@ -323,7 +323,6 @@
           nombre: d.nominal.nombre,
           display: false
         };
-        console.log(d.nominal);
 
         ejesCargoData.eje2[d.cargo_nominal_id + ' | ' + d.territorio_id] = {
           altura: 0,
