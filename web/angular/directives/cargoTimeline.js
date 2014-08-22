@@ -3,7 +3,7 @@
 /* Directives */
 
 
-angular.module('cargoApp.directives', []).
+angular.module('cargoApp.directives').
   directive('ngCargotimeline', function() {
     return {
     	template: '<div id="timelineContainer"><div class="ctl-tooltip"></div></div>',

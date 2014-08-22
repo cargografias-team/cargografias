@@ -10,7 +10,7 @@ app.set('port', process.env.PORT || 3000);
 app.use(compression({
   threshold : 0, // or whatever you want the lower threshold to be
   filter    : function(req, res) {
-    if (req.url.indexOf('json') > 0){
+    if (req.url.indexOf('gz') > 0){
       res.setHeader( "Content-Encoding", "gzip" );
     }
     

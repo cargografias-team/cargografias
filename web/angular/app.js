@@ -1,6 +1,8 @@
 'use strict';
 
 angular.module('cargoApp.controllers', []);
+angular.module('cargoApp.directives', []);
+
 // Declare app level module which depends on filters, and services
 angular.module('cargoApp', [
   'ngRoute',
