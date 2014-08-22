@@ -1,14 +1,27 @@
 <div class="row">
 	<div class="accordion-group">
 		<div class="alert-error accordion-heading alert ">
-			<h3 class="titulo-tab">Personas</h3>
+			<h3 class="titulo-tab">Personas <span ng-show="activePersons.length > 0">({{activePersons.length}})</span></h3>
 			<div class="clearfix"></div>
 		</div>
 		<div class="row">
-			<div class="span6">
-				<p style="margin-left:10px;">Ingrese el nombre del funcionario a buscar:</p>
+			<div class="span8">
+        <div class"row">
+          <div class="span1" ng-repeat="active in activePersons">
+            <img class="photo" src="/img/person.png">
+            <a data-id="930" style="float:right" ng-click="remove(active)" 
+              class="btn btn-mini eliminar-buscar btn-danger">
+                  <i class="icon-remove icon-white"></i>
+            </a>
+            <p>{{active.name}}</p>
+          </div>
+        </div>
 			</div>
+      <div class="span3" ng-show="activePersons.length > 0">
+        <a id="limpiar-buscar-filtro" ng-click="clearAll()" class="btn btn-danger">Limpiar Filtros</a>
+      </div>
 		</div>
 		<div class="clearfix"></div>
 	</div>
 </div>
+

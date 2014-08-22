@@ -34,10 +34,13 @@ angular.module('cargoApp.controllers')
 
 
 
-    $scope.add = function(id){
-      $scope.autocomplete = '';
+    $scope.add = function(autoPersona, id){
+
+      $scope.autocomplete = " ";
+      autoPersona.agregada = true;
     	
       var person = cargosFactory.getFullPerson(id);
+      person.autoPersona = autoPersona;
       $scope.activePersons.push(person);
 
 
@@ -49,12 +52,14 @@ angular.module('cargoApp.controllers')
 			};
     	window.cargoTimeline.update(timelineParams);
 
+
     };
     $scope.remove = function(person){
     	var indexOf = $scope.activePersons.indexOf(person);
     	if (indexOf > -1){
     		 $scope.activePersons.splice(indexOf, 1);
     	}
+      person.autoPersona.agregada = false;
     	indexOf = cargoTimeline.options.filtro.idPersonas.indexOf(person.id);
     	if (indexOf > -1){
     		 cargoTimeline.options.filtro.idPersonas.splice(indexOf, 1);
@@ -67,6 +72,20 @@ angular.module('cargoApp.controllers')
     	window.cargoTimeline.update(timelineParams);
 
     };
+
+    $scope.clearAll = function(){
+      for (var i = 0; i < $scope.activePersons.length; i++) {
+        $scope.activePersons[i].autoPersona.agregada = false;
+      };
+      $scope.activePersons = [];
+      var idPersonas = [];
+      var timelineParams = {
+         filtro: { idPersonas: idPersonas },
+         mostrarPor: "cargo",
+      };
+      window.cargoTimeline.update(timelineParams);
+
+    }
 
 
 
