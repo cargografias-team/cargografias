@@ -192,7 +192,8 @@
       .style("display", "none");
 
     yearMarker.append("circle")
-      .attr("r", 5);
+      .attr("r", 5)
+    
 
     svg
       .on("mouseover", function() {
@@ -204,7 +205,12 @@
       .on("mousemove", mousemove)
 
     function mousemove() {
-      /*jshint validthis:true */
+      var x0 = xScale.invert(d3.mouse(this)[0]);
+      console.log();
+      var $scope = angular.element($("#cargoContainer")).scope();
+      $scope.$apply(function($scope) {
+          $scope.activeYear = Math.floor(x0);
+      });
       yearMarker.attr("transform", "translate(" + d3.mouse(this)[0] + ", " + EJE_ANIOS_OFFSET_Y + ")");
     }
 
@@ -788,7 +794,7 @@
       var anios = getAniosMasUsados(data, 10);
       anios.push(primerStartingYear, ultimoEndingYear);
       anios.push(1976, 1983);
-      console.log(anios);
+      
       var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient("bottom")
@@ -798,6 +804,8 @@
       svg.append("g").attr("class", "ctl-axis")
         .attr("transform", "translate(0," + EJE_ANIOS_OFFSET_Y + ")")
         .call(xAxis);
+      d3.selectAll('.metro')
+        .on('click', function(d,i){ console.log(d,i)});
       d3.selectAll('text')
         .on('click', function(d,i){ console.log(d,i)});
       d3.selectAll('.ctl-axis')
