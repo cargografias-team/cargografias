@@ -160,6 +160,7 @@
         .attr("width", CHART_WIDTH)
         .attr("height", CHART_HEIGHT);
 
+
     }
 
     function buildxScale(data) {
@@ -200,7 +201,7 @@
       .on("mouseout", function() {
         yearMarker.style("display", "none");
       })
-      .on("mousemove", mousemove);
+      .on("mousemove", mousemove)
 
     function mousemove() {
       /*jshint validthis:true */
@@ -692,7 +693,8 @@
         altura = ejes.alturaMaxEjeCargo * ALTO_BLOQUES + 100;
       }
       //Setear la altura
-      svg = d3.select('svg').attr("height", altura);
+      svg = d3.select('svg')
+      .attr("height", altura);
 
     }
 
@@ -786,7 +788,7 @@
       var anios = getAniosMasUsados(data, 10);
       anios.push(primerStartingYear, ultimoEndingYear);
       anios.push(1976, 1983);
-
+      console.log(anios);
       var xAxis = d3.svg.axis()
         .scale(xScale)
         .orient("bottom")
@@ -796,6 +798,11 @@
       svg.append("g").attr("class", "ctl-axis")
         .attr("transform", "translate(0," + EJE_ANIOS_OFFSET_Y + ")")
         .call(xAxis);
+      d3.selectAll('text')
+        .on('click', function(d,i){ console.log(d,i)});
+      d3.selectAll('.ctl-axis')
+        .on('click', function(d,i){ console.log(d,i)});
+
 
     }
 
