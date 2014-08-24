@@ -8,42 +8,16 @@ angular.module('cargoApp.directives').
   directive('ngCargobubbles', function() {
     return {
     	template: '<div id="bubbles"></div>',
-    	controller: ['$scope', '$http', function($scope, $http) {
-    			console.log('controller');
-    			$scope.one = "one";
+    	controller: ['$scope', '$http', function($scope) {
+          console.log('controller');
     	}],
     	link: function($rootScope, $scope, iElement, iAttrs, ctrl) {
-    		//$rootScope.startBubbles= function(redraw){}
-        var data ={
-            name: "analytics",
-             children: [
-              {
-               name: "cluster",
-               children: [
-                {name: "Cristina Fernandez",size: 3938},
-                {name: "Nestor Kirchner",size: 3812},
-                {name: "Carlos Mendez",size: 6714},
-                {name: "Martin Loustau",size: 743}
-               ]
-              },
-              {
-               name: "graph",
-               children: [
-                {name: "Eduardo Bauza",size: 3534},
-                {name: "Carlos Ruckauf",size: 5731},
-                {name: "Palito Ortega",size: 7840},
-                {name: "Raul Alfonsin",size: 5914},
-                {name: "Carlos Alvarez",size: 3416}
-               ]
-              },
-              {
-               name: "optimization",
-               children: [
-                {name: "Fernando de la Rua", size: 7074}
-               ]
-              }
-             ]
-          };
+
+        
+    		var startBubbles = function(data){
+          
+          $("#bubbles").html('');
+
           var diameter = 960/2,
                 format = d3.format(",d"),
                 color = d3.scale.category20c();
@@ -67,7 +41,7 @@ angular.module('cargoApp.directives').
                 .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
 
             node.append("title")
-                .text(function(d) { return d.className + ": " + format(d.value); });
+                .text(function(d) { return d.className + ": " + d.position; });
 
             node.append("circle")
                 .attr("r", function(d) { return d.r; })
@@ -85,7 +59,7 @@ angular.module('cargoApp.directives').
 
               function recurse(name, node) {
                 if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-                else classes.push({packageName: name, className: node.name, value: node.size});
+                else classes.push({packageName: name, className: node.name, position: node.postion, value: node.size});
               }
 
               recurse(null, root);
@@ -94,7 +68,12 @@ angular.module('cargoApp.directives').
 
             d3.select(self.frameElement).style("height", diameter + "px");
     			
-    	   //};
+    	   };
+
+
+         $rootScope.yearObserver.push(startBubbles);
+
+
 
     	}
     }

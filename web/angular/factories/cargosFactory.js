@@ -11,6 +11,7 @@ angular.module('cargoApp.factories', [])
     factory.posts= [];
     factory.memberships= [];
     factory.organizations= [];
+    factory.weight= [];
 
     factory.getFullPerson = function(id){
       var p = this.persons[id]; 
@@ -19,9 +20,73 @@ angular.module('cargoApp.factories', [])
         p.periods = this.getPeriods(p);
         p.summary = this.getSummary(p);
         p.full = true;
+        p.weight = this.setWeight(p)
       }
       return p;
     };
+    factory.setWeight = function(person){
+      for (var i = 0; i < person.memberships.length; i++) {
+        var m = person.memberships[i];
+        
+        m.weight= 10;
+        
+        for (var j = 0; j < this.weight.length; j++) {
+          
+          var w = this.weight[j];
+
+          if (w.cargo.toLowerCase() === m.cargonominal.toLowerCase()
+            && w.poder.toLowerCase()  === m.post.cargotipo.toLowerCase()){
+            m.weight = this.weight[j].representacion;
+          }
+        }
+        console.log(m.weight);
+      }
+
+    }
+
+    factory.getPoderometro = function(year, persons){
+
+      var ejecutivo = { name:"Ejecutivo", children: []};
+      var legistlativo = { name:"Legislativo", children: []};
+      var judicial = { name:"Judicial", children: []};
+      var data =  { name:"Argentina", children: []};
+      
+
+
+      for (var i = 0; i < persons.length; i++) {
+          var p = persons[i];
+          var memberships = p.memberships;
+          var activeMembershipForYear;
+          for (var j = 0; j < memberships.length; j++) {
+              var m = memberships[j];
+              if (year >= m.started.year() && m.finished.year() >=year){
+                activeMembershipForYear = m;
+                break;
+              }
+          };
+          if (activeMembershipForYear){
+            var item = {
+              name: p.name,
+              position: activeMembershipForYear.cargonominal,
+              size: activeMembershipForYear.weight
+            }
+
+              if (activeMembershipForYear.post.cargotipo == 'Ejecutivo'){
+                ejecutivo.children.push(item)
+              }else if (activeMembershipForYear.post.cargotipo == 'Legislativo'){
+                legistlativo.children.push(item)
+              }else if (activeMembershipForYear.post.cargotipo == 'Judicial'){
+                judicial.children.push(item)
+              }
+          }
+      };
+      if (ejecutivo.children.length > 0){ data.children.push(ejecutivo);} 
+      if (legistlativo.children.length > 0){ data.children.push(legistlativo);} 
+      if (judicial.children.length > 0){ data.children.push(judicial);} 
+      
+
+      return data;
+    }
     factory.getPeriods= function(person){
       for (var i = 0; i < person.memberships.length; i++) {
         var m = person.memberships[i];
@@ -51,7 +116,7 @@ angular.module('cargoApp.factories', [])
       for (var i = 0; i < person.memberships.length; i++) {
 
         var m = person.memberships[i];
-        var cargo = this.getPost(m.post_id);
+        var cargo = m.post = this.getPost(m.post_id);
         if (cargo.cargoclase == 'Electivo'){
           summary.elected++;
         }else if (cargo.cargoclase == 'No Electivo'){
@@ -92,9 +157,14 @@ angular.module('cargoApp.factories', [])
               cargos: []
             };
       
+      $http.get('/js/datasets/pesopoder.json')
+        .then(function(res){
 
+          $scope.estado = "Representatividad";
+          factory.weight = res.data;
+        });
 
-        $http.get('/js/gz/cargografias-persons-popit-dump.json')
+        $http.get('/js/datasets/gz/cargografias-persons-popit-dump.json')
            .then(function(res){
             $scope.estado = "Personas";
             factory.persons = res.data;
@@ -109,7 +179,7 @@ angular.module('cargoApp.factories', [])
               };
           }).then(function(){
 
-            $http.get('/js/gz/cargografias-memberships-popit-dump.json')
+            $http.get('/js/datasets/gz/cargografias-memberships-popit-dump.json')
              .then(function(res){
               $scope.estado = "Puestos";
               factory.memberships = res.data;
@@ -130,7 +200,7 @@ angular.module('cargoApp.factories', [])
 
 
             }).then(function(){
-              $http.get('/js/gz/cargografias-organizations-popit-dump.json')
+              $http.get('/js/datasets/gz/cargografias-organizations-popit-dump.json')
                 .then(function(res){
                   $scope.estado = "Organizaciones";
                   factory.organizations = res.data;
@@ -146,7 +216,7 @@ angular.module('cargoApp.factories', [])
 
               }).then(function(){
 
-                  $http.get('/js/gz/cargografias-posts-popit-dump.json')
+                  $http.get('/js/datasets/gz/cargografias-posts-popit-dump.json')
                   .then(function(res){
                     factory.posts = res.data;
                     $scope.estado = "Partidos";

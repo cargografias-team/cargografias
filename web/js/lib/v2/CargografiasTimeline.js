@@ -24,7 +24,7 @@
   window.CargografiasTimeline = function(options) {
 
     this.options = options;
-
+    var $scope = angular.element($("#cargoContainer")).scope();
     // "Constantes"
     var CHART_WIDTH = $(options.containerEl).width() - 20 ;
     var CHART_HEIGHT = 0; //Not a constant anymore, hay que renombrar
@@ -193,6 +193,7 @@
 
     yearMarker.append("circle")
       .attr("r", 5)
+      .attr('fill','grey');
     
 
     svg
@@ -203,11 +204,18 @@
         yearMarker.style("display", "none");
       })
       .on("mousemove", mousemove)
+    d3.selectAll('.ctl-yearMarker circle').on('click',function(){
+       $scope.$apply(function($scope) {
+          $scope.poderometroYear = $scope.activeYear;
+          $scope.redrawPoderometro();
+      });
+    });
+
 
     function mousemove() {
       var x0 = xScale.invert(d3.mouse(this)[0]);
       console.log();
-      var $scope = angular.element($("#cargoContainer")).scope();
+      
       $scope.$apply(function($scope) {
           $scope.activeYear = Math.floor(x0);
       });

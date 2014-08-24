@@ -12,6 +12,9 @@ angular.module('cargoApp.controllers')
   	$scope.activePersons = [];
     $scope.estado = "";
   	$rootScope.observers =[];
+    $rootScope.yearObserver =[];
+    
+
 
 
   	
@@ -27,6 +30,17 @@ angular.module('cargoApp.controllers')
       $scope.estado = "Listo!";
       $scope.ready= true;
   };
+
+  $scope.redrawPoderometro = function(){
+    console.log('hola poderometro');
+    if ($scope.activePersons.length > 0 ){
+      for (var i = 0; i < $rootScope.yearObserver.length; i++) {
+        var observer = $rootScope.yearObserver[i];
+        var poderometro = cargosFactory.getPoderometro($scope.poderometroYear, $scope.activePersons);
+        observer(poderometro);
+      };
+    };
+  }
 
   cargosFactory.load($scope,onDataLoaded);
 
