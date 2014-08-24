@@ -224,3 +224,11 @@ blockquote p {
 .container{
   width: 1150px;
 }
+
+.label, .badge{
+	padding-left: 11px;
+	padding-right: 11px;
+	font-weight: normal;
+	font-size: 12px;
+
+}

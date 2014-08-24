@@ -5,10 +5,10 @@
 
   var tooltipTemplate =
     '<b><%- persona.nombre + " " + persona.apellido %></b><br>' +
-    '<%- nominal.tipo %><br> ' +
+    '<%- nominal.nombre %> <br>' +
     '<span class="ctl-detalles">' +
     '<%- fechainicioyear %> - <%- fechafinyear %><br>' +
-    '<%- territorio.nombre %>' +
+    '<%- territorio.nombre %> (<%- nominal.tipo %>)' +
     '</span>';
 
   var svgTemplate =
@@ -31,10 +31,10 @@
 
     var PIXELS_PER_YEAR = 20;
     var ALTO_BLOQUES = 30; //Alto de los bloques
-    var PIXELS_H_OFFSET = 200;
+    var PIXELS_H_OFFSET = 100;
     var TRANSITION_DURATION = 1500;
     var OFFSET_Y = 40; // USado para mover verticalmente los  blques y el eje vertical
-    var EJE_ANIOS_OFFSET_Y = 8;
+    var EJE_ANIOS_OFFSET_Y = 15;
 
     var ALTURA_OCULTAMIENTO = -100; // Los elementos se van a mover acá cuando no se muestren
 
@@ -186,24 +186,44 @@
 
     }
 
-    //*** CIRCULITO QUE MARCA EL AÑO CUANDO EL MOUSE SE MUEVE
+    /*****************************************/
+     // TIME SLIDER SELECTOR
+    /*****************************************/
     var yearMarker = svg.append("g")
       .attr("class", "ctl-yearMarker")
       .style("display", "none");
 
     yearMarker.append("circle")
       .attr("r", 5)
+      .attr("display","none")
       .attr('fill','grey');
-    
+
+    yearMarker.append('rect')
+            .attr('y', -10)
+            .attr('x', -20)
+            .attr('rx',3)
+            .attr('ry',3)
+            .attr('width',40)
+            .attr('height',16)
+            .attr('id', 'year-marker-badge')
+                
+    yearMarker.append('text')
+            .attr('y', -6)
+            .attr('x', 0)
+            .attr('font-size', 8)
+            .attr('id', 'year-marker-label')
+            .text('1983');
+
+
 
     svg
       .on("mouseover", function() {
         yearMarker.style("display", null);
       })
-      .on("mouseout", function() {
+    /*  .on("mouseout", function() {
         yearMarker.style("display", "none");
-      })
-      .on("mousemove", mousemove)
+      })*/
+      .on("mousedown", mousemove)
     d3.selectAll('.ctl-yearMarker circle').on('click',function(){
        $scope.$apply(function($scope) {
           $scope.poderometroYear = $scope.activeYear;
@@ -319,7 +339,7 @@
           return d.display ? 1 : 0;
         })
         .attr('transform', function(d) {
-          var x = 200;
+          var x = PIXELS_H_OFFSET;
           var y = d.display ? (d.altura * ALTO_BLOQUES || 0) + OFFSET_Y : ALTURA_OCULTAMIENTO;
           return 'translate(' + x + ',' + y + ')';
         });

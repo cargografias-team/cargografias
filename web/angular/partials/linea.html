@@ -1,7 +1,7 @@
 <div class="row" id="linea-de-tiempo">
 	<div class="accordion-group">
 		<div class="alert-error accordion-heading alert ">
-			<h3 class="titulo-tab" style="float:left">Linea de tiempo en {{activeYear}}</h3>
+			<h3 class="titulo-tab" style="float:left">Linea de tiempo</h3>
 				<ul class="nav nav-pills alert-error titulo-tab-ul">
 				  <li class="active">
 				  	<a id="ordenCargo" href="" ng-click="orderLine('cargo')">Ordenar por Cargo</a>
@@ -10,6 +10,7 @@
 				    <a id="ordenNombre" href="" ng-click="orderLine('nombre')">Ordenar por Nombre</a>
 				  </li>
 				</ul>
+				<span class="label" style="float: right;">Año Seleccionado: {{activeYear}}</span>
 				<div class="clearfix"></div>
 		</div>
 		<div ng-cargotimeline></div>
