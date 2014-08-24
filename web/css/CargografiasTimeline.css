@@ -1,7 +1,7 @@
 .ctl-ejeCargos0,
 .ctl-ejeCargos1,
 .ctl-ejePersonas{
-	font-size: 15px;
+	font-size: 12px;
 }
 .ctl-tooltip{
 	position: absolute;
@@ -9,7 +9,7 @@
 	text-align: center;
 	background: black;
 	opacity: 0.9;
-	border-radius: 4px;
+	border-radius: 2px;
 	padding: 5px;
 	font-size: 12px;
 }
