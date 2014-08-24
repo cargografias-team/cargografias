@@ -58,8 +58,9 @@ angular.module('cargoApp.directives').
               var classes = [];
 
               function recurse(name, node) {
+
                 if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-                else classes.push({packageName: name, className: node.name, position: node.postion, value: node.size});
+                else classes.push({packageName: name, className: node.name, position: node.position, value: node.size});
               }
 
               recurse(null, root);

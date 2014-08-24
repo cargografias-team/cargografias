@@ -2,277 +2,277 @@
     {
         "cargo": "Presidente",
         "posicion": 1,
-        "representacion": 100000,
+        "representacion": 50000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Vicepresidente",
         "posicion": 2,
-        "representacion": 99999,
+        "representacion": 20000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Jefe de Gabinete de Ministros",
         "posicion": 3,
-        "representacion": 99998,
+        "representacion": 20000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Ministro",
         "posicion": 4,
-        "representacion": 99997,
+        "representacion": 10000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Secretario",
         "posicion": 5,
-        "representacion": 99996,
+        "representacion": 5000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Subsecretario",
         "posicion": 6,
-        "representacion": 99995,
+        "representacion": 4000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Director General",
         "posicion": 7,
-        "representacion": 99994,
+        "representacion": 3000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Gobernador",
         "posicion": 11,
-        "representacion": 99993,
+        "representacion": 10000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Vicegobernador",
         "posicion": 12,
-        "representacion": 99992,
+        "representacion": 5000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Jefe de Gobierno",
         "posicion": 11,
-        "representacion": 99991,
+        "representacion": 10000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Vicejefe de Gobierno",
         "posicion": 12,
-        "representacion": 99990,
+        "representacion": 8000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Jefe de Gabinete de Ministros",
         "posicion": 13,
-        "representacion": 99989,
+        "representacion": 4000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Ministro",
         "posicion": 14,
-        "representacion": 99988,
+        "representacion": 2000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Secretario",
         "posicion": 15,
-        "representacion": 99987,
+        "representacion": 1000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Subsecretario",
         "posicion": 16,
-        "representacion": 99986,
+        "representacion": 500,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Director General",
         "posicion": 17,
-        "representacion": 99985,
+        "representacion": 100,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Intendente",
         "posicion": 21,
-        "representacion": 99984,
+        "representacion": 4000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Viceintendente",
         "posicion": 22,
-        "representacion": 99983,
+        "representacion": 3000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Secretario",
         "posicion": 23,
-        "representacion": 99982,
+        "representacion": 1000,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Subsecretario",
         "posicion": 24,
-        "representacion": 99981,
+        "representacion": 999,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Director General",
         "posicion": 25,
-        "representacion": 99980,
+        "representacion": 100,
         "poder": "Ejecutivo"
     },
     {
         "cargo": "Presidente",
         "posicion": 101,
-        "representacion": 10000,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Presidente Provisional",
-        "posicion": 102,
-        "representacion": 9999,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Vicepresidente",
-        "posicion": 103,
-        "representacion": 9998,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Jefe de Bloque",
-        "posicion": 104,
-        "representacion": 9997,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Diputado",
-        "posicion": 105,
-        "representacion": 9996,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Presidente",
-        "posicion": 101,
-        "representacion": 10000,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Presidente Provisional",
-        "posicion": 102,
-        "representacion": 9999,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Vicepresidente",
-        "posicion": 103,
-        "representacion": 9998,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Jefe de Bloque",
-        "posicion": 104,
-        "representacion": 9997,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Senador",
-        "posicion": 105,
-        "representacion": 9996,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Presidente",
-        "posicion": 111,
         "representacion": 5000,
         "poder": "Legislativo"
     },
     {
         "cargo": "Presidente Provisional",
-        "posicion": 112,
-        "representacion": 4999,
+        "posicion": 102,
+        "representacion": 4000,
         "poder": "Legislativo"
     },
     {
         "cargo": "Vicepresidente",
-        "posicion": 113,
-        "representacion": 4998,
+        "posicion": 103,
+        "representacion": 4000,
         "poder": "Legislativo"
     },
     {
         "cargo": "Jefe de Bloque",
-        "posicion": 114,
-        "representacion": 4997,
-        "poder": "Legislativo"
-    },
-    {
-        "cargo": "Legislador",
-        "posicion": 115,
-        "representacion": 4996,
+        "posicion": 104,
+        "representacion": 2000,
         "poder": "Legislativo"
     },
     {
         "cargo": "Diputado",
-        "posicion": 115,
-        "representacion": 4995,
+        "posicion": 105,
+        "representacion": 3500,
         "poder": "Legislativo"
     },
     {
-        "cargo": "Presidente",
+        "cargo": "Presidente ",
+        "posicion": 101,
+        "representacion": 5000,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Presidente Provisional",
+        "posicion": 102,
+        "representacion": 4000,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Vicepresidente",
+        "posicion": 103,
+        "representacion": 4000,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Jefe de Bloque",
+        "posicion": 104,
+        "representacion": 2000,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Senador",
+        "posicion": 105,
+        "representacion": 3500,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Presidente ",
         "posicion": 111,
-        "representacion": 4994,
+        "representacion": 3000,
         "poder": "Legislativo"
     },
     {
         "cargo": "Presidente Provisional",
         "posicion": 112,
-        "representacion": 4993,
+        "representacion": 3000,
         "poder": "Legislativo"
     },
     {
         "cargo": "Vicepresidente",
         "posicion": 113,
-        "representacion": 4992,
+        "representacion": 1500,
         "poder": "Legislativo"
     },
     {
         "cargo": "Jefe de Bloque",
         "posicion": 114,
-        "representacion": 4991,
+        "representacion": 2000,
         "poder": "Legislativo"
     },
     {
-        "cargo": "Senador",
+        "cargo": "Legislador",
         "posicion": 115,
-        "representacion": 4990,
+        "representacion": 1500,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Diputado",
+        "posicion": 115,
+        "representacion": 1500,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Presidente ",
+        "posicion": 111,
+        "representacion": 3000,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Presidente Provisional",
+        "posicion": 112,
+        "representacion": 3000,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Vicepresidente",
+        "posicion": 113,
+        "representacion": 1500,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Jefe de Bloque",
+        "posicion": 114,
+        "representacion": 2000,
+        "poder": "Legislativo"
+    },
+    {
+        "cargo": "Senador Provincial",
+        "posicion": 115,
+        "representacion": 1500,
         "poder": "Legislativo"
     },
     {
         "cargo": "Presidente (Concejo Deliberante)",
         "posicion": 121,
-        "representacion": 100,
+        "representacion": 1500,
         "poder": "Legislativo"
     },
     {
         "cargo": "Vicepresidente",
         "posicion": 122,
-        "representacion": 99,
+        "representacion": 750,
         "poder": "Legislativo"
     },
     {
         "cargo": "Jefe de Bloque",
         "posicion": 123,
-        "representacion": 98,
+        "representacion": 800,
         "poder": "Legislativo"
     },
     {
         "cargo": "Concejal",
         "posicion": 124,
-        "representacion": 97,
+        "representacion": 500,
         "poder": "Legislativo"
     }
 ]
