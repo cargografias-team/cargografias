@@ -13,7 +13,7 @@ angular.module('cargoApp.controllers')
     $scope.estado = "";
   	$rootScope.observers =[];
     $rootScope.yearObserver =[];
-    
+    $scope.filterLinea ="cargo";
 
 
 
@@ -62,12 +62,24 @@ angular.module('cargoApp.controllers')
     	idPersonas.push(person.id);
 			var timelineParams = {
 			   filtro: { idPersonas: idPersonas },
-			   mostrarPor: "cargo",
+			   mostrarPor: $scope.filterLinea,
 			};
     	window.cargoTimeline.update(timelineParams);
 
 
     };
+
+    $scope.orderLine =function(order){
+      $scope.filterLinea = order;
+      var idPersonas = cargoTimeline.options.filtro.idPersonas;
+      var timelineParams = {
+         filtro: { idPersonas: idPersonas },
+         mostrarPor: $scope.filterLinea,
+      };
+      window.cargoTimeline.update(timelineParams);
+
+    }
+
     $scope.remove = function(person){
     	var indexOf = $scope.activePersons.indexOf(person);
     	if (indexOf > -1){
@@ -81,7 +93,7 @@ angular.module('cargoApp.controllers')
     	var idPersonas = cargoTimeline.options.filtro.idPersonas;
 			var timelineParams = {
 			   filtro: { idPersonas: idPersonas },
-			   mostrarPor: "cargo",
+			   mostrarPor: $scope.filterLinea,
 			};
     	window.cargoTimeline.update(timelineParams);
 
@@ -95,7 +107,7 @@ angular.module('cargoApp.controllers')
       var idPersonas = [];
       var timelineParams = {
          filtro: { idPersonas: idPersonas },
-         mostrarPor: "cargo",
+         mostrarPor: $scope.filterLinea,
       };
       window.cargoTimeline.update(timelineParams);
 
