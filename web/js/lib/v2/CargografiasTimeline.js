@@ -217,12 +217,6 @@
 
 
     svg
-      .on("mouseover", function() {
-        yearMarker.style("display", null);
-      })
-    /*  .on("mouseout", function() {
-        yearMarker.style("display", "none");
-      })*/
       .on("mousedown", mousemove)
     d3.selectAll('.ctl-yearMarker circle').on('click',function(){
        $scope.$apply(function($scope) {
@@ -233,6 +227,7 @@
 
 
     function mousemove() {
+      yearMarker.style("display", null);
       var x0 = xScale.invert(d3.mouse(this)[0]);
       console.log();
       
