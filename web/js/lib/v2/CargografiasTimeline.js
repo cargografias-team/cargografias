@@ -192,11 +192,7 @@
     var yearMarker = svg.append("g")
       .attr("class", "ctl-yearMarker")
       .style("display", "none");
-
-    yearMarker.append("circle")
-      .attr("r", 5)
-      .attr("display","none")
-      .attr('fill','grey');
+   
 
     yearMarker.append('rect')
             .attr('y', -10)
@@ -206,35 +202,40 @@
             .attr('width',40)
             .attr('height',16)
             .attr('id', 'year-marker-badge')
+            .attr('fill',"white");
                 
-    yearMarker.append('text')
-            .attr('y', -6)
-            .attr('x', 0)
+    var yearMarkerLabel = yearMarker.append('text')
+            .attr('y', 2)
+            .attr('x', -15)
             .attr('font-size', 8)
-            .attr('id', 'year-marker-label')
-            .text('1983');
+            .attr('id', 'year-marker-label');
+            
 
 
 
-    svg
-      .on("mousedown", mousemove)
-    d3.selectAll('.ctl-yearMarker circle').on('click',function(){
-       $scope.$apply(function($scope) {
-          $scope.poderometroYear = $scope.activeYear;
-          $scope.redrawPoderometro();
-      });
-    });
+    svg.on("click", mousemove);
 
-
+    
     function mousemove() {
-      yearMarker.style("display", null);
+
+      
+
+      yearMarker.style("display", null); // ya no hace falta
       var x0 = xScale.invert(d3.mouse(this)[0]);
-      console.log();
+   
       
       $scope.$apply(function($scope) {
           $scope.activeYear = Math.floor(x0);
+          yearMarkerLabel.text($scope.activeYear)
+    
       });
       yearMarker.attr("transform", "translate(" + d3.mouse(this)[0] + ", " + EJE_ANIOS_OFFSET_Y + ")");
+
+      $scope.$apply(function($scope) {
+          $scope.poderometroYear = $scope.activeYear;
+          $scope.redrawPoderometro();
+        });
+
     }
 
     function inicializarCargosBloques(data) {
