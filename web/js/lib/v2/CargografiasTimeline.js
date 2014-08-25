@@ -30,9 +30,9 @@
     var CHART_HEIGHT = 0; //Not a constant anymore, hay que renombrar
 
     var PIXELS_PER_YEAR = 20;
-    var ALTO_BLOQUES = 30; //Alto de los bloques
+    var ALTO_BLOQUES = 20; //Alto de los bloques
     var PIXELS_H_OFFSET = 100;
-    var TRANSITION_DURATION = 1500;
+    var TRANSITION_DURATION = 1000;
     var OFFSET_Y = 40; // USado para mover verticalmente los  blques y el eje vertical
     var EJE_ANIOS_OFFSET_Y = 15;
 
@@ -210,6 +210,8 @@
             .attr('font-size', 8)
             .attr('id', 'year-marker-label');
             
+    var drag = d3.behavior.drag();
+        d3.selectAll(".ctl-yearMarker").call(drag);
 
 
 
@@ -293,7 +295,7 @@
 
     function moveTooltip(event) {
       tooltipEl.style('top', event.pageY + 2 + 'px');
-      tooltipEl.style('left', event.pageX + 2 + 'px');
+      tooltipEl.style('left', event.pageX + 10 + 'px');
     }
 
     //===================================
@@ -319,6 +321,7 @@
       ejes.ejeCargos0
         .selectAll('g')
         .transition()
+        .duration(TRANSITION_DURATION)
         .attr('opacity', function(d) {
           return d.display ? 1 : 0;
         })
@@ -331,6 +334,7 @@
       ejes.ejeCargos1
         .selectAll('g')
         .transition()
+        .duration(TRANSITION_DURATION)
         .attr('opacity', function(d) {
           return d.display ? 1 : 0;
         })
@@ -377,7 +381,7 @@
           var g = d3.select(this);
 
           g.append('text')
-            .attr('y', 18)
+            .attr('y', ALTO_BLOQUES*0.6)
             .attr('x', 5)
             .text(function(d) {
               return d.nombre;
@@ -405,7 +409,7 @@
           var g = d3.select(this);
 
           g.append('text')
-            .attr('y', 18)
+            .attr('y', ALTO_BLOQUES*0.6)
             .text(function(d) {
               return d.nombre;
             });
@@ -624,7 +628,7 @@
           var g = d3.select(this);
 
           g.append('text')
-            .attr('y', 18)
+            .attr('y', ALTO_BLOQUES*0.6)
             .attr('x', 5)
             .text(function(d) {
               return data.hashPersonas[d].nombre + ' ' + data.hashPersonas[d].apellido;
@@ -677,31 +681,56 @@
         .each(function(d) {
 
           var g = d3.select(this);
+          var anchoBox = Math.max(0, xScale(d.fechafinyear) - xScale(d.fechainicioyear) - 2);
+          var fullName = d.persona.nombre + ' ' + d.persona.apellido;
 
           g.append('rect')
-            .attr('width', Math.max(0, xScale(d.fechafinyear) - xScale(d.fechainicioyear) - 2))
+            .attr('rx',3)
+            .attr('ry',3)
+            .attr('width', anchoBox)
             .attr('height', ALTO_BLOQUES - 4)
             .attr('class', function(d) {
               return 'ctl-' + d.nominal.tipo;
             });
 
-          g.append('text')
+          /*g.append('text')
             .attr('y', 10)
             .attr('x', 2)
             .attr('font-size', 8)
             .attr('class', 'ctl-cargo')
             .text(function(d) {
               return d.nominal.nombre;
+            });*/
+
+          g.append('text')
+            .attr('y', ALTO_BLOQUES*0.6)
+            .attr('x', 2)
+            .attr('font-size', ALTO_BLOQUES*0.5)
+            .attr('class', 'ctl-nombre')
+            .text(function(d) {
+              if(fullName.length > (anchoBox/5)) {
+                  return d.persona.nombre.substring(0,Math.floor(anchoBox/5));
+                }else {
+                  return d.persona.nombre + ' ' + d.persona.apellido;
+              }
+              
             });
 
           g.append('text')
-            .attr('y', 20)
+            .attr('opacity',0)
+            .attr('y', ALTO_BLOQUES*0.6)
             .attr('x', 2)
-            .attr('font-size', 8)
-            .attr('class', 'ctl-nombre')
+            .attr('font-size', ALTO_BLOQUES*0.5)
+            .attr('class', 'ctl-cargo')
             .text(function(d) {
-              return d.persona.nombre + ' ' + d.persona.apellido;
+              if(d.nominal.nombre.length > (anchoBox/5)) {
+                  return d.nominal.nombre.substring(0,Math.floor(anchoBox/5));
+                }else {
+                  return d.nominal.nombre;
+              }
+              
             });
+
 
         });
     }
@@ -880,15 +909,22 @@
     //==============================
 
     function activarEjePersonas() {
-      ejes.ejePersonas.transition().attr('opacity', 1);
-      ejes.ejeCargos0.transition().attr('opacity', 0);
-      ejes.ejeCargos1.transition().attr('opacity', 0);
+      ejes.ejePersonas.transition().duration(TRANSITION_DURATION).attr('opacity', 1);
+      ejes.ejeCargos0.transition().duration(TRANSITION_DURATION).attr('opacity', 0);
+      ejes.ejeCargos1.transition().duration(TRANSITION_DURATION).attr('opacity', 0);
+      ejes.ejeCargos1.transition().duration(TRANSITION_DURATION).attr('opacity', 0);
+      d3.selectAll(".ctl-nombre").transition().duration(TRANSITION_DURATION).attr('opacity', 0);
+      d3.selectAll(".ctl-cargo").transition().duration(TRANSITION_DURATION).attr('opacity', 1);
+
     }
 
     function activarEjeCargos() {
-      ejes.ejePersonas.transition().attr('opacity', 0);
-      ejes.ejeCargos0.transition().attr('opacity', 1);
-      ejes.ejeCargos1.transition().attr('opacity', 1);
+      ejes.ejePersonas.transition().duration(TRANSITION_DURATION).attr('opacity', 0);
+      ejes.ejeCargos0.transition().duration(TRANSITION_DURATION).attr('opacity', 1);
+      ejes.ejeCargos1.transition().duration(TRANSITION_DURATION).attr('opacity', 1);
+      d3.selectAll(".ctl-nombre").transition().duration(TRANSITION_DURATION).attr('opacity', 1);
+      d3.selectAll(".ctl-cargo").transition().duration(TRANSITION_DURATION).attr('opacity', 0);
+
     }
 
   }; // Constructor

@@ -6,7 +6,6 @@
 .ctl-tooltip{
 	position: absolute;
 	display: none;
-	text-align: center;
 	background: black;
 	opacity: 0.9;
 	border-radius: 2px;
@@ -23,6 +22,7 @@
 }
 .ctl-tooltip .ctl-detalles{
 	font-size: 10px;
+	line-height: 10px;
 }
 .ctl-cargos rect{
 	opacity: 0.5;
@@ -38,8 +38,8 @@
 .ctl-cargos text{
 	fill: #FFF;
 }
-.ctl-cargos text.ctl-nombre{
-	font-weight: bold;
+.ctl-cargos text.ctl-nombre, {
+	
 }
 .ctl-cargos text.ctl-cargo{
 }

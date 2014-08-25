@@ -50,8 +50,14 @@ angular.module('cargoApp.directives').
             node.append("text")
                 .attr("dy", ".3em")
                 .style("text-anchor", "middle")
-                .text(function(d) { return d.className.substring(0, d.r / 3); });
-            
+                .text(function(d) { return d.className; });
+
+            node.append("text")
+                .attr("dy", "16")
+                .style("text-anchor", "middle")
+                .style("font-size", "10px")
+                .text(function(d) { return "("+d.position+")"; });
+
 
             // Returns a flattened hierarchy containing all leaf nodes under the root.
             function classes(root) {
