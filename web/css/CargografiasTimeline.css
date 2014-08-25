@@ -24,8 +24,14 @@
 	font-size: 10px;
 	line-height: 10px;
 }
+
+.bloques{
+	cursor: pointer;
+}
+
 .ctl-cargos rect{
 	opacity: 0.5;
+	cursor: inherit;
 }
 .ctl-cargos rect.ctl-legislativo,
 .ctl-cargos rect.ctl-Legislativo{
@@ -60,4 +66,10 @@
 	fill: none;
 	stroke: #000;
 	stroke-width: 2px;
+}
+
+#linea-slider{
+	stroke-width: 22;
+	stroke-opacity: 0.3;
+	stroke: silver;
 }

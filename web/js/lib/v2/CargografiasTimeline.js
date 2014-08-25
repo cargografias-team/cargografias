@@ -13,6 +13,7 @@
 
   var svgTemplate =
     '<svg>' +
+    '<g class="ctl-fondo"></g>' +
     '<g class="ctl-ejeCargos0"></g>' +
     '<g class="ctl-ejeCargos1"></g>' +
     '<g class="ctl-ejePersonas"></g>' +
@@ -83,6 +84,84 @@
     var color = d3.scale.category20();
     var ii = 0;
 
+
+    //====================================
+    // Ejes
+    //====================================
+
+    crearEjeAnios(data, svg, xScale);
+
+    function resetSVGCanvas() {
+      options.containerEl.innerHTML = svgTemplate;
+
+      // Inicialización del svg
+      svg = d3.select('svg')
+        .attr("width", CHART_WIDTH)
+        .attr("height", CHART_HEIGHT);
+
+
+    }
+
+    function buildxScale(data) {
+      // Armar el xScale
+
+      _.each(data.cargos, function(d) {
+        if (d.fechainicioyear < primerStartingYear) {
+          primerStartingYear = d.fechainicioyear;
+        }
+        if (ultimoEndingYear < d.fechafinyear) {
+          ultimoEndingYear = d.fechafinyear;
+        }
+      });
+
+      var xScale = d3.scale.linear() // DEFINE ESCALA/RANGO DE EJE X
+      .domain([primerStartingYear - 2, ultimoEndingYear + 2]) // RANGO DE AÃ‘OS DE ENTRADA
+      .rangeRound([
+        PIXELS_H_OFFSET, // Límite izquierdo pixels
+        CHART_WIDTH //Limite derecho en pixels
+      ]);
+
+      return xScale;
+
+    }
+
+    /*****************************************/
+     // TIME SLIDER SELECTOR
+    /*****************************************/
+    var yearMarker = svg.append("g")
+      .attr("class", "ctl-yearMarker")
+      .style("display", "none");
+   
+    var yearMarkerLine = yearMarker.append('line')
+            .attr('x1', 0)
+            .attr('x2', 0)
+            .attr('y1', 0)
+            .attr('y2', 300)
+            .attr('id',"linea-slider");
+
+    yearMarker.append('rect')
+            .attr('y', -10)
+            .attr('x', -20)
+            .attr('rx',3)
+            .attr('ry',3)
+            .attr('width',40)
+            .attr('height',16)
+            .attr('id', 'year-marker-badge')
+            .attr('fill',"white");
+                
+    var yearMarkerLabel = yearMarker.append('text')
+            .attr('y', 2)
+            .attr('x', -15)
+            .attr('font-size', 8)
+            .attr('id', 'year-marker-label');
+    
+
+
+    /*var drag = d3.behavior.drag();
+        yearMarker.call(drag);
+*/
+
+
     inicializarCurvas(data);
 
     this.update = function(newOpts) {
@@ -145,74 +224,6 @@
     }; // this.update = function(...)...
 
     this.update(options);
-
-    //====================================
-    // Ejes
-    //====================================
-
-    crearEjeAnios(data, svg, xScale);
-
-    function resetSVGCanvas() {
-      options.containerEl.innerHTML = svgTemplate;
-
-      // Inicialización del svg
-      svg = d3.select('svg')
-        .attr("width", CHART_WIDTH)
-        .attr("height", CHART_HEIGHT);
-
-
-    }
-
-    function buildxScale(data) {
-      // Armar el xScale
-
-      _.each(data.cargos, function(d) {
-        if (d.fechainicioyear < primerStartingYear) {
-          primerStartingYear = d.fechainicioyear;
-        }
-        if (ultimoEndingYear < d.fechafinyear) {
-          ultimoEndingYear = d.fechafinyear;
-        }
-      });
-
-      var xScale = d3.scale.linear() // DEFINE ESCALA/RANGO DE EJE X
-      .domain([primerStartingYear - 2, ultimoEndingYear + 2]) // RANGO DE AÃ‘OS DE ENTRADA
-      .rangeRound([
-        PIXELS_H_OFFSET, // Límite izquierdo pixels
-        CHART_WIDTH //Limite derecho en pixels
-      ]);
-
-      return xScale;
-
-    }
-
-    /*****************************************/
-     // TIME SLIDER SELECTOR
-    /*****************************************/
-    var yearMarker = svg.append("g")
-      .attr("class", "ctl-yearMarker")
-      .style("display", "none");
-   
-
-    yearMarker.append('rect')
-            .attr('y', -10)
-            .attr('x', -20)
-            .attr('rx',3)
-            .attr('ry',3)
-            .attr('width',40)
-            .attr('height',16)
-            .attr('id', 'year-marker-badge')
-            .attr('fill',"white");
-                
-    var yearMarkerLabel = yearMarker.append('text')
-            .attr('y', 2)
-            .attr('x', -15)
-            .attr('font-size', 8)
-            .attr('id', 'year-marker-label');
-            
-    var drag = d3.behavior.drag();
-        d3.selectAll(".ctl-yearMarker").call(drag);
-
 
 
     svg.on("click", mousemove);
@@ -683,7 +694,7 @@
           var g = d3.select(this);
           var anchoBox = Math.max(0, xScale(d.fechafinyear) - xScale(d.fechainicioyear) - 2);
           var fullName = d.persona.nombre + ' ' + d.persona.apellido;
-
+          g.attr("class","bloques")
           g.append('rect')
             .attr('rx',3)
             .attr('ry',3)
@@ -744,12 +755,12 @@
       var altura = CHART_HEIGHT;
 
       if (tipoGrafico == "nombre") {
-        mostrarPorNombre(data, ejes, groups, filtro);
-        altura = ejes.alturaMaxPersonas * ALTO_BLOQUES + 100;
-      } else {
-        //Tipo Gráfico: "cargo"
-        mostrarPorCargo(data, ejes, groups, filtro);
-        altura = ejes.alturaMaxEjeCargo * ALTO_BLOQUES + 100;
+          mostrarPorNombre(data, ejes, groups, filtro);
+          altura = ejes.alturaMaxPersonas * ALTO_BLOQUES + 100;
+      } else if (tipoGrafico == "cargo"){
+          //Tipo Gráfico: "cargo"
+          mostrarPorCargo(data, ejes, groups, filtro);
+          altura = ejes.alturaMaxEjeCargo * ALTO_BLOQUES + 100;
       }
       //Setear la altura
       svg = d3.select('svg')

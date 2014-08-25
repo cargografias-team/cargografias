@@ -239,7 +239,7 @@ svg text{
 	-ms-user-select: none;
 	-o-user-select: none;
 	user-select: none;
-	cursor: default;
+	cursor: inherit;
 }
 
 #year-marker-label {
