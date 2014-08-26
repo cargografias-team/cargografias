@@ -21,7 +21,7 @@ angular.module('cargoApp.controllers')
 
 
   var onDataLoaded = function(){
-     console.log('then');
+    
      $scope.estado = "Motor de Visualizacion";
       for (var i = 0; i < $rootScope.observers.length; i++) {
         var observer = $rootScope.observers[i];
@@ -32,7 +32,7 @@ angular.module('cargoApp.controllers')
   };
 
   $scope.redrawPoderometro = function(){
-    console.log('hola poderometro');
+    
     if ($scope.activePersons.length > 0 ){
       for (var i = 0; i < $rootScope.yearObserver.length; i++) {
         var observer = $rootScope.yearObserver[i];

@@ -36,7 +36,8 @@
     var TRANSITION_DURATION = 1000;
     var OFFSET_Y = 40; // USado para mover verticalmente los  blques y el eje vertical
     var EJE_ANIOS_OFFSET_Y = 15;
-
+    var ANIO_INICIAL = 2001;
+    var x0 = $scope.activeYear = ANIO_INICIAL;
     var ALTURA_OCULTAMIENTO = -100; // Los elementos se van a mover acá cuando no se muestren
 
     var mostrandoPor = "nombre";
@@ -128,9 +129,18 @@
     /*****************************************/
      // TIME SLIDER SELECTOR
     /*****************************************/
-    var yearMarker = svg.append("g")
-      .attr("class", "ctl-yearMarker")
-      .style("display", "none");
+
+    var drag = d3.behavior.drag()
+            .origin(Object)
+            .on("drag", dragMove)
+            .on("dragend", dragEnd);
+
+    
+    var yearMarker = svg.select('.ctl-fondo').append("g")
+      .attr("class", "ctl-yearMarker grab")
+      .data([{ x: xScale(ANIO_INICIAL), y: 15 }])
+      .attr("transform", function (d) { return "translate(" + d.x + "," + 15 + ")"; })
+      .call(drag);
    
     var yearMarkerLine = yearMarker.append('line')
             .attr('x1', 0)
@@ -153,13 +163,30 @@
             .attr('y', 2)
             .attr('x', -15)
             .attr('font-size', 8)
-            .attr('id', 'year-marker-label');
-    
+            .attr('id', 'year-marker-label')
+            .text($scope.activeYear);
+
+            
+    function dragMove(d) {
+            d.x += d3.event.dx;
+            d.y += d3.event.dy;
+       d3.select(this).attr("transform", "translate(" + d.x + "," + 15 + ")");
+       d3.select(this).attr("class","ctl-yearMarker grabbing");
+        $scope.activeYear = Math.floor(xScale.invert(d.x));
 
 
-    /*var drag = d3.behavior.drag();
-        yearMarker.call(drag);
-*/
+      $scope.$apply(function($scope) {
+          yearMarkerLabel.text($scope.activeYear)
+          $scope.poderometroYear = $scope.activeYear;
+          $scope.redrawPoderometro();
+        });
+    }
+
+    function dragEnd(d) {
+       d3.select(this).attr("class","ctl-yearMarker grab");
+    }
+ 
+
 
 
     inicializarCurvas(data);
@@ -226,30 +253,6 @@
     this.update(options);
 
 
-    svg.on("click", mousemove);
-
-    
-    function mousemove() {
-
-      
-
-      yearMarker.style("display", null); // ya no hace falta
-      var x0 = xScale.invert(d3.mouse(this)[0]);
-   
-      
-      $scope.$apply(function($scope) {
-          $scope.activeYear = Math.floor(x0);
-          yearMarkerLabel.text($scope.activeYear)
-    
-      });
-      yearMarker.attr("transform", "translate(" + d3.mouse(this)[0] + ", " + EJE_ANIOS_OFFSET_Y + ")");
-
-      $scope.$apply(function($scope) {
-          $scope.poderometroYear = $scope.activeYear;
-          $scope.redrawPoderometro();
-        });
-
-    }
 
     function inicializarCargosBloques(data) {
 
@@ -704,15 +707,6 @@
               return 'ctl-' + d.nominal.tipo;
             });
 
-          /*g.append('text')
-            .attr('y', 10)
-            .attr('x', 2)
-            .attr('font-size', 8)
-            .attr('class', 'ctl-cargo')
-            .text(function(d) {
-              return d.nominal.nombre;
-            });*/
-
           g.append('text')
             .attr('y', ALTO_BLOQUES*0.6)
             .attr('x', 2)
@@ -865,17 +859,10 @@
         .tickFormat(d3.format("0"))
         .tickValues(anios);
 
-      svg.append("g").attr("class", "ctl-axis")
+      svg.select('.ctl-fondo').append("g").attr("class", "ctl-axis")
         .attr("transform", "translate(0," + EJE_ANIOS_OFFSET_Y + ")")
         .call(xAxis);
-      d3.selectAll('.metro')
-        .on('click', function(d,i){ console.log(d,i)});
-      d3.selectAll('text')
-        .on('click', function(d,i){ console.log(d,i)});
-      d3.selectAll('.ctl-axis')
-        .on('click', function(d,i){ console.log(d,i)});
-
-
+      
     }
 
     function getAniosMasUsados(data, corte) {

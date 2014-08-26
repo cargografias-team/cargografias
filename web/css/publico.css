@@ -249,3 +249,7 @@ svg text{
 	fill: red;
 	font-weight: bold;
 }
+
+#year-marker-badge:hover {
+		fill:#CACACA;
+	}

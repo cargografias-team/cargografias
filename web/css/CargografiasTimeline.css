@@ -29,6 +29,16 @@
 	cursor: pointer;
 }
 
+.grab{
+	cursor: -webkit-grab;
+	cursor: -moz-grab;
+}
+
+.grabbing{
+	cursor: -webkit-grabbing;
+	cursor: -moz-grabbing;
+}
+
 .ctl-cargos rect{
 	opacity: 0.5;
 	cursor: inherit;
