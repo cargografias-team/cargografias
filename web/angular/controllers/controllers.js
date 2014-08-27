@@ -36,6 +36,7 @@ angular.module('cargoApp.controllers')
           $scope.add($scope.autoPersons[id], id);
         });
       }
+      $scope.redrawPoderometro();
 
   };
 

@@ -39,7 +39,7 @@ angular.module('cargoApp.factories', [])
             m.weight = this.weight[j].representacion;
           }
         }
-        console.log(m.weight);
+        
       }
 
     }
@@ -86,6 +86,35 @@ angular.module('cargoApp.factories', [])
       
 
       return data;
+    };
+
+    factory.getPoderometroAnimado = function (year, persons){
+
+      var poderometro =[];
+      for (var i = 0; i < persons.length; i++) {
+          var p = persons[i];
+          var memberships = p.memberships;
+          var activeMembershipForYear;
+          for (var j = 0; j < memberships.length; j++) {
+              var m = memberships[j];
+              if (year >= m.started.year() && m.finished.year() >=year){
+                activeMembershipForYear = m;
+                break;
+              }
+          };
+          if (activeMembershipForYear){
+            var item = {
+              cargo:activeMembershipForYear.post.cargotipo.toLowerCase(),
+              name: p.name,
+              position: activeMembershipForYear.cargonominal,
+              size: activeMembershipForYear.weight
+            }
+            poderometro.push(item);
+          }
+      };
+      return poderometro;
+
+
     }
     factory.getPeriods= function(person){
       for (var i = 0; i < person.memberships.length; i++) {
