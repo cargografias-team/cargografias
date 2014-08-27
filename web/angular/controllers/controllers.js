@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module('cargoApp.controllers')
-  .controller('homeController', function($rootScope,$scope,cargosFactory, $filter, $routeParams) {
+  .controller('homeController', function($rootScope,$scope,cargosFactory, $filter, $routeParams, $location) {
   	$scope.ready= false;
   	
     $scope.autoPersons = [];
@@ -53,7 +53,10 @@ angular.module('cargoApp.controllers')
   cargosFactory.load($scope,onDataLoaded);
 
 
-
+  function updateTheUrl(){
+      //Update the URL
+      // $location.path("/" + $scope.activePersons.map(function(p){ return p.autoPersona.index }).join('-'));
+  }
 
 
     $scope.add = function(autoPersona, id){
@@ -73,7 +76,8 @@ angular.module('cargoApp.controllers')
 			   mostrarPor: $scope.filterLinea,
 			};
     	window.cargoTimeline.update(timelineParams);
-
+    
+      updateTheUrl();
 
     };
 
@@ -105,6 +109,8 @@ angular.module('cargoApp.controllers')
 			};
     	window.cargoTimeline.update(timelineParams);
 
+      updateTheUrl();
+
     };
 
     $scope.clearAll = function(){
@@ -118,6 +124,8 @@ angular.module('cargoApp.controllers')
          mostrarPor: $scope.filterLinea,
       };
       window.cargoTimeline.update(timelineParams);
+
+      updateTheUrl();
 
     }
 
