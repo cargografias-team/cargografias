@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module('cargoApp.controllers')
-  .controller('homeController', function($rootScope,$scope,cargosFactory, $filter) {
+  .controller('homeController', function($rootScope,$scope,cargosFactory, $filter, $routeParams) {
   	$scope.ready= false;
   	
     $scope.autoPersons = [];
@@ -29,6 +29,14 @@ angular.module('cargoApp.controllers')
       };
       $scope.estado = "Listo!";
       $scope.ready= true;
+
+      //Load initial ids from the url
+      if($routeParams.ids){
+        angular.forEach($routeParams.ids.split('-'), function(id){
+          $scope.add($scope.autoPersons[id], id);
+        });
+      }
+
   };
 
   $scope.redrawPoderometro = function(){

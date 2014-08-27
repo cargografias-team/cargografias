@@ -14,6 +14,6 @@ angular.module('cargoApp', [
   'angularMoment'
 ]).
 config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/', {templateUrl: '/angular/partials/buscador.html', controller: 'homeController'});
+  $routeProvider.when('/:ids?', {templateUrl: '/angular/partials/buscador.html', controller: 'homeController'});
   $routeProvider.otherwise({redirectTo: '/'});
 }]);
