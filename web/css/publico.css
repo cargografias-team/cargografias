@@ -113,12 +113,20 @@ blockquote p {
 
 }
 
-.accordion-group .alert{
+.accordion-group .accordion-heading.alert{
 	border: none;
 	border-radius: 0px;
 	border-color: #A0D1A7;
+	padding-bottom: 5px;
+	padding-right: 15px;
 
 }
+
+.accordion-group .subtitulo{
+	margin-left: 26px;
+	color: #757575;
+	font-size: 12px;
+	}
 
 .accordion-group .alert-error{
 	color: #525252;
@@ -222,7 +230,7 @@ blockquote p {
 }
 
 .container{
-  width: 1150px;
+  width: 1000px;
 }
 
 .label, .badge{
@@ -253,3 +261,13 @@ svg text{
 #year-marker-badge:hover {
 		fill:#CACACA;
 	}
+
+.alert-info{
+	line-height: 22px;
+}
+
+.fa{ /*iconitos!*/
+	font-size: 14px;
+	margin-right: 10px;
+}
+
