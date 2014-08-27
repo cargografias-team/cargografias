@@ -1,6 +1,6 @@
 
 <div class="row" id="filtro">
-	<div class="accordion-group" style="padding-bottom: 14px;">
+	<div class="accordion-group">
 		
   		<div class="row">
   			<div class="span5">
@@ -32,32 +32,26 @@
 			</div>
 			
 		</div>
-		<div class="row">
-			<div class="span9" style="width:100%">
-				<div class"row" style="padding:14px 0px">
-	          		<div class="span1 persona-seleccionada" ng-repeat="active in activePersons">
-	          			<a ng-click="remove(active)" class="badge badge-warning remove">
-	                  	<i class="fa fa-times"></i></a>
+		<div class="row" style="padding: 13px 0px;border-top: 1px solid #cacaca;">
+			<div class="span10" id="personas-seleccionadas-box">
+					<div class="span1 persona-seleccionada" ng-repeat="active in activePersons">
+	          			<a ng-click="remove(active)" class="badge badge-warning remove"><i class="fa fa-times"></i></a>
 	            		<div style="width:60px;height:60px"><img class="photo" src="/img/person.png"></div>
 	            		<p>{{active.name}}</p>
-	            		
 	          		</div>
-        		</div>
-			</div>		
-		</div>
-		<div id="persona-seleccionada-toolbar" class="row">
-			<div class="span9"  ng-show="activePersons.length > 0">
-				<span class="label">Funcionarios Seleccionados: {{activePersons.length}} </span>&nbsp;
-				<a id="limpiar-buscar-filtro" ng-click="clearAll()" class="badge badge-warning">
-					<i class="fa fa-times"></i> Limpiar Selección
-				</a>&nbsp;
-				<a href="#" class="badge badge-warning" style="background-color:#79CEDF"  onclick="window.open('https://twitter.com/intent/tweet?text=Linea%20de%20tiempo%20de%20politicos%3A&amp;tw_p=tweetbutton&amp;via=cargografias&amp;url='+encodeURIComponent(location.href),'twitter-share-dialog','width=626,height=436'); 
+			
+			</div>
+			<div class="span2"  ng-show="activePersons.length > 0" style="width:156px; margin-left:5px">
+				<span class="label" style="width:100%;margin-bottom:4px">Seleccionados: {{activePersons.length}} </span><br>
+				<a id="limpiar-buscar-filtro" ng-click="clearAll()" class="badge badge-warning" style="width:100%;margin-bottom:4px">
+					<i class="fa fa-times" ></i> Limpiar Selección
+				</a>
+				<br>
+				<a href="#" class="badge badge-warning" style="background-color:#79CEDF;width:100%;margin-bottom:4px"  onclick="window.open('https://twitter.com/intent/tweet?text=Linea%20de%20tiempo%20de%20politicos%3A&amp;tw_p=tweetbutton&amp;via=cargografias&amp;url='+encodeURIComponent(location.href),'twitter-share-dialog','width=626,height=436'); 
 					return false;"><i class="fa fa-twitter"></i>Twittear esta selección</a>		
 			</div>
-					<div class="clearfix"></div>
-
+		
 		</div>
-        		
 		<div class="clearfix"></div>
 	</div>
 </div>

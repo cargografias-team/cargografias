@@ -99,18 +99,21 @@ blockquote p {
 	background-color: #f8f8f8;
 	border-color: #B1B1B1;
 	margin-bottom:15px;
-	box-shadow: 2px 2px 8px #8F8F8F;	
+	-moz-box-shadow:    0 0 0px ;
+   -webkit-box-shadow:  0 0 0px ;
+   box-shadow:          0 0 0px ;
+}
+
+#linea-de-tiempo .accordion-group{
+	-moz-box-shadow:    2px 2px 8px #8F8F8F;	
+   -webkit-box-shadow:  2px 2px 8px #8F8F8F;	
+   box-shadow: 2px 2px 8px #8F8F8F;	
+   color:black;
 }
 
 #comparador .accordion-group{
 	background-color: #E6E6E6;
-	-moz-box-shadow:    0 0 0px ;
-   -webkit-box-shadow:  0 0 0px ;
-   box-shadow:          0 0 0px ;
 	border-color: #CACACA;
-
-
-
 }
 
 .accordion-group .accordion-heading.alert{
@@ -145,10 +148,6 @@ blockquote p {
    padding-top: 30px;
 }
 
-#linea-de-tiempo .accordion-group{
-	color:black;
-	border-color:black;
-}
 
 #redes-sociales{
 	text-align: center;
@@ -256,7 +255,9 @@ blockquote p {
 	padding-right: 11px;
 	font-weight: normal;
 	font-size: 12px;
-
+}
+.label{
+	text-align: center;
 }
 
 svg text{
@@ -292,6 +293,7 @@ svg text{
 .persona-seleccionada p{
 	font-size: 12px;
 	line-height: 12px;
+	margin: 4px 0 0 0;	
 }
 
 .persona-seleccionada{
@@ -303,3 +305,12 @@ svg text{
 .label-warning, .badge-warning {
 	background-color: #F57C52;
 }
+
+badge{
+	transition: opacity 0.5s ease;
+	opacity: 1;
+};
+
+badge:hover{
+	opacity: 0.5;
+};
