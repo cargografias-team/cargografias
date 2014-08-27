@@ -25,7 +25,7 @@ angular.module('cargoApp.controllers')
     }
 
     $scope.ignoreAccents = function(item) {               
-      console.log($scope.autocomplete);
+      
         if (!$scope.autocomplete) {
 
           return true;       
