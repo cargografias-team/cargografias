@@ -15,6 +15,26 @@ angular.module('cargoApp.controllers')
     $rootScope.yearObserver =[];
     $scope.filterLinea ="cargo";
 
+   function removeAccents(value) {
+        return value
+            .replace(/á/g, 'a')            
+            .replace(/é/g, 'e')
+            .replace(/í/g, 'i')
+            .replace(/ó/g, 'o')
+            .replace(/ú/g, 'u');
+    }
+
+    $scope.ignoreAccents = function(item) {               
+      console.log($scope.autocomplete);
+        if (!$scope.autocomplete) {
+
+          return true;       
+        }
+
+        var text = removeAccents(item.name.toLowerCase())
+        var search = removeAccents($scope.autocomplete.toLowerCase());
+        return text.indexOf(search) > -1;
+    };
 
 
   	
@@ -136,6 +156,7 @@ angular.module('cargoApp.controllers')
       updateTheUrl();
 
     }
+
 
 
 
