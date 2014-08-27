@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module('cargoApp.controllers')
-  .controller('homeController', function($rootScope,$scope,cargosFactory, $filter, $routeParams, $location) {
+  .controller('homeController', function($rootScope,$scope,cargosFactory, $filter, $routeParams, $location, $route) {
   	$scope.ready= false;
   	
     $scope.autoPersons = [];
@@ -52,10 +52,17 @@ angular.module('cargoApp.controllers')
 
   cargosFactory.load($scope,onDataLoaded);
 
+  var lastRoute = $route.current;
+  $scope.$on('$locationChangeSuccess', function(event) {
+      // If same controller, then ignore the route change.
+      if(lastRoute.controller == $route.current.controller) {
+        $route.current = lastRoute;
+      }
+  });
 
   function updateTheUrl(){
       //Update the URL
-      // $location.path("/" + $scope.activePersons.map(function(p){ return p.autoPersona.index }).join('-'));
+      $location.path("/" + $scope.activePersons.map(function(p){ return p.autoPersona.index }).join('-'));
   }
 
 
