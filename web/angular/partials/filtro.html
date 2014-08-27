@@ -3,36 +3,27 @@
 	<div class="accordion-group">
 		
   		<div class="row">
-  			<div class="span5">
-				<h3 style="margin-left:10px;">Ingrese el nombre del funcionario a buscar:</h3>
+  			<div class="span5" style="margin-bottom:10px">
+				<h3>Ingrese el nombre del funcionario a buscar:</h3>
 				<div class="search-row clearfix">
-	  				<input type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="autocomplete">
+	  				<input type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="autocomplete" style="width:328px;">
 				</div>
 			</div>
-		<div class="span6" style="width: 100%;margin-bottom: 7px; margin-top: 10px;max-width: 570px;">
+		<div class="span6" style="width: 100%;margin-bottom: 7px; margin-top: 10px;max-width: 570px;" ng-show="autocomplete.length > 3">
 		  		<div class="items">
-		  			<div class="resultados" ng-show="autocomplete.length > 3" style="background:#fff">
-  						<table class="table" cellpadding="0" cellspacing="0">
-  			        		<tbody>
-  								<tr>
-  									<th><small> {{results.length}} resultados</small></th>
-  									<th></th>
-  								</tr>
-  								<tr class="item" ng-repeat="item in results = (autoPersons | filter:autocomplete)" ng-hide="item.agregada">
-  									<td>{{item.nombre}}</td>
-  									<td class="actions">
-  											<a class="btn btn-mini agregar-buscar btn-primary" href="" ng-click="add(item,item.index)">
-  											Agregar <i class="icon-chevron-down icon-white"></i></a>
-  									</td>
-  								</tr>
-  							</tbody>
-  						</table>
+		  			<span class="label ng-binding" style="margin-bottom:4px">{{results.length}} funcionarios encontrados</span>		  				
+		  			<div class="resultados"  style="background:#fff;padding:6px;border-bottom: solid 3px white;">
+					<div  class="item" ng-repeat="item in results = (autoPersons | filter:autocomplete)" ng-hide="item.agregada">
+						<a id="limpiar-buscar-filtro" ng-click="add(item,item.index)" class="badge badge-warning" style="margin-bottom:4px">
+					<i class="fa fa-check" ></i> {{item.nombre}}
+					</a>
+	  									
 					</div>
 				</div>
 			</div>
 			
 		</div>
-		<div class="row" style="padding: 13px 0px;border-top: 1px solid #cacaca;">
+		<div class="row" style="padding: 13px 0px;border-top: 1px solid #cacaca;" ng-show="activePersons.length > 0">
 			<div class="span10" id="personas-seleccionadas-box">
 					<div class="span1 persona-seleccionada" ng-repeat="active in activePersons">
 	          			<a ng-click="remove(active)" class="badge badge-warning remove"><i class="fa fa-times"></i></a>
@@ -41,7 +32,7 @@
 	          		</div>
 			
 			</div>
-			<div class="span2"  ng-show="activePersons.length > 0" style="width:156px; margin-left:5px">
+			<div class="span2"   style="width:156px; margin-left:5px">
 				<span class="label" style="width:100%;margin-bottom:4px">Seleccionados: {{activePersons.length}} </span><br>
 				<a id="limpiar-buscar-filtro" ng-click="clearAll()" class="badge badge-warning" style="width:100%;margin-bottom:4px">
 					<i class="fa fa-times" ></i> Limpiar Selección
