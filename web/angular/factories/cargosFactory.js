@@ -199,7 +199,8 @@ angular.module('cargoApp.factories', [])
             factory.persons = res.data;
               for (var i = 0; i < res.data.length; i++) {
                 var p = { id : res.data[i].id,
-                    nombre : res.data[i].name,
+                    //nombre : res.data[i].name,
+                    nombre : removeDiacritics(res.data[i].name),
                     apellido: '',
                     index: i,
                     image : res.data[i].image       // intentando obtener la foto desde el popit!
