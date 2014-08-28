@@ -6,16 +6,18 @@
   			<div class="span5" style="margin-bottom:10px">
 				<h3>Ingrese el nombre del funcionario a buscar:</h3>
 				<div class="search-row clearfix">
-	  				<input type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="autocomplete" style="width:328px;">
+            <input id="nombre" type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="nombre" style="width:328px;">
+	  				<a ng-click="clearFilter(nombre)" alt="Limpiar filtro" class="badge badge-warning remove"><i class="fa fa-times"></i></a>
 				</div>
 			</div>
-		<div class="span6" style="width: 100%;margin-bottom: 7px; margin-top: 10px;max-width: 570px;" ng-show="autocomplete.length > 3">
+		<div class="span6" style="width: 100%;margin-bottom: 7px; margin-top: 10px;max-width: 570px;" ng-show="nombre.length > 3">
 		  		<div class="items">
 		  			<span class="label ng-binding" style="margin-bottom:4px">{{results.length}} funcionarios encontrados</span>		  				
 		  			<div class="resultados"  style="background:#fff;padding:6px;border-bottom: solid 3px white;">
-					<div  class="item" ng-repeat="item in results = (autoPersons | filter:autocomplete)" ng-hide="item.agregada">
-						<a id="limpiar-buscar-filtro" ng-click="add(item,item.index)" class="badge badge-warning" style="margin-bottom:4px">
-					<i class="fa fa-check" ></i> {{item.nombre}}
+					<div  class="item" ng-repeat="item in results = (autoPersons | filter:nombre)" >
+						<a id="limpiar-buscar-filtro" ng-click="add(item,item.index)" class="badge badge-warning" ng-class="item.styles" style="margin-bottom:4px">
+					<i ng-hide="item.agregada"class="fa fa-check" ></i> {{item.nombre}}
+
 					</a>
 	  									
 					</div>

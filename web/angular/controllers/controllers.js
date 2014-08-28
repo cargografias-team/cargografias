@@ -47,6 +47,12 @@ angular.module('cargoApp.controllers')
       };
     };
   }
+  
+  $scope.clearFilter = function(){
+      
+     //HACK: why?????????
+     $("#nombre").val('');
+    }
 
   cargosFactory.load($scope,onDataLoaded);
 
@@ -65,9 +71,11 @@ angular.module('cargoApp.controllers')
 
 
     $scope.add = function(autoPersona, id){
-
+      if (autoPersona.agregada) return ;
+      
       $scope.autocomplete = " ";
       autoPersona.agregada = true;
+      autoPersona.styles = "badge-selected"
     	
       var person = cargosFactory.getFullPerson(id);
       person.autoPersona = autoPersona;
@@ -104,6 +112,7 @@ angular.module('cargoApp.controllers')
     		 $scope.activePersons.splice(indexOf, 1);
     	}
       person.autoPersona.agregada = false;
+      person.autoPersona.styles = "";
     	indexOf = cargoTimeline.options.filtro.idPersonas.indexOf(person.id);
     	if (indexOf > -1){
     		 cargoTimeline.options.filtro.idPersonas.splice(indexOf, 1);

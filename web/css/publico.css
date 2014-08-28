@@ -164,7 +164,10 @@ blockquote p {
 	padding: 1px 0px 2px 5px;
 	margin-left: 40px;
 }
-
+div.search-row .badge.badge-warning.remove {
+  margin-left: -32px;
+  margin-top: 5px;
+}
 .remove .fa{
 	margin-right:5px;
 }
@@ -305,6 +308,9 @@ svg text{
 .label-warning, .badge-warning {
 	background-color: #F57C52;
 }
+.badge-selected {
+  background-color: #999;
+  }
 
 badge{
 	transition: opacity 0.5s ease;
