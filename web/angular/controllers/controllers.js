@@ -14,7 +14,18 @@ angular.module('cargoApp.controllers')
   	$rootScope.observers =[];
     $rootScope.yearObserver =[];
     $scope.filterLinea ="cargo";
-  	
+
+    //Load initial ids from the url
+    if($routeParams.ids){
+      var parsedParams = $routeParams.ids.split('-');
+      $scope.filterLinea = parsedParams.shift();
+      $scope.poderometroYear = $scope.activeYear = parseInt(parsedParams.shift());
+    }
+
+
+  $scope.$watch('activeYear', function(){
+    updateTheUrl();
+  });
 
 
   var onDataLoaded = function(){
@@ -28,11 +39,12 @@ angular.module('cargoApp.controllers')
       $scope.ready= true;
 
       //Load initial ids from the url
-      if($routeParams.ids){
-        angular.forEach($routeParams.ids.split('-'), function(id){
+      if(parsedParams){
+        angular.forEach(parsedParams, function(id){
           $scope.add($scope.autoPersons[id], id);
         });
       }
+
       $scope.redrawPoderometro();
 
   };
@@ -66,7 +78,7 @@ angular.module('cargoApp.controllers')
 
   function updateTheUrl(){
       //Update the URL
-      $location.path("/" + $scope.activePersons.map(function(p){ return p.autoPersona.index }).join('-'));
+      $location.path("/" + $scope.filterLinea  + "-" + $scope.activeYear + "-" + $scope.activePersons.map(function(p){ return p.autoPersona.index }).join('-'));
   }
 
 
@@ -103,6 +115,7 @@ angular.module('cargoApp.controllers')
          mostrarPor: $scope.filterLinea,
       };
       window.cargoTimeline.update(timelineParams);
+      updateTheUrl();
 
     }
 

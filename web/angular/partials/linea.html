@@ -6,10 +6,10 @@
 				<span class="subtitulo">Muestra los recorridos en la función publica de de los funcionarios seleccionados</span>
 			</div>
 			<ul class="nav nav-pills alert-error titulo-tab-ul">
-			  <li class="active">
+			  <li ng-class="filterLinea == 'cargo' ? 'active' : '' ">
 			  	<a id="ordenCargo" href="" ng-click="orderLine('cargo')">Ordenar por Cargo</a>
 			  </li>
-			  <li class="">
+			  <li ng-class="filterLinea == 'nombre' ? 'active' : '' ">
 			    <a id="ordenNombre" href="" ng-click="orderLine('nombre')">Ordenar por Nombre</a>
 			  </li>
 			</ul>

@@ -36,7 +36,7 @@
     var TRANSITION_DURATION = 1000;
     var OFFSET_Y = 40; // USado para mover verticalmente los  blques y el eje vertical
     var EJE_ANIOS_OFFSET_Y = 15;
-    var ANIO_INICIAL = 2001;
+    var ANIO_INICIAL = $scope.activeYear || 2001 ;
     var x0 = $scope.activeYear = ANIO_INICIAL;
     var ALTURA_OCULTAMIENTO = -100; // Los elementos se van a mover acá cuando no se muestren
 
