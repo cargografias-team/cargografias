@@ -367,7 +367,8 @@
     function inicializarDataEjesCargos(data, ejes, ejesCargoData) {
 
       _.each(data.cargos, function(d) {
-
+        //TODO: Antes no pasa esto
+        if (!d.nominal) return ;
         ejesCargoData.eje1[d.cargo_nominal_id] = {
           altura: 0,
           nombre: d.nominal.nombre,
