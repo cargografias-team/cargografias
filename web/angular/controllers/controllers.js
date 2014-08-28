@@ -42,7 +42,7 @@ angular.module('cargoApp.controllers')
     if ($scope.activePersons.length > 0 ){
       for (var i = 0; i < $rootScope.yearObserver.length; i++) {
         var observer = $rootScope.yearObserver[i];
-        var poderometro = cargosFactory.getPoderometro($scope.poderometroYear, $scope.activePersons);
+        var poderometro = cargosFactory.getPoderometroAnimado($scope.poderometroYear, $scope.activePersons);
         observer(poderometro);
       };
     };

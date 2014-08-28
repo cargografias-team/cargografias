@@ -2,87 +2,143 @@
 
 /* Directives */
 
-/* based on http://bl.ocks.org/mbostock/4063269 */
+
 
 angular.module('cargoApp.directives').
   directive('ngCargobubbles', function() {
     return {
-    	template: '<div id="bubbles"></div>',
-    	controller: ['$scope', '$http', function($scope) {
+      template: '<div id="bubbles"></div>',
+      controller: ['$scope', '$http', function($scope) {
           console.log('controller');
-    	}],
-    	link: function($rootScope, $scope, iElement, iAttrs, ctrl) {
+      }],
+      link: function($rootScope, $scope, iElement, iAttrs, ctrl) {
 
         
-    		var startBubbles = function(data){
+        var startBubbles = function(data){
           
           $("#bubbles").html('');
+          var width = 960,
+            height = 600,
+            padding = 30, // separation between nodes
+            maxRadius = 12;
 
-          var diameter = 960/2,
-                format = d3.format(",d"),
-                color = d3.scale.category20c();
-
-            var bubble = d3.layout.pack()
-                .sort(null)
-                .size([diameter, diameter])
-                .padding(1.5);
-
-            var svg = d3.select("#bubbles").append("svg")
-                .attr("width", diameter)
-                .attr("height", diameter)
-                .attr("class", "bubble");
-
-            
-            var node = svg.selectAll(".node")
-                .data(bubble.nodes(classes(data))
-                .filter(function(d) { return !d.children; }))
-              .enter().append("g")
-                .attr("class", "node")
-                .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-
-            node.append("title")
-                .text(function(d) { return d.className + ": " + d.position; });
-
-            node.append("circle")
-                .attr("r", function(d) { return d.r; })
-                .style("fill", function(d) { return color(d.packageName); });
-
-            node.append("text")
-                .attr("dy", ".3em")
-                .style("text-anchor", "middle")
-                .text(function(d) { return d.className; });
-
-            node.append("text")
-                .attr("dy", "16")
-                .style("text-anchor", "middle")
-                .style("font-size", "10px")
-                .text(function(d) { return "("+d.position+")"; });
+          var n = 5, // total number of nodes
+            m = 1; // number of distinct clusters
 
 
-            // Returns a flattened hierarchy containing all leaf nodes under the root.
-            function classes(root) {
-              var classes = [];
+          var color = d3.scale.linear()
+            .domain([0,1])
+            .range(["blue","red"]);
 
-              function recurse(name, node) {
+          var x = d3.scale.ordinal()
+            .domain(d3.range(1))
+            .rangePoints([0, width], 1);
 
-                if (node.children) node.children.forEach(function(child) { recurse(node.name, child); });
-                else classes.push({packageName: name, className: node.name, position: node.position, value: node.size});
+
+          var nodes = data.map(function(d,e) {
+          var i = Math.floor(Math.random() * m);
+          return {
+            radius: data[e].size,
+            nombre: data[e].name,
+            type: data[e].cargo,
+            cx: x(i),
+            cy: height / 2
+          };
+          });
+
+
+
+
+          var force = d3.layout.force()
+            .nodes(nodes)
+            .size([width, height])
+            .gravity(0)
+            .charge(0)
+            .on("tick", tick)
+            .start();
+
+          var svg = d3.select("#bubbles").append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+
+          var mainNode = svg.selectAll(".mainNode")
+            .data(nodes)
+          .enter().append("g")
+          .attr("class","mainNode")
+          .append("circle")
+            .attr("r", function(d) { return d.radius; })
+            .attr("id",function(d) { return d.nombre; })
+            .style("fill", function(d) { 
+                if (d.type=="ejecutivo") {
+                  return color(1);  
+                }else{
+                  return color(0);  
+                }
+                 })
+            .call(force.drag);
+              
+          svg.selectAll("g").append("text")
+            .style("text-anchor","middle")
+            .text(function(d) { return d.nombre; });
+
+
+
+          
+
+          function tick(e) {
+          svg.selectAll("g")
+              .each(gravity(.05 * e.alpha))
+              .each(collide(.1))
+              .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+
+          }
+
+          // Move nodes toward cluster focus.
+          function gravity(alpha) {
+          return function(d) {
+            d.y += (d.cy - d.y) * alpha;
+            d.x += (d.cx - d.x) * alpha;
+          };
+          }
+
+          // Resolve collisions between nodes.
+          function collide(alpha) {
+          var quadtree = d3.geom.quadtree(nodes);
+          return function(d) {
+            var r = d.radius + maxRadius + padding,
+                nx1 = d.x - r,
+                nx2 = d.x + r,
+                ny1 = d.y - r,
+                ny2 = d.y + r;
+            quadtree.visit(function(quad, x1, y1, x2, y2) {
+              if (quad.point && (quad.point !== d)) {
+                var x = d.x - quad.point.x,
+                    y = d.y - quad.point.y,
+                    l = Math.sqrt(x * x + y * y),
+                    r = d.radius + quad.point.radius + (d.color !== quad.point.color) * padding;
+                if (l < r) {
+                  l = (l - r) / l * alpha;
+                  d.x -= x *= l;
+                  d.y -= y *= l;
+                  quad.point.x += x;
+                  quad.point.y += y;
+                }
               }
-
-              recurse(null, root);
-              return {children: classes};
-            }
-
-            d3.select(self.frameElement).style("height", diameter + "px");
-    			
-    	   };
+              return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+            });
+          };
+          }
+          
+          
+         };
 
 
          $rootScope.yearObserver.push(startBubbles);
 
 
 
-    	}
+      }
     }
  });
 
