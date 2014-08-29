@@ -37,6 +37,7 @@ angular.module('cargoApp.factories', [])
           if (w.cargo.toLowerCase() === m.cargonominal.toLowerCase()
             && w.poder.toLowerCase()  === m.post.cargotipo.toLowerCase()){
             m.weight = this.weight[j].representacion;
+            m.hierarchy = this.weight[j].posicion;
           }
         }
         
@@ -55,15 +56,7 @@ angular.module('cargoApp.factories', [])
 
       for (var i = 0; i < persons.length; i++) {
           var p = persons[i];
-          var memberships = p.memberships;
-          var activeMembershipForYear;
-          for (var j = 0; j < memberships.length; j++) {
-              var m = memberships[j];
-              if (year >= m.started.year() && m.finished.year() >=year){
-                activeMembershipForYear = m;
-                break;
-              }
-          };
+          var activeMembershipForYear = factory.getActiveMembershipByYear(p,year);
           if (activeMembershipForYear){
             var item = {
               name: p.name,
@@ -93,15 +86,7 @@ angular.module('cargoApp.factories', [])
       var poderometro =[];
       for (var i = 0; i < persons.length; i++) {
           var p = persons[i];
-          var memberships = p.memberships;
-          var activeMembershipForYear;
-          for (var j = 0; j < memberships.length; j++) {
-              var m = memberships[j];
-              if (year >= m.started.year() && m.finished.year() >=year){
-                activeMembershipForYear = m;
-                break;
-              }
-          };
+          var activeMembershipForYear = factory.getActiveMembershipByYear(p,year);
           if (activeMembershipForYear){
             var item = {
               cargo:activeMembershipForYear.post.cargotipo.toLowerCase(),
@@ -111,11 +96,82 @@ angular.module('cargoApp.factories', [])
             }
             poderometro.push(item);
           }
+          activeMembershipForYear= undefined;
       };
       return poderometro;
+    };
 
+    factory.getActiveMembershipByYear = function(p,year){
+      var memberships = p.memberships;
+          var activeMembershipForYear;
+          for (var j = 0; j < memberships.length; j++) {
+              var m = memberships[j];
+              if (year >= m.started.year() && m.finished.year() >=year){
+                activeMembershipForYear = m;
+                break;
+              }
+          };
+          return activeMembershipForYear;
+    };
+    factory.getJerarquimetro = function(year, persons){
+       var positions =[];
+      for (var i = 0; i < persons.length; i++) {
+          var p = persons[i];
+          var activeMembershipForYear = factory.getActiveMembershipByYear(p,year);
+          if (activeMembershipForYear){
+            var item = {
+              cargo:activeMembershipForYear.post.cargotipo.toLowerCase(),
+              name: p.name,
+              position: activeMembershipForYear.cargonominal,
+              level: activeMembershipForYear.hierarchy
+            }
+            positions.push(item);
+          }
+          activeMembershipForYear= undefined;
+      };
 
-    }
+      var expression = '+level';
+      var sorted = $filter('orderBy')(positions, expression, false);
+      
+      var treeData =[];
+      for (var i = 0; i < sorted.length; i++) {
+        var s = sorted[i];
+        if (treeData.length === 0){
+          treeData.push({
+            name:s.name,
+            parent:null,
+            level: s.level,
+            children:[]
+          });
+        }
+        else {
+          
+          for (var j = 0; j < treeData.length; j++) {
+            //Same Level, just push.
+            if (s.level === treeData[j].level){
+              treeData.push({
+                name:s.name,
+                parent:null,
+                level: s.level,
+                children:[]
+              });
+              break;
+            }
+            else if (s.level > treeData[j].level ){ 
+              treeData[j].children.push({
+                name:s.name,
+                parent:null,
+                level: s.level,
+                children:[]
+              });
+            }
+          };
+        } 
+      };
+      
+     
+      return treeData;
+    };
     factory.getPeriods= function(person){
       for (var i = 0; i < person.memberships.length; i++) {
         var m = person.memberships[i];

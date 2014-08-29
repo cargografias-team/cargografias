@@ -18,8 +18,8 @@ angular.module('cargoApp.directives').
           
           $("#bubbles").html('');
           var width = 960,
-            height = 600,
-            padding = 30, // separation between nodes
+            height = 400,
+            padding = 40, // separation between nodes
             maxRadius = 12;
 
           var n = 5, // total number of nodes
