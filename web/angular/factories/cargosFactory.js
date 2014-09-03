@@ -114,7 +114,11 @@ angular.module('cargoApp.factories', [])
           return activeMembershipForYear;
     };
     factory.getJerarquimetro = function(year, persons){
-       var positions =[];
+      var positions =[];
+      var ejecutivo = [];
+      var legistlativo = [];
+      var judicial = [];
+
       for (var i = 0; i < persons.length; i++) {
           var p = persons[i];
           var activeMembershipForYear = factory.getActiveMembershipByYear(p,year);
@@ -125,53 +129,77 @@ angular.module('cargoApp.factories', [])
               position: activeMembershipForYear.cargonominal,
               level: activeMembershipForYear.hierarchy
             }
-            positions.push(item);
+             if (activeMembershipForYear.post.cargotipo == 'Ejecutivo'){
+                ejecutivo.push(item)
+              }else if (activeMembershipForYear.post.cargotipo == 'Legislativo'){
+                legistlativo.push(item)
+              }else if (activeMembershipForYear.post.cargotipo == 'Judicial'){
+                judicial.push(item)
+              }
+            
           }
           activeMembershipForYear= undefined;
       };
+      positions.push(ejecutivo);
+      positions.push(legistlativo);
+      positions.push(judicial);
 
       var expression = '+level';
-      var sorted = $filter('orderBy')(positions, expression, false);
-      
-      var treeData =[];
-      for (var i = 0; i < sorted.length; i++) {
-        var s = sorted[i];
-        if (treeData.length === 0){
-          treeData.push({
-            name:s.name,
-            parent:null,
-            level: s.level,
-            children:[]
-          });
+      for (var z = 0; z < positions.length; z++) {
+        var p= positions[z]
+        var treeData =[];
+        var sorted = $filter('orderBy')(p, expression, false);
+        
+        
+        for (var i = 0; i < sorted.length; i++) {
+          var s = sorted[i];
+          if (treeData.length === 0){
+            treeData.push({
+              name:s.name,
+              parent:null,
+              level: s.level,
+              children:[]
+            });
+          }
+          else {
+            this.processItemsTree(treeData, s);
+            
+          } 
         }
-        else {
-          
-          for (var j = 0; j < treeData.length; j++) {
-            //Same Level, just push.
-            if (s.level === treeData[j].level){
-              treeData.push({
-                name:s.name,
-                parent:null,
-                level: s.level,
-                children:[]
-              });
-              break;
-            }
-            else if (s.level > treeData[j].level ){ 
-              treeData[j].children.push({
-                name:s.name,
-                parent:null,
-                level: s.level,
-                children:[]
-              });
-            }
-          };
-        } 
-      };
+        positions[z] = treeData;
+      }
       
      
-      return treeData;
+      return positions;
     };
+    factory.processItemsTree = function(treeData, s){
+        for (var j = 0; j < treeData.length; j++) {
+              //Same Level, just push.
+              if (s.level === treeData[j].level){
+                treeData.push({
+                  name:s.name,
+                  parent:null,
+                  level: s.level,
+                  children:[]
+                });
+                break;
+              }
+              else if (treeData[j].children.length == 0){
+                treeData[j].children.push({
+                  name:s.name,
+                  parent:null,
+                  level: s.level,
+                  children:[]
+                });
+                break;
+
+              }
+              else{ 
+                factory.processItemsTree(treeData[j].children, s);
+                
+              }
+            }
+    }
     factory.getPeriods= function(person){
       for (var i = 0; i < person.memberships.length; i++) {
         var m = person.memberships[i];
