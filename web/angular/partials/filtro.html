@@ -29,7 +29,9 @@
 			<div class="span10" id="personas-seleccionadas-box">
 					<div class="span1 persona-seleccionada" ng-repeat="active in activePersons">
 	          			<a ng-click="remove(active)" class="badge badge-warning remove"><i class="fa fa-times"></i></a>
-	            		<div style="width:60px;height:60px"><img class="photo" ng-src="{{active.image}}"></div>
+	            		<div class="photo-frame">
+                    <img class="photo" ng-src="{{active.image}}">
+                  </div>
 	            		<p>{{active.name}}</p>
 	          		</div>
 			
