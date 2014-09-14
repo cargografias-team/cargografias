@@ -30,6 +30,8 @@ angular.module('cargoApp.controllers')
   });
 
 
+
+
   var onDataLoaded = function(){
     
      $scope.estado = "Motor de Visualizacion";
@@ -50,7 +52,7 @@ angular.module('cargoApp.controllers')
       $scope.redrawPoderometro();
 
   };
-
+  
   $scope.redrawPoderometro = function(){
     
     if ($scope.activePersons.length > 3 ){
@@ -66,12 +68,25 @@ angular.module('cargoApp.controllers')
       };
     };
   }
+
+
+  $scope.filterAutoPersons = function(q){
+    if (q.length > 4){
+      $scope.autoPersons =cargosFactory.getAutoPersons(q);
+    }
+  };
   
   $scope.clearFilter = function(){
       
      //HACK: why?????????
      $("#nombre").val('');
-    }
+     $scope.autoPersons = [];
+  };
+
+  $scope.clearResults= function(){
+     $("#nombre").val('');
+     $scope.autoPersons = [];
+  }
 
   cargosFactory.load($scope,onDataLoaded);
 

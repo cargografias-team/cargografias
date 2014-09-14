@@ -12,7 +12,7 @@ angular.module('cargoApp.factories', [])
     factory.memberships= [];
     factory.organizations= [];
     factory.weight= [];
-
+    factory.autoPersons=[];
     factory.getFullPerson = function(id){
       var p = this.persons[id]; 
       if (!p.full){
@@ -44,7 +44,9 @@ angular.module('cargoApp.factories', [])
       }
 
     }
-
+    factory.getAutoPersons = function(q){
+      return $filter('filter')(this.autoPersons, {nombre: q}, false);
+    };
     factory.getPoderometro = function(year, persons){
 
       var ejecutivo = { name:"Ejecutivo", children: []};
@@ -310,7 +312,7 @@ angular.module('cargoApp.factories', [])
                 };
                 res.data[i].image = p.image;
                 window.__cargos_data.personas.push(p)
-                $scope.autoPersons.push(p);
+                factory.autoPersons.push(p);
                 factory.persons[i].initials = res.data[i].name.match(/[A-Z]/g).join('.') + ".";
               };
           }).then(function(){
