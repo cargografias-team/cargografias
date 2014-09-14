@@ -110,7 +110,7 @@ angular.module('cargoApp.controllers')
     	window.cargoTimeline.update(timelineParams);
     
       updateTheUrl();
-      $scope.redrawPoderometro();
+      //$scope.redrawPoderometro();
 
     };
 
