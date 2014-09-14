@@ -204,7 +204,7 @@ directive('ngCargotree', function() {
 
 
 
-            $rootScope.jerarquimetroObserver.push(startTree);
+            //$rootScope.jerarquimetroObserver.push(startTree);
 
 
 

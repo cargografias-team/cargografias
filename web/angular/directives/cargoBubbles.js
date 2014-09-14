@@ -13,18 +13,17 @@ directive('ngCargobubbles', function() {
         link: function($rootScope, $scope, iElement, iAttrs, ctrl) {
 
             var startBubbles = function(data) {
-               console.log('startbubbles');
+                // //BUG: Why is not working?
+                //  if (window.cargo.bubblePoderometro.started) {
+                //   console.log('update-bubbles');
+                //     window.cargo.bubblePoderometro.update(data);
+                //  } else {
+                console.log('start-bubbles');
                 $("#bubbles").html('');
-                //BUG: Why is not working?
-                // if (window.cargo.bubblePoderometro.started) {
-                 //    window.cargo.bubblePoderometro.update(data);
-                 //} else {
-                    window.cargo.bubblePoderometro.start(data);
+                window.cargo.bubblePoderometro.start(data);
                 //}
 
             };
-
-
             $rootScope.yearObserver.push(startBubbles);
 
 
@@ -51,17 +50,20 @@ window.cargo.bubblePoderometro = {
     started: false,
     update: function(data) {
         //starts again!
-        if(window.cargo.bubblePoderometro.bubbles != {}){
-          window.cargo.bubblePoderometro.bubbles = window.cargo.bubblePoderometro.bubbles.data(data, function(d) {
-              return d;
-          });
+        if (window.cargo.bubblePoderometro.bubbles != {}) {
+            window.cargo.bubblePoderometro.bubbles = window.cargo.bubblePoderometro.bubbles.data(data, function(d) {
+                return d;
+            });
         }
     },
     start: function(data) {
+        var div = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
         this.started = true;
         this.color = d3.scale.linear()
             .domain([0, 1])
-            .range(["blue", "red"]);
+            .range(["rgb(252, 176, 66)", "#39ADD1", "#94DA3B"]);
 
         this.x = d3.scale.ordinal()
             .domain(d3.range(1))
@@ -70,10 +72,15 @@ window.cargo.bubblePoderometro = {
 
         this.nodes = data.map(function(d, e) {
             var i = Math.floor(Math.random() * window.cargo.bubblePoderometro.options.m);
+            var item = data[e];
             return {
-                radius: data[e].size,
-                nombre: data[e].name,
-                type: data[e].cargo,
+                radius: item.size,
+                name: item.name,
+                position: item.position,
+                type: item.cargo,
+                classification: item.classification,
+                district: item.district,
+                initials: item.initials,
                 cx: window.cargo.bubblePoderometro.x(i),
                 cy: window.cargo.bubblePoderometro.options.height / 2
             };
@@ -104,22 +111,54 @@ window.cargo.bubblePoderometro = {
                 return d.radius;
             })
             .attr("id", function(d) {
-                return d.nombre;
+                return d.name;
             })
             .style("fill", function(d) {
                 if (d.type == "ejecutivo") {
+                    return window.cargo.bubblePoderometro.color(0);
+                } else if (d.type == "legislativo") {
                     return window.cargo.bubblePoderometro.color(1);
                 } else {
-                    return window.cargo.bubblePoderometro.color(0);
+                    return window.cargo.bubblePoderometro.color(2);
                 }
+
             })
             .call(this.force.drag);
 
-        this.svg.selectAll("g").append("text")
+        this.svg.selectAll("g")
+            .append("text")
             .style("text-anchor", "middle")
             .text(function(d) {
-                return d.nombre;
+                if (d.radius > 40) {
+                    return d.name;
+                }
+                else {
+                  return d.initials;
+                }
             });
+
+        this.svg.selectAll("g")
+            .on("mouseover", function(d) {
+                div.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                div.html(d.name 
+                  + "<br/>" 
+                  + "<small>" 
+                  +  d.position 
+                  + "</br>"
+                  + d.district
+                  + "</small>")
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function(d) {
+                div.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+
+
 
     },
     tick: function(e) {

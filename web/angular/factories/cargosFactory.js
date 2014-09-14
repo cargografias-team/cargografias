@@ -91,6 +91,9 @@ angular.module('cargoApp.factories', [])
             var item = {
               cargo:activeMembershipForYear.post.cargotipo.toLowerCase(),
               name: p.name,
+              initials: p.initials,
+              classification: activeMembershipForYear.organization.classification,
+              district: activeMembershipForYear.organization.name,
               position: activeMembershipForYear.cargonominal,
               size: activeMembershipForYear.weight
             }
@@ -107,6 +110,12 @@ angular.module('cargoApp.factories', [])
           for (var j = 0; j < memberships.length; j++) {
               var m = memberships[j];
               if (year >= m.started.year() && m.finished.year() >=year){
+                if (!m.post){
+                  m.post = this.getPost(m.post_id);
+                }
+                if (!m.organization){
+                  m.organization = this.getOrganization(m.organization_id); 
+                }
                 activeMembershipForYear = m;
                 break;
               }
@@ -260,6 +269,16 @@ angular.module('cargoApp.factories', [])
       }
       return undefined;
     }
+    factory.getOrganization = function(organization_id){
+
+      for (var i = 0; i < this.organizations.length; i++) {
+        var o = this.organizations[i];
+        if (o.id === organization_id){
+          return o;
+        }
+      }
+      return undefined;
+    }
     factory.load = function($scope,callback){
       //TODO: MOVE TO A PROPER LOADER
         window.__cargos_data = {
@@ -283,7 +302,7 @@ angular.module('cargoApp.factories', [])
             factory.persons = res.data;
               for (var i = 0; i < res.data.length; i++) {
                 var p = { id : res.data[i].id,
-                    //nombre : res.data[i].name,
+                    //nombre : res.data[i].naget firsme,
                     nombre : removeDiacritics(res.data[i].name),
                     apellido: '',
                     index: i,
@@ -292,6 +311,7 @@ angular.module('cargoApp.factories', [])
                 res.data[i].image = p.image;
                 window.__cargos_data.personas.push(p)
                 $scope.autoPersons.push(p);
+                factory.persons[i].initials = res.data[i].name.match(/\b(\w)/g).join(".") + ".";
               };
           }).then(function(){
 
