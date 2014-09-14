@@ -311,7 +311,7 @@ angular.module('cargoApp.factories', [])
                 res.data[i].image = p.image;
                 window.__cargos_data.personas.push(p)
                 $scope.autoPersons.push(p);
-                factory.persons[i].initials = res.data[i].name.match(/\b(\w)/g).join(".") + ".";
+                factory.persons[i].initials = res.data[i].name.match(/[A-Z]/g).join('.') + ".";
               };
           }).then(function(){
 
