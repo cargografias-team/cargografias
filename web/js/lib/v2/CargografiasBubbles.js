@@ -23,13 +23,27 @@ window.cargo.bubblePoderometro = {
         }
     },
     start: function(data) {
+
+
+        var types = [{
+            name: "Ejecutivo",
+            color: "red",
+        }, {
+            name: "Legislativo",
+            color: "blue",
+        }, {
+            name: "Judicial",
+            color: "yellow",
+        }, ];
+
+
         var div = d3.select("body").append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
         this.started = true;
         this.color = d3.scale.linear()
             .domain([0, 1])
-            .range(["rgb(252, 176, 66)", "#39ADD1", "#94DA3B"]);
+            .range(["red", "blue"]);
 
         this.x = d3.scale.ordinal()
             .domain(d3.range(1))
@@ -127,17 +141,7 @@ window.cargo.bubblePoderometro = {
                     .style("opacity", 0);
             });
 
-        var types = [{
-            name: "Ejecutivo",
-            color: "rgb(252, 176, 66)",
-        }, {
-            name: "Legislativo",
-            color: "#39ADD1",
-        }, {
-            name: "Judicial",
-            color: "#94DA3B",
-        }, ];
-
+        
         this.svg.selectAll('.references')
             .data(types)
             .enter()

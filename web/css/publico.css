@@ -97,7 +97,7 @@ blockquote p {
 
 .accordion-group{
 	background-color: #f8f8f8;
-	border-color: #B1B1B1;
+	/*border-color: #B1B1B1;*/
 	margin-bottom:15px;
 	-moz-box-shadow:    0 0 0px ;
    -webkit-box-shadow:  0 0 0px ;
@@ -105,15 +105,15 @@ blockquote p {
 }
 
 #linea-de-tiempo .accordion-group{
-	-moz-box-shadow:    2px 2px 8px #8F8F8F;	
+	/*-moz-box-shadow:    2px 2px 8px #8F8F8F;	
    -webkit-box-shadow:  2px 2px 8px #8F8F8F;	
-   box-shadow: 2px 2px 8px #8F8F8F;	
+   box-shadow: 2px 2px 8px #8F8F8F;	*/
    color:black;
 }
 
 #comparador .accordion-group{
 	background-color: #E6E6E6;
-	border-color: #CACACA;
+	/*border-color: #CACACA;*/
 }
 
 .accordion-group .accordion-heading.alert{
@@ -166,7 +166,7 @@ blockquote p {
 }
 div.search-row .badge.badge-warning.remove {
   margin-left: -32px;
-  margin-top: 5px;
+  margin-top: 6px;
 }
 .remove .fa{
 	margin-right:5px;
@@ -187,7 +187,7 @@ div.search-row .badge.badge-warning.remove {
 		
 		.angled {
 			background-color: #E7E7E7;
-			background-image: -webkit-gradient(linear, 0 0, 100% 100%,
+			/*background-image: -webkit-gradient(linear, 0 0, 100% 100%,
 									color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent),
 									color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)),
 									color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent),
@@ -206,7 +206,7 @@ div.search-row .badge.badge-warning.remove {
 								transparent 75%, transparent);
 			background-image: linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%,
 								transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%,
-								transparent 75%, transparent);
+								transparent 75%, transparent);*/
 		}
 		
 			
