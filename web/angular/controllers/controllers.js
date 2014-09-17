@@ -54,19 +54,18 @@ angular.module('cargoApp.controllers')
   };
   
   $scope.redrawPoderometro = function(){
-    
-    if ($scope.activePersons.length > 3 ){
-      for (var i = 0; i < $rootScope.yearObserver.length; i++) {
-        var observer = $rootScope.yearObserver[i];
-        var poderometro = cargosFactory.getPoderometroAnimado($scope.poderometroYear, $scope.activePersons);
-        observer(poderometro);
-      };
-      for (var i = 0; i < $rootScope.jerarquimetroObserver.length; i++) {
-        var observer = $rootScope.jerarquimetroObserver[i];
-        var jerarquimetro = cargosFactory.getJerarquimetro($scope.poderometroYear, $scope.activePersons);
-        observer(jerarquimetro);
-      };
+    for (var i = 0; i < $rootScope.yearObserver.length; i++) {
+      var observer = $rootScope.yearObserver[i];
+      var poderometro = cargosFactory.getPoderometroAnimado($scope.poderometroYear, $scope.activePersons);
+      observer(poderometro);
     };
+    for (var i = 0; i < $rootScope.jerarquimetroObserver.length; i++) {
+      var observer = $rootScope.jerarquimetroObserver[i];
+      var jerarquimetro = cargosFactory.getJerarquimetro($scope.poderometroYear, $scope.activePersons);
+      observer(jerarquimetro);
+    };
+    
+
   }
 
 
