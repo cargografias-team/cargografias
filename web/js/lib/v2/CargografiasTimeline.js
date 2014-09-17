@@ -706,7 +706,7 @@
             .attr('width', anchoBox)
             .attr('height', ALTO_BLOQUES - 4)
             .attr('class', function(d) {
-              return 'ctl-' + d.nominal.tipo;
+              return 'ctl-' + (d.nominal ? d.nominal.tipo : 'ejecutivo');
             });
 
           g.append('text')

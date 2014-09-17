@@ -27,17 +27,18 @@ angular.module('cargoApp.factories', [])
     factory.setWeight = function(person){
       for (var i = 0; i < person.memberships.length; i++) {
         var m = person.memberships[i];
+        if (!m.cargonominal){ m.weight= 0;}
+        else{
         
-        m.weight= 10;
-        
-        for (var j = 0; j < this.weight.length; j++) {
-          
-          var w = this.weight[j];
+          for (var j = 0; j < this.weight.length; j++) {
+            
+            var w = this.weight[j];
 
-          if (w.cargo.toLowerCase() === m.cargonominal.toLowerCase()
-            && w.poder.toLowerCase()  === m.post.cargotipo.toLowerCase()){
-            m.weight = this.weight[j].representacion;
-            m.hierarchy = this.weight[j].posicion;
+            if (w.cargo.toLowerCase() === m.cargonominal.toLowerCase()
+              && w.poder.toLowerCase()  === m.post.cargotipo.toLowerCase()){
+              m.weight = this.weight[j].representacion;
+              m.hierarchy = this.weight[j].posicion;
+            }
           }
         }
         
@@ -241,18 +242,20 @@ angular.module('cargoApp.factories', [])
 
         var m = person.memberships[i];
         var cargo = m.post = this.getPost(m.post_id);
-        if (cargo.cargoclase == 'Electivo'){
-          summary.elected++;
-        }else if (cargo.cargoclase == 'No Electivo'){
-          summary.notElected++;
-        }
+        if (cargo){
+          if (cargo.cargoclase == 'Electivo'){
+            summary.elected++;
+          }else if (cargo.cargoclase == 'No Electivo'){
+            summary.notElected++;
+          }
 
-        if (cargo.cargotipo == 'Ejecutivo'){
-          summary.executives++;
-        }else if (cargo.cargotipo == 'Legislativo'){
-          summary.legislative++;
-        }else if (cargo.cargotipo == 'Judicial'){
-          summary.judiciary++;
+          if (cargo.cargotipo == 'Ejecutivo'){
+            summary.executives++;
+          }else if (cargo.cargotipo == 'Legislativo'){
+            summary.legislative++;
+          }else if (cargo.cargotipo == 'Judicial'){
+            summary.judiciary++;
+          }
         }
 
 

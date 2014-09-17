@@ -45,7 +45,7 @@ angular.module('cargoApp.controllers')
       //Load initial ids from the url
       if(parsedParams){
         angular.forEach(parsedParams, function(id){
-          $scope.add($scope.autoPersons[id], id);
+          $scope.add(cargosFactory.autoPersons[id], id);
         });
       }
 
