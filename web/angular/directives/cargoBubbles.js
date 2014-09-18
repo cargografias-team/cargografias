@@ -18,7 +18,6 @@ directive('ngCargobubbles', function() {
                 //   console.log('update-bubbles');
                 //     window.cargo.bubblePoderometro.update(data);
                 //  } else {
-                console.log('start-bubbles');
                 $("#bubbles").html('');
                 window.cargo.bubblePoderometro.start(data);
                 //}
