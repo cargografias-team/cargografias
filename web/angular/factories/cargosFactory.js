@@ -40,6 +40,7 @@ angular.module('cargoApp.factories', [])
           } 
         }
     };
+
     factory.getAutoPersons = function(q){
       return $filter('filter')(this.autoPersons, {nombre: q}, false);
     };
@@ -85,8 +86,17 @@ angular.module('cargoApp.factories', [])
       for (var i = 0; i < persons.length; i++) {
           var p = persons[i];
           var activeMembershipForYear = factory.getActiveMembershipByYear(p,year);
+          var item = {
+              cargo:"Sin cargo en " + year,
+              name: p.name,
+              initials: p.initials,
+              classification: "sin cargo",
+              district: "Sin cargo en " + year,
+              position: "",
+              size: 5,
+            };
           if (activeMembershipForYear){
-            var item = {
+            item = {
               cargo:activeMembershipForYear.post.cargotipo.toLowerCase(),
               name: p.name,
               initials: p.initials,
@@ -95,8 +105,8 @@ angular.module('cargoApp.factories', [])
               position: activeMembershipForYear.cargonominal,
               size: activeMembershipForYear.weight
             }
-            poderometro.push(item);
           }
+          poderometro.push(item);
           activeMembershipForYear= undefined;
       };
       return poderometro;

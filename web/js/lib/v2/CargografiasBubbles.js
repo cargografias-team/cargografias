@@ -26,14 +26,17 @@ window.cargo.bubblePoderometro = {
 
 
         var types = [{
-            name: "Ejecutivo",
+            name: "Poder Ejecutivo",
             color: "red",
         }, {
-            name: "Legislativo",
+            name: "Poder Legislativo",
             color: "blue",
         }, {
-            name: "Judicial",
-            color: "yellow",
+            name: "Poder Judicial",
+            color: "darkcyan",
+        }, {
+            name: "Sin Cargo",
+            color: "dark grey",
         }, ];
 
 
@@ -42,8 +45,8 @@ window.cargo.bubblePoderometro = {
             .style("opacity", 0);
         this.started = true;
         this.color = d3.scale.linear()
-            .domain([0, 1])
-            .range(["red", "blue"]);
+            .domain([0, 3])
+            .range(["red", "blue", "darkcyan", "darkgray"]);
 
         this.x = d3.scale.ordinal()
             .domain(d3.range(1))
@@ -88,6 +91,7 @@ window.cargo.bubblePoderometro = {
             .data(this.nodes)
             .enter().append("g")
             .attr("class", "mainNode")
+            //.call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", window.cargo.bubblePoderometro.zoom))
             .append("circle")
             .attr("r", function(d) {
                 return d.radius;
@@ -100,12 +104,15 @@ window.cargo.bubblePoderometro = {
                     return window.cargo.bubblePoderometro.color(0);
                 } else if (d.type == "legislativo") {
                     return window.cargo.bubblePoderometro.color(1);
-                } else {
+                } else if (d.type == "judicial") {
                     return window.cargo.bubblePoderometro.color(2);
+                } else {
+                  console.log(d.type, window.cargo.bubblePoderometro.color(3));
+                    return window.cargo.bubblePoderometro.color(3);
                 }
 
-            })
-            .call(this.force.drag);
+            });
+            //.call(this.force.drag);
 
         this.svg.selectAll("g")
             .append("text")
@@ -121,7 +128,7 @@ window.cargo.bubblePoderometro = {
             .text(function(d) {
                 if (d.radius > 40) {
                     return d.name;
-                } else {
+                } else if (d.radius >= 5 ) {
                     return d.initials;
                 }
             });
@@ -153,7 +160,7 @@ window.cargo.bubblePoderometro = {
             })
             .attr('font-size', "1.3em")
             .text(function(d) {
-                return "Poder " + d.name;
+                return d.name;
             })
             .style("fill", function(d) {
                 return d.color;
@@ -161,6 +168,10 @@ window.cargo.bubblePoderometro = {
 
 
 
+    },
+    zoom:function() {
+
+      window.cargo.bubblePoderometro.svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");
     },
     tick: function(e) {
         window.cargo.bubblePoderometro.svg.selectAll("g")
