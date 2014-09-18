@@ -27,9 +27,7 @@ angular.module('cargoApp.factories', [])
     factory.setWeight = function(person){
       for (var i = 0; i < person.memberships.length; i++) {
         var m = person.memberships[i];
-        if (!m.cargonominal){ m.weight= 0;}
-        else{
-        
+        if (m.cargonominal)        
           for (var j = 0; j < this.weight.length; j++) {
             
             var w = this.weight[j];
@@ -39,12 +37,9 @@ angular.module('cargoApp.factories', [])
               m.weight = this.weight[j].representacion;
               m.hierarchy = this.weight[j].posicion;
             }
-          }
+          } 
         }
-        
-      }
-
-    }
+    };
     factory.getAutoPersons = function(q){
       return $filter('filter')(this.autoPersons, {nombre: q}, false);
     };
@@ -323,19 +318,22 @@ angular.module('cargoApp.factories', [])
             $http.get('/js/datasets/gz/cargografias-memberships-popit-dump.json')
              .then(function(res){
               $scope.estado = "Puestos";
-              factory.memberships = res.data;
+              //factory.memberships = res.data;
                   for (var i = 0; i < res.data.length; i++) {
-                    var p = {
-                        id : res.data[i].id,
-                        index: i,
-                        cargo_nominal_id: res.data[i].post_id,
-                        fechafin: res.data[i].end_date,
-                        fechainicio: res.data[i].start_date,
-                        partido_id: null,
-                        persona_id: res.data[i].person_id,
-                        territorio_id: res.data[i].organization_id,
-                    };
-                    window.__cargos_data.cargos.push(p)
+                      if (res.data[i].post_id){
+                        var p = {
+                            id : res.data[i].id,
+                            index: i,
+                            cargo_nominal_id: res.data[i].post_id,
+                            fechafin: res.data[i].end_date,
+                            fechainicio: res.data[i].start_date,
+                            partido_id: null,
+                            persona_id: res.data[i].person_id,
+                            territorio_id: res.data[i].organization_id,
+                        };
+                        window.__cargos_data.cargos.push(p);
+                        factory.memberships.push(res.data[i]);
+                      }
 
                   };
 
