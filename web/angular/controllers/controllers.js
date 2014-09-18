@@ -13,15 +13,19 @@ angular.module('cargoApp.controllers')
     $scope.estado = "";
   	$rootScope.observers =[];
     $rootScope.yearObserver =[];
+    var parsedParams;
 
+    var processParameters = function(params){
+        parsedParams = params.split('-');
+        $scope.filterLinea = parsedParams.shift();
+        $scope.poderometroYear = $scope.activeYear = parseInt(parsedParams.shift());
+    }
     $rootScope.jerarquimetroObserver =[];
     $scope.filterLinea ="cargo";
 
     //Load initial ids from the url
     if($routeParams.ids){
-      var parsedParams = $routeParams.ids.split('-');
-      $scope.filterLinea = parsedParams.shift();
-      $scope.poderometroYear = $scope.activeYear = parseInt(parsedParams.shift());
+     processParameters($routeParams.ids);
     }
 
 
@@ -29,6 +33,17 @@ angular.module('cargoApp.controllers')
     updateTheUrl();
   });
 
+
+  $scope.load = function(params){
+      
+      processParameters(params);
+      if(parsedParams){
+        angular.forEach(parsedParams, function(id){
+          $scope.add(cargosFactory.autoPersons[id], id);
+        });
+      }
+
+  }
 
 
 

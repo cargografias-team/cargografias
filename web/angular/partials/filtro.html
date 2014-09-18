@@ -9,6 +9,17 @@
             <input id="nombre" type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="nombre" ng-change="filterAutoPersons(nombre)" style="width:328px;">
 	  				<a ng-click="clearFilter(nombre)" alt="Limpiar filtro" class="badge badge-warning remove" ng-show="nombre.length > 0"><i class="fa fa-times"></i></a>
 				</div>
+        <div ng-hide="autoPersons.length > 0 || activePersons.length > 0">
+          <h3> ¿Perdido? Probá alguno de estos ejemplos </h3>
+          <ul>
+            <li> <h5><a ng-click="load('nombre-1990-7-6-660-661')"> Gobernadores de los 90 </a></h5></li>
+            <li> <h5><a ng-click="load('nombre-1990-7-6-660-12-683')"> Presidentes de la Democracia</a></h5></li>
+            <li> <h5><a ng-click="load('nombre-2009-5-2417-6-800-17-11-1563-9-2416-1197')"> Dirigentes Kirchneristas </a></h5></li>
+            <li> <h5><a  ng-click="load('nombre-2008-10-1656-169-1148-2267')">  Dirigentes Macristas </a></h5></li>
+            <li> <h5><a ng-click="load('nombre-2000-8-1526-18-1915-12-618-661')"> La Alianza</a></h5></li>
+          </ul>
+
+        </div>
 			</div>
 		<div class="span6" style="width: 100%;margin-bottom: 7px; margin-top: 10px;max-width: 570px;" ng-show="nombre.length > 3">
 		  		<div class="items">
