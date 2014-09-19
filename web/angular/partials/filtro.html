@@ -6,59 +6,60 @@
   			<div class="span5" style="margin-bottom:10px">
 				<h3 style="margin-bottom: 5px;">Ingrese el nombre del funcionario a buscar:</h3>
 				<div class="search-row clearfix">
-            <input id="nombre" type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="nombre" ng-change="filterAutoPersons(nombre)" style="width:328px;">
+            		<input id="nombre" type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="nombre" ng-change="filterAutoPersons(nombre)" style="width:328px;">
 	  				<a ng-click="clearFilter(nombre)" alt="Limpiar filtro" class="badge badge-warning remove" ng-show="nombre.length > 0"><i class="fa fa-times"></i></a>
-				</div>
-        <div ng-hide="autoPersons.length > 0 || activePersons.length > 0">
-          <h3> ¿Perdido? Probá alguno de estos ejemplos </h3>
-          <ul>
-            <li> <h5><a ng-click="load('nombre-1990-7-6-660-661')"> Gobernadores de los 90 </a></h5></li>
-            <li> <h5><a ng-click="load('nombre-1990-7-6-660-12-683')"> Presidentes de la Democracia</a></h5></li>
-            <li> <h5><a ng-click="load('nombre-2009-5-2417-6-800-17-11-1563-9-2416-1197')"> Dirigentes Kirchneristas </a></h5></li>
-            <li> <h5><a  ng-click="load('nombre-2008-10-1656-169-1148-2267')">  Dirigentes Macristas </a></h5></li>
-            <li> <h5><a ng-click="load('nombre-2000-8-1526-18-1915-12-618-661')"> La Alianza</a></h5></li>
-          </ul>
-
-        </div>
+	  		    </div>
+		        
 			</div>
-		<div class="span6" style="width: 100%;margin-bottom: 7px; margin-top: 10px;max-width: 570px;" ng-show="nombre.length > 3">
-		  		<div class="items">
-		  			<span class="label ng-binding" style="margin-bottom:4px">{{autoPersons.length}} funcionarios encontrados</span>		
-            <a ng-click="clearResults()" alt="Limpiar filtro" class="badge badge-warning remove" style="padding-right:10px" ng-show="autoPersons.length > 0"><i class="fa fa-times"></i>Limpiar resultados</a>  				
-		  			<div class="resultados"  style="background:#fff;padding:6px;border-bottom: solid 3px white;">
-					<div  class="item" ng-repeat="item in autoPersons" >
-						<a id="limpiar-buscar-filtro" ng-click="add(item,item.index)" class="badge badge-warning" ng-class="item.styles" style="margin-bottom:4px">
-					   <i ng-hide="item.agregada"class="fa fa-check" ></i> {{item.nombre}}
-
-					</a>
-	  									
-					</div>
-				</div>
+			<div class="span5" style="margin-bottom:10px" ng-hide="autoPersons.length > 0 || activePersons.length > 0">
+				<h3 style="margin-bottom: 5px;">O elija una seleccion predefinida</h3>
+				<div class="search-row clearfix">
+			            <ul>
+			            		<li> <h5><a ng-click="load('nombre-2001-12-660-8-748-7-6-5')">Presidentes de la Democracia</a></h5></li>
+					            <li> <h5><a ng-click="load('nombre-2009-2416-9-2417-1613-10-2314')">Candidatos 2015</a></h5></li>
+					            <li> <h5><a ng-click="load('nombre-2009-1742-710-2090-2402-2418-770-2279')">Barones del Conurbano</a></h5></li>
+					            <li> <h5><a ng-click="load('cargo-2009-1512-1240-2204-1904-1909')">Gobernadores (muy) Reelectos</a></h5></li>
+						</ul>
+		        </div>
+		        
 			</div>
 			
-		</div>
-		<div class="row" style="padding: 13px 0px;border-top: 1px solid #cacaca;" ng-show="activePersons.length > 0">
-			<div class="span10" id="personas-seleccionadas-box">
+			<div class="span6" style="width: 100%;margin-bottom: 7px; margin-top: 10px;max-width: 570px;" ng-show="nombre.length > 3">
+			  		<div class="items">
+			  			<span class="label ng-binding" style="margin-bottom:4px">{{autoPersons.length}} funcionarios encontrados</span>
+			  			<a ng-click="clearResults()" alt="Limpiar filtro" class="badge badge-warning remove" style="padding-right:10px" ng-show="autoPersons.length > 0"><i class="fa fa-times"></i>Limpiar resultados</a>  				
+			  			<div class="resultados"  style="background:#fff;padding:6px;border-bottom: solid 3px white;">
+							<div  class="item" ng-repeat="item in autoPersons" >
+								<a id="limpiar-buscar-filtro" ng-click="add(item,item.index)" class="badge badge-warning" ng-class="item.styles" style="margin-bottom:4px">
+						   		<i ng-hide="item.agregada"class="fa fa-check" ></i> {{item.nombre}}
+						   		</a>		  								
+							</div>
+						</div>
+					</div>
+			
+			</div>
+			<div class="row" style="padding: 13px 0px;border-top: 1px solid #cacaca;" ng-show="activePersons.length > 0">
+				<div class="span10" id="personas-seleccionadas-box">
 					<div class="span1 persona-seleccionada" ng-repeat="active in activePersons">
 	          			<a ng-click="remove(active)" class="badge badge-warning remove"><i class="fa fa-times"></i></a>
-	            		<div class="photo-frame">
-                    <img class="photo" ng-src="{{active.image}}">
-                  </div>
+	            			<div class="photo-frame">
+                    			<img class="photo" ng-src="{{active.image}}">
+                  			</div>
 	            		<p>{{active.name}}</p>
 	          		</div>
 			
-			</div>
-			<div class="span2"   style="width:156px; margin-left:5px">
-				<span class="label" style="width:100%;margin-bottom:4px">Seleccionados: {{activePersons.length}} </span><br>
-				<a id="limpiar-buscar-filtro" ng-click="clearAll()" class="badge badge-warning" style="width:100%;margin-bottom:4px">
+				</div>
+				<div class="span2"   style="width:156px; margin-left:5px">
+					<span class="label" style="width:100%;margin-bottom:4px">Seleccionados: {{activePersons.length}} </span><br>
+					<a id="limpiar-buscar-filtro" ng-click="clearAll()" class="badge badge-warning" style="width:100%;margin-bottom:4px">
 					<i class="fa fa-times" ></i> Limpiar Selección
-				</a>
-				<br>
-				<a href="#" class="badge badge-warning" style="background-color:#79CEDF;width:100%;margin-bottom:4px"  onclick="window.open('https://twitter.com/intent/tweet?text=Linea%20de%20tiempo%20de%20politicos%3A&amp;tw_p=tweetbutton&amp;via=cargografias&amp;url='+encodeURIComponent(location.href),'twitter-share-dialog','width=626,height=436'); 
+					</a>
+					<br>
+					<a href="#" class="badge badge-warning" style="background-color:#79CEDF;width:100%;margin-bottom:4px"  onclick="window.open('https://twitter.com/intent/tweet?text=Linea%20de%20tiempo%20de%20politicos%3A&amp;tw_p=tweetbutton&amp;via=cargografias&amp;url='+encodeURIComponent(location.href),'twitter-share-dialog','width=626,height=436'); 
 					return false;"><i class="fa fa-twitter"></i>Twittear esta selección</a>		
-			</div>
+				</div>
 		
-		</div>
+			</div>
 		<div class="clearfix"></div>
 	</div>
 </div>

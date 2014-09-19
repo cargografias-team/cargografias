@@ -271,7 +271,7 @@
         if (e.target.nodeName != "rect" && e.target.nodeName !="text") return;
         var d = d3.select(e.target.parentNode).datum();
         hideTooltip();
-        unhighlight(e.target.parentNode);
+        unhighlight(e.target.parentNode, d.nominal.nombre);
       });
 
       cargosContainer[0][0].addEventListener('mousemove', function(e) {
@@ -288,8 +288,12 @@
       d3.select(el.childNodes[0]).transition().style('opacity', '1');
     }
 
-    function unhighlight(el) {
-      d3.select(el.childNodes[0]).transition().style('opacity', '0.5');
+    function unhighlight(el,nominalNombre) {
+      if (nominalNombre == "Presidente"){
+      d3.select(el.childNodes[0]).transition().style('opacity', '0.8');
+      }else{
+      d3.select(el.childNodes[0]).transition().style('opacity', '0.4');
+      }
     }
 
     var tooltipEl, tooltipPreparedTemplate;
@@ -701,12 +705,15 @@
           var fullName = d.persona.nombre + ' ' + d.persona.apellido;
           g.attr("class","bloques")
           g.append('rect')
-            .attr('rx',3)
-            .attr('ry',3)
+            .attr('rx',2)
+            .attr('ry',2)
             .attr('width', anchoBox)
             .attr('height', ALTO_BLOQUES - 4)
             .attr('class', function(d) {
-              return 'ctl-' + (d.nominal ? d.nominal.tipo : 'ejecutivo');
+              return 'ctl-' + d.nominal.tipo;
+            })
+            .style('opacity', function(d) {
+              return ((d.nominal.nombre == "Presidente") ? 0.8 : 0.4);
             });
 
           g.append('text')

@@ -40,7 +40,6 @@
 }
 
 .ctl-cargos rect{
-	opacity: 0.5;
 	cursor: inherit;
 }
 .ctl-cargos rect.ctl-legislativo,
@@ -51,6 +50,7 @@
 .ctl-cargos rect.ctl-Ejecutivo{
 	fill: #f00;
 }
+
 .ctl-cargos text{
 	fill: #FFF;
 }

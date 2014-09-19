@@ -68,6 +68,12 @@ angular.module('cargoApp.controllers')
 
   };
   
+  // $scope.presetsBusqueda = [
+  //      { url: 'nombre-1990-7-6-660-661', name: 'Gobernadores de los 90' },
+  //      { url: 'nombre-1990-7-6-660-12-683', name: 'Presidentes de la Democracia' },
+  //      { url: 'nombre-2009-5-2417-6-800-17-11-1563-9-2416-1197', name: 'Dirigentes Kirchneristas' }
+  // ]; 
+
   $scope.redrawPoderometro = function(){
     for (var i = 0; i < $rootScope.yearObserver.length; i++) {
       var observer = $rootScope.yearObserver[i];
@@ -82,6 +88,9 @@ angular.module('cargoApp.controllers')
     
 
   }
+
+  $scope.updatePoderometro = function(){
+}
 
 
   $scope.filterAutoPersons = function(q){
