@@ -8,7 +8,7 @@ angular.module('cargoApp.controllers')
     $scope.autoPersons = [];
   	
 
-
+    $scope.showPresets = true;
   	$scope.activePersons = [];
     $scope.estado = "";
   	$rootScope.observers =[];
@@ -86,6 +86,7 @@ angular.module('cargoApp.controllers')
 
   $scope.filterAutoPersons = function(q){
     if (q.length > 4){
+      $scope.showPresets= false;
       $scope.autoPersons =cargosFactory.getAutoPersons(q);
     }
   };
@@ -94,13 +95,18 @@ angular.module('cargoApp.controllers')
       
      //HACK: why?????????
      $("#nombre").val('');
+     $scope.nombre ='',
      $scope.autoPersons = [];
+     $scope.showPresets= true;
   };
 
   $scope.clearResults= function(){
      $("#nombre").val('');
+     $scope.nombre ='',
      $scope.autoPersons = [];
+     $scope.showPresets= true;
   }
+
 
   cargosFactory.load($scope,onDataLoaded);
 
@@ -109,6 +115,7 @@ angular.module('cargoApp.controllers')
       // If same controller, then ignore the route change.
       if(lastRoute.controller == $route.current.controller) {
         $route.current = lastRoute;
+
       }
   });
 
@@ -192,6 +199,7 @@ angular.module('cargoApp.controllers')
       window.cargoTimeline.update(timelineParams);
       $scope.redrawPoderometro();
       updateTheUrl();
+      $scope.showPresets=true;
 
     }
 
