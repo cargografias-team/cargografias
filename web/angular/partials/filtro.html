@@ -6,7 +6,7 @@
   			<div class="span5" style="margin-bottom:10px">
 				<h3 style="margin-bottom: 5px;">Ingrese el nombre del funcionario a buscar:</h3>
 				<div class="search-row clearfix">
-            		<input id="nombre" type="text" placeholder="Filtrar por Nombre y/​o Apellido" ng-model="nombre" ng-change="filterAutoPersons(nombre)" style="width:328px;">
+            		<input id="nombre" type="text" placeholder="Nombre y/​o Apellido (minimo 5 caracteres)" ng-model="nombre" ng-change="filterAutoPersons(nombre)" style="width:328px;">
 	  				<a ng-click="clearFilter(nombre)" alt="Limpiar filtro" class="badge badge-warning remove" ng-show="nombre.length > 0"><i class="fa fa-times"></i></a>
 	  		    </div>
 		        
