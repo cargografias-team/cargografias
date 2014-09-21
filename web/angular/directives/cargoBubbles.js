@@ -19,7 +19,9 @@ directive('ngCargobubbles', function() {
                 //     window.cargo.bubblePoderometro.update(data);
                 //  } else {
                 $("#bubbles").html('');
-                window.cargo.bubblePoderometro.start(data);
+                if(data.length > 0){
+                  window.cargo.bubblePoderometro.start(data);
+                }
                 //}
 
             };

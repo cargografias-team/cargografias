@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module('cargoApp.controllers')
-  .controller('homeController', function($rootScope,$scope,cargosFactory, $filter, $routeParams, $location, $route) {
+  .controller('homeController', function($rootScope,$scope,cargosFactory, presetsFactory, $filter, $routeParams, $location, $route) {
   	$scope.ready= false;
   	
     $scope.autoPersons = [];
@@ -63,16 +63,9 @@ angular.module('cargoApp.controllers')
           $scope.add(cargosFactory.autoPersons[id], id);
         });
       }
-
       $scope.redrawPoderometro();
 
   };
-  
-  // $scope.presetsBusqueda = [
-  //      { url: 'nombre-1990-7-6-660-661', name: 'Gobernadores de los 90' },
-  //      { url: 'nombre-1990-7-6-660-12-683', name: 'Presidentes de la Democracia' },
-  //      { url: 'nombre-2009-5-2417-6-800-17-11-1563-9-2416-1197', name: 'Dirigentes Kirchneristas' }
-  // ]; 
 
   $scope.redrawPoderometro = function(){
     for (var i = 0; i < $rootScope.yearObserver.length; i++) {
@@ -85,12 +78,10 @@ angular.module('cargoApp.controllers')
       var jerarquimetro = cargosFactory.getJerarquimetro($scope.poderometroYear, $scope.activePersons);
       observer(jerarquimetro);
     };
-    
-
   }
 
-  $scope.updatePoderometro = function(){
-}
+
+  $scope.presets = presetsFactory.presets;
 
 
   $scope.filterAutoPersons = function(q){
@@ -128,7 +119,7 @@ angular.module('cargoApp.controllers')
 
 
     $scope.add = function(autoPersona, id){
-      if (autoPersona.agregada) return ;
+      if (!autoPersona || autoPersona.agregada) return ;
       
       $scope.autocomplete = " ";
       autoPersona.agregada = true;
@@ -199,7 +190,7 @@ angular.module('cargoApp.controllers')
          mostrarPor: $scope.filterLinea,
       };
       window.cargoTimeline.update(timelineParams);
-
+      $scope.redrawPoderometro();
       updateTheUrl();
 
     }

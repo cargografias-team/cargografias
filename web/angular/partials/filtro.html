@@ -15,10 +15,10 @@
 				<h3 style="margin-bottom: 5px;">O elija una seleccion predefinida</h3>
 				<div class="search-row clearfix">
 			            <ul>
-			            		<li> <h5><a ng-click="load('nombre-2001-12-660-8-748-7-6-5')">Presidentes de la Democracia</a></h5></li>
-					            <li> <h5><a ng-click="load('nombre-2009-2416-9-2417-1613-10-2314')">Candidatos 2015</a></h5></li>
-					            <li> <h5><a ng-click="load('nombre-2009-1742-710-2090-2402-2418-770-2279')">Barones del Conurbano</a></h5></li>
-					            <li> <h5><a ng-click="load('cargo-2009-1512-1240-2204-1904-1909')">Gobernadores (muy) Reelectos</a></h5></li>
+			            		<li ng-repeat="p in presets"> 
+                        <h5><a ng-click="load(p.valores)">{{p.nombre}}</a></h5>
+                      </li>
+
 						</ul>
 		        </div>
 		        
