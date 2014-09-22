@@ -11,7 +11,8 @@ angular.module('cargoApp', [
   'cargoApp.factories',
   'cargoApp.directives',
   'cargoApp.controllers',
-  'angularMoment'
+  'angularMoment',
+  'ngCookies'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/:ids?', {templateUrl: '/angular/partials/buscador.html', controller: 'homeController'});

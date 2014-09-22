@@ -2,12 +2,9 @@
 
 /* Controllers */
 angular.module('cargoApp.controllers')
-  .controller('homeController', function($rootScope,$scope,cargosFactory, presetsFactory, $filter, $routeParams, $location, $route) {
+  .controller('homeController', function($rootScope,$scope,cargosFactory, presetsFactory, $filter,$cookies, $routeParams, $location, $route, $timeout) {
   	$scope.ready= false;
-  	
     $scope.autoPersons = [];
-  	
-
     $scope.showPresets = true;
   	$scope.activePersons = [];
     $scope.estado = "";
@@ -204,6 +201,49 @@ angular.module('cargoApp.controllers')
     }
 
 
+
+
+    //First time Loader    
+    //TODO: Descomentar para que se muestre solo la primera vez
+    //var slideShowed = $cookies.slideShowed;
+    //if(!slideShowed){
+
+
+    $scope.slides = [];
+    $scope.slides.push({
+      titulo: "Hola esto es cargo amigo!",
+      image: "/img/slides/1.jpg"
+    });
+    $scope.slides.push({
+      titulo: "Podes hacer muchas cosas",
+      image: "/img/slides/2.jpg"
+    });
+    $scope.slides.push({
+      titulo: "Si queres empezar busca! ",
+      image: "/img/slides/3.jpg"
+    });
+    $scope.slides.push({
+      titulo: "Arranquemos ahora!",
+      image: "/img/slides/4.jpg"
+    });
+
+    $scope.closeSlides = function(){
+      $scope.showSlides = false;
+      $("#hola").html('');
+      // Setting  cookie
+      $cookies.slideShowed = true;
+    }
+    
+
+    $timeout(function(){
+            $("#slides").owlCarousel({
+              autoPlay: 5000, //Set AutoPlay to 3 seconds
+              singleItem:true
+            });
+            $scope.showSlides = true;
+      },1000);
+
+    //}
 
 
 

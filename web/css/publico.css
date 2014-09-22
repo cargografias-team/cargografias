@@ -363,3 +363,13 @@ badge:hover{
     border-radius: 8px;           
     pointer-events: none;         
 }
+
+div.box img {
+  /* max-height: 100px; */
+  height: 350px;
+}
+
+.row.centered{
+  text-align: center;
+  left: 50%;
+}
