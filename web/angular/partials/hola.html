@@ -1,21 +1,50 @@
 <div id="hola" ng-show="showSlides">
+	<div class="row">
+		<div class="accordion-group">
+	  		<div class="row centered" style="padding-top:100px">
+	  			<div class="span12">
+	  			 <img src="/img/slides/logo.svg"  alt="">
+	  			
+	  			
+	  			<h1 class="title"> Bienvenidos a Cargografias </h1>
+		        <h4>La linea de tiempo de Funcionarios Argentinos</h4>
+		        <h5>Mediante esta herramienta podras visualizar y comparar la carrera política de los funcionarios públicos argentinos</h5>
+		        			<blockquote>
+		 			<p dir="ltr">No es una historia, pero sí un recorrido. </p>
+		 			<p dir="ltr">No es una denuncia, pero sí un dato.</p>
+		 			<p dir="ltr">El eje rector son los funcionarios públicos.</p>
+		 			<p dir="ltr">Los destinatarios, los ciudadanos.</p>
+		 		</blockquote>
+				
+				</div>				
+			</div>
+	
+			<div class="row centered"  style="padding-bottom:40px;padding-top:50px;">
+			   	<div class="btn btn-large btn-success" ng-click="closeSlides()">Comenzar!</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+    
+
+<!-- <div id="hola" ng-show="showSlides">
 	<div class="row" id="filtro">
 		<div class="accordion-group">
 	  		<div class="row">
 				<div id="slides" class="span12">
 					<div class="item" ng-repeat="slide in slides">
 				        <h1 class="title"> {{slide.titulo}} </h1>
-				        <div class="box">
-				          <img ng-src="{{slide.image}}"  alt="">
-				          </div>
-				        </div>
-				      </div>
-				    </div>
-				    <div class="row centered">
-				    	<div class="btn btn-large btn-success" ng-click="closeSlides()"> Empezar Ahora!</div>
-				    </div>
+				        <h4>{{slide.subtitulo}}</h4>
+				        <h5>{{slide.texto}}</h5>
+        	
+					</div>
 				</div>
-	    	</div>
-	    </div>
+			</div>
+			<div class="row centered">
+			   	<div class="btn btn-large btn-success" ng-click="closeSlides()">Comenzar!</div>
+			</div>
+		</div>
 	</div>
 </div>
+ -->	

@@ -205,27 +205,31 @@ angular.module('cargoApp.controllers')
 
     //First time Loader    
     //TODO: Descomentar para que se muestre solo la primera vez
-    //var slideShowed = $cookies.slideShowed;
-    //if(!slideShowed){
-
-
+  /*  var slideShowed = $cookies.slideShowed;
+    if(!slideShowed){
+*/
+/*
     $scope.slides = [];
     $scope.slides.push({
-      titulo: "Hola esto es cargo amigo!",
-      image: "/img/slides/1.jpg"
+      titulo: "Bienvenidos a Cargografias",
+      subtitulo: "La linea de tiempo de Funcionarios Argentinos",
+      texto: "Mediante esta herramienta podras visualizar y comparar la carrera política de los funcionarios públicos argentinos",
+      image: "/img/slides/logo.svg"
     });
+    
     $scope.slides.push({
-      titulo: "Podes hacer muchas cosas",
-      image: "/img/slides/2.jpg"
-    });
-    $scope.slides.push({
-      titulo: "Si queres empezar busca! ",
-      image: "/img/slides/3.jpg"
-    });
-    $scope.slides.push({
-      titulo: "Arranquemos ahora!",
-      image: "/img/slides/4.jpg"
-    });
+      titulo: "Un trabajo en progreso",
+      subtitulo: "Esta es la version 2.0, pero ya estamos haciendo la pr&oacute;xima",
+      texto: "Cargograf&iacute;as No es una historia, pero s&iacute; un recorrido.
+              No es una denuncia, pero s&iacute; un dato.
+              El eje rector son los funcionarios p&uacute;blicos.
+              Los destinatarios, los ciudadanos.
+              Cargograf&iacute;as busca agrupar en una sola herramienta, datos p&uacute;blicos que se encuentran dispersos o inaccesibles, para brindarlos a la comunidad.
+              ",
+      image: "/img/slides/logo.svg"
+    });*/
+    
+
 
     $scope.closeSlides = function(){
       $scope.showSlides = false;
@@ -237,15 +241,18 @@ angular.module('cargoApp.controllers')
 
     $timeout(function(){
             $("#slides").owlCarousel({
-              autoPlay: 5000, //Set AutoPlay to 3 seconds
-              singleItem:true
+              autoPlay: false, //10000, //Set AutoPlay to 3 seconds
+              singleItem:true,
+              //stopOnHover:true,
+              //navigation:true,
+              //navigationText: ["previo","siguiente"]
             });
             $scope.showSlides = true;
       },1000);
 
-    //}
 
-
+/*    }
+*/
 
   });
 

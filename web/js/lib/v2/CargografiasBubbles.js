@@ -16,6 +16,7 @@ window.cargo.bubblePoderometro = {
     started: false,
     update: function(data) {
         //starts again!
+        console.log("aaaaa")
         if (window.cargo.bubblePoderometro.bubbles != {}) {
             window.cargo.bubblePoderometro.bubbles = window.cargo.bubblePoderometro.bubbles.data(data, function(d) {
                 return d;
@@ -169,6 +170,9 @@ window.cargo.bubblePoderometro = {
 
 
     },
+
+
+
     zoom:function() {
 
       window.cargo.bubblePoderometro.svg.attr("transform", "translate(" + d3.event.translate + ")scale(" + d3.event.scale + ")");

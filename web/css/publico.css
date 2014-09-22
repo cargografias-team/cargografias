@@ -365,8 +365,8 @@ badge:hover{
 }
 
 div.box img {
-  /* max-height: 100px; */
-  height: 350px;
+   max-height: 200px; 
+  
 }
 
 .row.centered{
