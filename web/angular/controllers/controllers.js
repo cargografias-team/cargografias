@@ -200,59 +200,19 @@ angular.module('cargoApp.controllers')
 
     }
 
-
-
-
     //First time Loader    
+    var showSlides = $cookies.showSlides;
+    if (!showSlides){
+       $scope.showSlides = true;
+       $cookies.showSlides = true;
+    }
     //TODO: Descomentar para que se muestre solo la primera vez
-  /*  var slideShowed = $cookies.slideShowed;
-    if(!slideShowed){
-*/
-/*
-    $scope.slides = [];
-    $scope.slides.push({
-      titulo: "Bienvenidos a Cargografias",
-      subtitulo: "La linea de tiempo de Funcionarios Argentinos",
-      texto: "Mediante esta herramienta podras visualizar y comparar la carrera política de los funcionarios públicos argentinos",
-      image: "/img/slides/logo.svg"
-    });
-    
-    $scope.slides.push({
-      titulo: "Un trabajo en progreso",
-      subtitulo: "Esta es la version 2.0, pero ya estamos haciendo la pr&oacute;xima",
-      texto: "Cargograf&iacute;as No es una historia, pero s&iacute; un recorrido.
-              No es una denuncia, pero s&iacute; un dato.
-              El eje rector son los funcionarios p&uacute;blicos.
-              Los destinatarios, los ciudadanos.
-              Cargograf&iacute;as busca agrupar en una sola herramienta, datos p&uacute;blicos que se encuentran dispersos o inaccesibles, para brindarlos a la comunidad.
-              ",
-      image: "/img/slides/logo.svg"
-    });*/
-    
-
-
     $scope.closeSlides = function(){
       $scope.showSlides = false;
-      $("#hola").html('');
       // Setting  cookie
-      $cookies.slideShowed = true;
+      $cookies.showSlides = true;
     }
     
-
-    $timeout(function(){
-            $("#slides").owlCarousel({
-              autoPlay: false, //10000, //Set AutoPlay to 3 seconds
-              singleItem:true,
-              //stopOnHover:true,
-              //navigation:true,
-              //navigationText: ["previo","siguiente"]
-            });
-            $scope.showSlides = true;
-      },1000);
-
-
-/*    }
-*/
 
   });
 
