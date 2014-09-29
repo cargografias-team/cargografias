@@ -10,11 +10,11 @@ angular.module('cargoApp.factories')
 
     factory.presets.push({
     	nombre:'Presidentes de la Democracia',
-    	valores:'nombre-2001-12-660-8-748-7-6-5',
+    	valores:'nombre-2001-12-8-7-6-5-685',
     });
     factory.presets.push({
     	nombre:'Candidatos 2015',
-    	valores:'nombre-2009-2416-9-2417-1613-10-2314',
+    	valores:'nombre-2009-2416-9-2417-10-2314-664-1615-663',
     });
     factory.presets.push({
     	nombre:'Barones del Conurbano',
@@ -22,7 +22,7 @@ angular.module('cargoApp.factories')
     });
     factory.presets.push({
     	nombre:'Gobernadores (muy) Reelectos',
-    	valores:'cargo-2009-1512-1240-2204-1904-1909',
+    	valores:'nombre-1992-2204-22-1514-1871-1906-21',
     });
 
     return factory;
