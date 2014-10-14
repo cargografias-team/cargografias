@@ -1,4 +1,4 @@
-Cargo Grafias La línea de tiempo de Funcionarios Argentinos 
+Cargografias La línea de tiempo de Funcionarios Argentinos 
 =====================
 
 [http://www.cargografias.org](http://www.cargografias.org)
@@ -38,6 +38,6 @@ PLANES FUTUROS
 • Liberar nuestros datos, y hacer una API de consulta 
 • Permitir al visitante corregir datos o aportar nuevos facilmente 
 
-¿Tenés mas ideas? ¿Ganas de sumarte? Contactanos aqui 
+[https://docs.google.com/forms/d/1NoOYENvhHXqpLO3WpB8l6R8ofJkJiShLlx2A_DfrNd0/viewform]¿Tenés mas ideas? ¿Ganas de sumarte? Contactanos aqui 
 
 
