@@ -28,6 +28,7 @@ Los destinatarios, los ciudadanos.
 Cargografías busca agrupar en una sola herramienta, datos publicos que se encuentran dispersos o inaccesibles, para brindarlos a la comunidad.
 
 PLANES FUTUROS 
+--
 • Dormir y ponernos al día con nuestros trabajos 'reales' 
 • Mejorar la interfase y la performance del sitio 
 • Sumar otras fuentes de datos (DDJJ de La Nacion Data, por ej) 
@@ -38,6 +39,6 @@ PLANES FUTUROS
 • Liberar nuestros datos, y hacer una API de consulta 
 • Permitir al visitante corregir datos o aportar nuevos facilmente 
 
-[https://docs.google.com/forms/d/1NoOYENvhHXqpLO3WpB8l6R8ofJkJiShLlx2A_DfrNd0/viewform]¿Tenés mas ideas? ¿Ganas de sumarte? Contactanos aqui 
+[¿Tenés mas ideas? ¿Ganas de sumarte? Contactanos aqui](https://docs.google.com/forms/d/1NoOYENvhHXqpLO3WpB8l6R8ofJkJiShLlx2A_DfrNd0/viewform)
 
 
