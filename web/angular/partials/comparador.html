@@ -6,6 +6,14 @@
 		</div>
 		<div class="accordion-body">
 			<div class="accordion-inner">
+				<div class="hallOfFame">
+					
+					<div class="span3 premio" ng-show="activePersons.length > 3" ng-repeat="item in hallOfShame">
+					<span><i class="fa fa-trophy"></i>Más {{item.titulo}}:</span><br>
+					{{item.nombre}} ({{item.cantidad}})
+					</div>
+					<div class="clearfix"></div>
+				</div>
 				<div class="personas index">
 					<table class="table" cellpadding="0" cellspacing="0" ng-show="activePersons.length > 0">
 						<tbody>

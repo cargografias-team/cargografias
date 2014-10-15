@@ -104,6 +104,28 @@ blockquote p {
    box-shadow:          0 0 0px ;
 }
 
+.accordion-inner{
+	padding:0px 15px 10px 15px;
+	border:0px;
+}
+
+.hallOfFame{
+	padding-bottom: 20px;
+	padding-top: 10px;
+
+}
+
+.premio {
+	padding: 6px 25px;
+	border-radius: 8px;
+	background-color:#E4E4E4;
+	margin-bottom: 5px;
+}
+.premio span{
+	color:#dd4814;
+	font-size: 14px;
+}
+
 #linea-de-tiempo .accordion-group{
 	/*-moz-box-shadow:    2px 2px 8px #8F8F8F;	
    -webkit-box-shadow:  2px 2px 8px #8F8F8F;	
@@ -112,7 +134,7 @@ blockquote p {
 }
 
 #comparador .accordion-group{
-	background-color: #E6E6E6;
+	background-color: #D1D1D1;
 	/*border-color: #CACACA;*/
 }
 

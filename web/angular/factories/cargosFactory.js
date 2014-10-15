@@ -65,7 +65,7 @@ angular.module('cargoApp.factories')
           getNumber: simpleNumber
         });
         shames.push({
-          name: 'Cargos a Dedo',
+          name: 'Cargos No electivos',
           expression:'-summary.notElected',
           value: 'notElected',
           getNumber: simpleNumber
