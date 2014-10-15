@@ -24,6 +24,89 @@ angular.module('cargoApp.factories')
       }
       return p;
     };
+    factory.getHallOfShame =function(activePersons){
+
+      var hall = [];
+      if (activePersons.length > 3){
+        var shames = [];
+        var simpleNumber = function(person){
+          var s = this;
+          return person.summary[s.value];
+        }
+        //TODO: tenemos que pasarlo a una lista
+        shames.push({
+          name: 'Cargos Electos',
+          expression:'-summary.elected',
+          value: 'elected',
+          getNumber: simpleNumber
+        });
+        shames.push({
+          name: 'Cargos Ejecutivos',
+          expression:'-summary.executives',
+          value: 'executives',
+          getNumber: simpleNumber
+        });
+        shames.push({
+          name: 'Cargos Legislativos',
+          expression:'-summary.legislative',
+          value: 'legislative',
+          getNumber: simpleNumber
+        });
+        shames.push({
+          name: 'Cargos Judiciales',
+          expression:'-summary.judiciary',
+          value: 'judiciary',
+          getNumber: simpleNumber
+        });
+        shames.push({
+          name: 'Reelecciones',
+          expression:'-summary.reElected',
+          value: 'reElected',
+          getNumber: simpleNumber
+        });
+        shames.push({
+          name: 'Cargos a Dedo',
+          expression:'-summary.notElected',
+          value: 'notElected',
+          getNumber: simpleNumber
+        });
+        shames.push({
+          name: 'Cargos Distintos',
+          expression:'-memberships.length',
+          getNumber: function(person){
+            return person.memberships.length;
+          }
+        });
+        shames.push({
+          name: 'Años en actividad',
+          expression:'-periods.years',
+          getNumber: function(person){
+            return person.periods.years;
+          }
+        });
+
+
+
+              // <td>{{active.memberships.length}}</td>
+              // <td>{{active.periods.started}}</td>
+              // <td>{{active.periods.last}}</td>
+
+
+        for (var i = 0; i < shames.length; i++) {
+          var s = shames[i];
+          var order = $filter('orderBy')(activePersons, s.expression, false);
+          var first = order[0];
+          if (s.getNumber(first) > 0){
+            hall.push({
+                titulo: s.name,
+                nombre: first.name, 
+                cantidad: s.getNumber(first),
+              });
+          }
+        };
+      }
+      return hall; 
+    };
     factory.setWeight = function(person){
       for (var i = 0; i < person.memberships.length; i++) {
         var m = person.memberships[i];
@@ -222,15 +305,40 @@ angular.module('cargoApp.factories')
         var m = person.memberships[i];
         m.started = moment(m.start_date);
         m.finished = moment(m.end_date);
+        
+       
       };
       
       var expression = '-started';
       var a = $filter('orderBy')(person.memberships, expression, false);
       
-      return {
+      var resume = {
           started: a[a.length-1].start_date,
-          last: a[0].end_date
+          last: a[0].end_date,
       };
+
+      var now =moment(); 
+        var years = 0;
+        if (resume.last){
+          //Si el periodo termina despues.
+          if (now.diff(resume.last, 'milliseconds', true) > 0){
+               years =resume.last.diff(resume.started, 'years', true);
+          }
+          else {
+            years = now.diff(resume.started , 'years', true);
+          }
+        }
+        else {
+          years = now.diff(resume.started , 'years', true);
+
+        }
+        //Si el periodo ya termino.        
+        resume.years = parseFloat(years.toFixed(2));
+
+
+
+      return resume ;
+
 
     };
     factory.getSummary = function(person){

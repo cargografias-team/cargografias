@@ -75,6 +75,7 @@ angular.module('cargoApp.controllers')
       var jerarquimetro = cargosFactory.getJerarquimetro($scope.poderometroYear, $scope.activePersons);
       observer(jerarquimetro);
     };
+    $scope.hallOfShame = cargosFactory.getHallOfShame($scope.activePersons);
   }
 
 
