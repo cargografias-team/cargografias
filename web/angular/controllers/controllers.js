@@ -2,7 +2,7 @@
 
 /* Controllers */
 angular.module('cargoApp.controllers')
-  .controller('homeController', function($rootScope,$scope,cargosFactory, presetsFactory, $filter,$cookies, $routeParams, $location, $route, $timeout) {
+  .controller('homeController', function($rootScope,$q, $scope,cargosFactory, presetsFactory, $filter,$cookies, $routeParams, $location, $route, $timeout) {
   	$scope.ready= false;
     $scope.autoPersons = [];
     $scope.showPresets = true;
@@ -32,14 +32,15 @@ angular.module('cargoApp.controllers')
 
 
   $scope.load = function(params){
-      
       processParameters(params);
-      if(parsedParams){
-        angular.forEach(parsedParams, function(id){
-          $scope.add(cargosFactory.autoPersons[id], id);
-        });
-      }
-
+        //light add all persons from url
+        if(parsedParams){
+          for (var i = 0; i < parsedParams.length; i++) {
+            var id = parsedParams[i];
+            $scope.lightAdd(cargosFactory.autoPersons[id], id);
+          };
+          $scope.refreshAllVisualizations();  
+        }
   }
 
 
@@ -56,11 +57,12 @@ angular.module('cargoApp.controllers')
 
       //Load initial ids from the url
       if(parsedParams){
-        angular.forEach(parsedParams, function(id){
-          $scope.add(cargosFactory.autoPersons[id], id);
-        });
-      }
-      $scope.redrawPoderometro();
+          for (var i = 0; i < parsedParams.length; i++) {
+            var id = parsedParams[i];
+            $scope.lightAdd(cargosFactory.autoPersons[id], id);
+          };
+          $scope.refreshAllVisualizations();  
+        }
 
   };
 
@@ -122,31 +124,43 @@ angular.module('cargoApp.controllers')
       $location.path("/" + $scope.filterLinea  + "-" + $scope.activeYear + "-" + $scope.activePersons.map(function(p){ return p.autoPersona.index }).join('-'));
   }
 
-
-    $scope.add = function(autoPersona, id){
-      if (!autoPersona || autoPersona.agregada) return ;
+  $scope.lightAdd = function(autoPersona, id){
+     if (!autoPersona || autoPersona.agregada) return ;
       
       $scope.autocomplete = " ";
       autoPersona.agregada = true;
       autoPersona.styles = "badge-selected"
-    	
       var person = cargosFactory.getFullPerson(id);
       person.autoPersona = autoPersona;
       $scope.activePersons.push(person);
+      var idPersonas = cargoTimeline.options.filtro.idPersonas;
+      idPersonas.push(person.id);
+  }
+    $scope.add = function(autoPersona, id){
+      $scope.lightAdd(autoPersona,id);
+      $scope.refreshAllVisualizations();
+    	
 
-
-    	var idPersonas = cargoTimeline.options.filtro.idPersonas;
-    	idPersonas.push(person.id);
-			var timelineParams = {
-			   filtro: { idPersonas: idPersonas },
-			   mostrarPor: $scope.filterLinea,
-			};
-    	window.cargoTimeline.update(timelineParams);
-    
-      updateTheUrl();
-      $scope.redrawPoderometro();
+      
 
     };
+
+    $scope.refreshAllVisualizations = function(){
+      
+      //Refresh TimeLine
+      var idPersonas = cargoTimeline.options.filtro.idPersonas;
+      var timelineParams = {
+         filtro: { idPersonas: idPersonas },
+         mostrarPor: $scope.filterLinea,
+      };
+      window.cargoTimeline.update(timelineParams);
+      //Notify all the other 
+      $scope.redrawPoderometro();
+
+      //Updates Url
+      updateTheUrl();
+    }
+
 
     $scope.orderLine =function(order){
       $scope.filterLinea = order;
@@ -178,9 +192,9 @@ angular.module('cargoApp.controllers')
 			   mostrarPor: $scope.filterLinea,
 			};
     	window.cargoTimeline.update(timelineParams);
-
-      updateTheUrl();
       $scope.redrawPoderometro();
+      updateTheUrl();
+      
 
     };
 
@@ -195,7 +209,7 @@ angular.module('cargoApp.controllers')
          mostrarPor: $scope.filterLinea,
       };
       window.cargoTimeline.update(timelineParams);
-      $scope.redrawPoderometro();
+
       updateTheUrl();
       $scope.showPresets=true;
 
