@@ -46,10 +46,32 @@
 .ctl-cargos rect.ctl-Legislativo{
 	fill: #00f;
 }
+.ctl-cargos rect.ctl-Legislativo.argentina{
+  fill: #00f;
+}
+.ctl-cargos rect.ctl-Legislativo.provincia{
+  fill: #005AFF;
+}
+}
+.ctl-cargos rect.ctl-Legislativo.provincia.concejal{
+  fill: #0BF;
+}
 .ctl-cargos rect.ctl-ejecutivo,
 .ctl-cargos rect.ctl-Ejecutivo{
 	fill: #f00;
 }
+.ctl-cargos rect.ctl-Ejecutivo.argentina{
+  fill: #F00000;
+}
+.ctl-cargos rect.ctl-Ejecutivo.provincia{
+  fill: #F00900;
+}
+.ctl-cargos rect.ctl-Ejecutivo.provincia.intendente{
+  fill: #F05B00;
+}
+
+
+
 
 .ctl-cargos text{
 	fill: #FFF;
