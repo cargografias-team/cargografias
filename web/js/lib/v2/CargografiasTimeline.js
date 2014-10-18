@@ -4,11 +4,12 @@
   var thisYear = (new Date()).getFullYear();
 
   var tooltipTemplate =
-    '<b><%- persona.nombre + " " + persona.apellido %></b><br>' +
-    '<%- nominal.nombre %> <br>' +
+    '<h2><strong><%- persona.nombre + " " + persona.apellido %></strong></h2>' +
+    '<strong><%- nominal.nombre %> </strong><br>' +
     '<span class="ctl-detalles">' +
     '<%- fechainicioyear %> - <%- fechafinyear %><br>' +
-    '<%- territorio.nombre %> (<%- nominal.tipo %>)' +
+    '<%- nominal.tipo %><br>' + 
+    '<%- territorio.nombre %>' +
     '</span>';
 
   var svgTemplate =

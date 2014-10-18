@@ -14,15 +14,15 @@ directive('ngCargobubbles', function() {
 
             var startBubbles = function(data) {
                 // //BUG: Why is not working?
-                //  if (window.cargo.bubblePoderometro.started) {
-                //   console.log('update-bubbles');
-                //     window.cargo.bubblePoderometro.update(data);
-                //  } else {
-                $("#bubbles").html('');
-                if(data.length > 0){
-                  window.cargo.bubblePoderometro.start(data);
+                 if (window.cargo.bubblePoderometro.started) {
+                    console.log('update-bubbles');
+                    window.cargo.bubblePoderometro.update(data);
+                 } else {
+                  $("#bubbles").html('');
+                  if(data.length > 0){
+                    window.cargo.bubblePoderometro.start(data);
+                  }
                 }
-                //}
 
             };
             $rootScope.yearObserver.push(startBubbles);

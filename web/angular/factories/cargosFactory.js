@@ -313,8 +313,8 @@ angular.module('cargoApp.factories')
       var a = $filter('orderBy')(person.memberships, expression, false);
       
       var resume = {
-          started: a[a.length-1].start_date,
-          last: a[0].end_date,
+          started: moment(a[a.length-1].start_date),
+          last: a[0].end_date ? undefined : moment(a[0].end_date),
       };
 
       var now =moment(); 

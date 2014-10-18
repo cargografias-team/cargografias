@@ -16,12 +16,13 @@ window.cargo.bubblePoderometro = {
     started: false,
     update: function(data) {
         //starts again!
-        console.log("aaaaa")
-        if (window.cargo.bubblePoderometro.bubbles != {}) {
-            window.cargo.bubblePoderometro.bubbles = window.cargo.bubblePoderometro.bubbles.data(data, function(d) {
-                return d;
-            });
-        }
+        this.bubbles.data(data , function(d) {return d;});
+          this.svg.selectAll("g")
+            .transition()
+            .duration(450)
+            .selectAll("circle")
+            .attr("r", function(d) { return d.radius; });
+          this.force.start();
     },
     start: function(data) {
 
@@ -44,7 +45,6 @@ window.cargo.bubblePoderometro = {
         var div = d3.select("body").append("div")
             .attr("class", "tooltip")
             .style("opacity", 0);
-        this.started = true;
         this.color = d3.scale.linear()
             .domain([0, 3])
             .range(["red", "blue", "darkcyan", "darkgray"]);
@@ -92,7 +92,6 @@ window.cargo.bubblePoderometro = {
             .data(this.nodes)
             .enter().append("g")
             .attr("class", "mainNode")
-            //.call(d3.behavior.zoom().scaleExtent([1, 8]).on("zoom", window.cargo.bubblePoderometro.zoom))
             .append("circle")
             .attr("r", function(d) {
                 return d.radius;
@@ -112,8 +111,10 @@ window.cargo.bubblePoderometro = {
                     return window.cargo.bubblePoderometro.color(3);
                 }
 
-            });
-            //.call(this.force.drag);
+            })
+            .call(function() {});
+
+        console.log('bubbles',bubbles);
 
         this.svg.selectAll("g")
             .append("text")
@@ -167,7 +168,7 @@ window.cargo.bubblePoderometro = {
                 return d.color;
             });
 
-
+           
 
     },
 
