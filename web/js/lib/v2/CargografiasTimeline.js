@@ -306,7 +306,8 @@
 
     function showTooltip(d) {
       tooltipEl.html(tooltipPreparedTemplate(d));
-      tooltipEl.attr('class', 'ctl-tooltip ctl-' + d.nominal.tipo +  ' ' + d.territorio.nombre).style('display', 'block');
+
+      tooltipEl.attr('class', 'ctl-tooltip ctl-' + d.nominal.tipo +  ' ' + d.territorio.nivel.split(' ')[0].toLowerCase() + ' ' +  d.nominal.nombre.split(' ')[0].toLowerCase()).style('display', 'block');
     }
 
     function hideTooltip() {
@@ -711,7 +712,7 @@
             .attr('width', anchoBox)
             .attr('height', ALTO_BLOQUES - 4)
             .attr('class', function(d) {
-              return 'ctl-' + d.nominal.tipo + ' '  + d.territorio.nombre.split(' ')[0].toLowerCase() + ' ' +  d.nominal.nombre.split(' ')[0].toLowerCase();
+              return 'ctl-' + d.nominal.tipo + ' '  + d.territorio.nivel.split(' ')[0].toLowerCase() + ' ' +  d.nominal.nombre.split(' ')[0].toLowerCase();
             })
             .style('opacity', function(d) {
               return ((d.nominal.nombre == "Presidente") ? 0.8 : 0.4);
@@ -981,6 +982,8 @@
       cargo.partido = data.hashPartidos[cargo.partido_id];
       cargo.territorio = data.hashTerritorios[cargo.territorio_id];
     });
+
+
 
     return data;
 

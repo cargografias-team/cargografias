@@ -16,10 +16,34 @@
 .ctl-tooltip.ctl-Legislativo{
 	background: #AACAFF;
 }
+
+.ctl-tooltip.ctl-Legislativo.nacional{
+  background: rgba(0, 200, 255, 0.9);
+}
+.ctl-tooltip.ctl-Legislativo.provincial{
+  background: rgba(0, 168, 255, 0.9);
+
+}
+.ctl-tooltip.ctl-Legislativo.provincial.concejal{
+  background: rgba(170, 202, 255, 0.9);
+}
+
 .ctl-tooltip.ctl-ejecutivo,
 .ctl-tooltip.ctl-Ejecutivo{
-	background: #FDACB8;
+  background: #FDACB8;
 }
+
+.ctl-tooltip.ctl-Ejecutivo.nacional{
+  background: rgba(240, 0, 0, 0.75);
+}
+.ctl-tooltip.ctl-Ejecutivo.provincial{
+  background: rgba(240, 9, 0, 0.75);
+}
+.ctl-tooltip.ctl-Ejecutivo.provincial.intendente{
+  background: rgba(240, 91, 0, 0.75);
+}
+
+
 .ctl-tooltip .ctl-detalles{
 	font-size: 10px;
 	line-height: 10px;
@@ -46,30 +70,29 @@
 .ctl-cargos rect.ctl-Legislativo{
 	fill: #00f;
 }
-.ctl-cargos rect.ctl-Legislativo.argentina{
+.ctl-cargos rect.ctl-Legislativo.nacional{
   fill: #00f;
 }
-.ctl-cargos rect.ctl-Legislativo.provincia{
+.ctl-cargos rect.ctl-Legislativo.provincial{
   fill: #005AFF;
 }
 }
-.ctl-cargos rect.ctl-Legislativo.provincia.concejal{
+.ctl-cargos rect.ctl-Legislativo.provincial.concejal{
   fill: #0BF;
 }
 .ctl-cargos rect.ctl-ejecutivo,
 .ctl-cargos rect.ctl-Ejecutivo{
 	fill: #f00;
 }
-.ctl-cargos rect.ctl-Ejecutivo.argentina{
+.ctl-cargos rect.ctl-Ejecutivo.nacional{
   fill: #F00000;
 }
-.ctl-cargos rect.ctl-Ejecutivo.provincia{
+.ctl-cargos rect.ctl-Ejecutivo.provincial{
   fill: #F00900;
 }
-.ctl-cargos rect.ctl-Ejecutivo.provincia.intendente{
+.ctl-cargos rect.ctl-Ejecutivo.provincial.intendente{
   fill: #F05B00;
 }
-
 
 
 

@@ -75,7 +75,8 @@ angular.module('cargoApp.factories', [])
                         var p = {
                             id : res.data[i].id,
                             nombre : res.data[i].name,
-                            index: i
+                            index: i,
+                            nivel: res.data[i].name === 'Argentina' ? 'nacional' : 'provincial'
                           };
                         window.__cargos_data.territorios.push(p)
 
