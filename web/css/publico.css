@@ -316,15 +316,20 @@ svg text{
 }
 
 .persona-seleccionada p{
-	font-size: 12px;
-	line-height: 12px;
-	margin: 4px 0 0 0;	
+  font-size: 12px;
+  line-height: 12px;
+  width: 60%;
+  text-align: center;
 }
 
-.persona-seleccionada{
-	width:90px;
-	margin-left: 2px;
-	margin-right: 20px;
+.persona-seleccionada {
+  width: 14%;
+  max-width: 14%;
+  margin-right: 0px;
+  margin-left: 0px;
+  max-height: 150px;
+  min-height: 117px;
+  
 }
 .persona-seleccionada div.photo-frame {
   overflow: hidden;
