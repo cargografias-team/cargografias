@@ -396,8 +396,8 @@ angular.module('cargoApp.factories')
       }
       return undefined;
     }
-    factory.load = function ($scope,callback) {
-      cargoLoaderFactory.load($scope,factory,callback);
+    factory.load = function ($scope,callback, $rootScope) {
+      cargoLoaderFactory.load($scope,factory,callback, $rootScope);
       
     }
 

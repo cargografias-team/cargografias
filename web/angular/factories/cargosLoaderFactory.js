@@ -7,7 +7,7 @@ angular.module('cargoApp.factories', [])
     
     var f = {};
 
-    f.load = function($scope,factory,callback){
+    f.load = function($scope,factory,callback, $rootScope){
           //TODO: MOVE TO A PROPER LOADER
             window.__cargos_data = {
                   personas:[],
@@ -20,13 +20,13 @@ angular.module('cargoApp.factories', [])
           $http.get('/js/datasets/pesopoder.json')
             .then(function(res){
 
-              $scope.estado = "Representatividad";
+              $rootScope.estado = "Representatividad";
               factory.weight = res.data;
             });
 
             $http.get('/js/datasets/gz/cargografias-persons-popit-dump.json')
                .then(function(res){
-                $scope.estado = "Personas";
+                $rootScope.estado = "Personas";
                 factory.persons = res.data;
                   for (var i = 0; i < res.data.length; i++) {
                     var p = { id : res.data[i].id,
@@ -45,7 +45,7 @@ angular.module('cargoApp.factories', [])
 
                 $http.get('/js/datasets/gz/cargografias-memberships-popit-dump.json')
                  .then(function(res){
-                  $scope.estado = "Puestos";
+                  $rootScope.estado = "Puestos";
                   //factory.memberships = res.data;
                       for (var i = 0; i < res.data.length; i++) {
                           if (res.data[i].post_id){
@@ -69,7 +69,7 @@ angular.module('cargoApp.factories', [])
                 }).then(function(){
                   $http.get('/js/datasets/gz/cargografias-organizations-popit-dump.json')
                     .then(function(res){
-                      $scope.estado = "Organizaciones";
+                      $rootScope.estado = "Organizaciones";
                       factory.organizations = res.data;
                       for (var i = 0; i < res.data.length; i++) {
                         var p = {
@@ -87,7 +87,7 @@ angular.module('cargoApp.factories', [])
                       $http.get('/js/datasets/gz/cargografias-posts-popit-dump.json')
                       .then(function(res){
                         factory.posts = res.data;
-                        $scope.estado = "Partidos";
+                        $rootScope.estado = "Partidos";
                         for (var i = 0; i < res.data.length; i++) {
                           var p = {
                               id : res.data[i].id,

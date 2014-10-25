@@ -3,7 +3,7 @@
 /* Controllers */
 angular.module('cargoApp.controllers')
   .controller('homeController', function($rootScope,$q, $scope,cargosFactory, presetsFactory, $filter,$cookies, $routeParams, $location, $route, $timeout) {
-  	$scope.ready= false;
+  	
     $scope.autoPersons = [];
     $scope.showPresets = true;
   	$scope.activePersons = [];
@@ -48,13 +48,13 @@ angular.module('cargoApp.controllers')
 
   var onDataLoaded = function(){
     
-     $scope.estado = "Motor de Visualizacion";
+     $rootScope.estado = "Motor de Visualizacion";
       for (var i = 0; i < $rootScope.observers.length; i++) {
         var observer = $rootScope.observers[i];
         observer();
       };
-      $scope.estado = "Listo!";
-      $scope.ready= true;
+      $rootScope.estado = "Listo!";
+      $rootScope.ready= true;
 
       //Load initial ids from the url
       if(parsedParams){
@@ -109,7 +109,7 @@ angular.module('cargoApp.controllers')
   }
 
 
-  cargosFactory.load($scope,onDataLoaded);
+  cargosFactory.load($scope,onDataLoaded, $rootScope);
 
   var lastRoute = $route.current;
   $scope.$on('$locationChangeSuccess', function(event) {
