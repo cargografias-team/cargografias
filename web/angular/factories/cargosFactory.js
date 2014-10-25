@@ -36,18 +36,21 @@ angular.module('cargoApp.factories')
         //TODO: tenemos que pasarlo a una lista
         shames.push({
           name: 'Cargos Electos',
+          uom:'cargos',
           expression:'-summary.elected',
           value: 'elected',
           getNumber: simpleNumber
         });
         shames.push({
           name: 'Cargos Ejecutivos',
+          uom:'cargos',
           expression:'-summary.executives',
           value: 'executives',
           getNumber: simpleNumber
         });
         shames.push({
           name: 'Cargos Legislativos',
+          uom:'cargos',
           expression:'-summary.legislative',
           value: 'legislative',
           getNumber: simpleNumber
@@ -60,18 +63,21 @@ angular.module('cargoApp.factories')
         });
         shames.push({
           name: 'Reelecciones',
+          uom:'relecciones',
           expression:'-summary.reElected',
           value: 'reElected',
           getNumber: simpleNumber
         });
         shames.push({
           name: 'Cargos No electivos',
+          uom:'cargos',
           expression:'-summary.notElected',
           value: 'notElected',
           getNumber: simpleNumber
         });
         shames.push({
           name: 'Cargos Distintos',
+          uom:'cargos',
           expression:'-memberships.length',
           getNumber: function(person){
             return person.memberships.length;
@@ -79,6 +85,7 @@ angular.module('cargoApp.factories')
         });
         shames.push({
           name: 'Años en actividad',
+          uom:'años',
           expression:'-periods.years',
           getNumber: function(person){
             return person.periods.years;
@@ -100,6 +107,7 @@ angular.module('cargoApp.factories')
             hall.push({
                 titulo: s.name,
                 nombre: first.name, 
+                medida: s.uom,
                 cantidad: s.getNumber(first),
               });
           }
