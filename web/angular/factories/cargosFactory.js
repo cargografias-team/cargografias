@@ -309,12 +309,14 @@ angular.module('cargoApp.factories')
             }
     }
     factory.getPeriods= function(person){
+      var yearsSum = 0;
       for (var i = 0; i < person.memberships.length; i++) {
         var m = person.memberships[i];
         m.started = moment(m.start_date);
         m.finished = moment(m.end_date);
-        
-       
+        m.years = m.finished.diff(m.started, 'years', true);
+        m.years = parseFloat(m.years.toFixed(2));
+        yearsSum+= m.years;
       };
       
       var expression = '-started';
@@ -322,27 +324,8 @@ angular.module('cargoApp.factories')
       var resume = {
           started: moment(a[a.length-1].start_date),
           last: a[0].end_date ? moment(a[0].end_date) : undefined,
+          years: parseFloat(yearsSum.toFixed(2))
       };
-
-      var now =moment(); 
-        var years = 0;
-        if (resume.last){
-          //Si el periodo termina despues.
-          if (now.diff(resume.last, 'milliseconds', true) > 0){
-               years =resume.last.diff(resume.started, 'years', true);
-          }
-          else {
-            years = now.diff(resume.started , 'years', true);
-          }
-        }
-        else {
-          years = now.diff(resume.started , 'years', true);
-
-        }
-        //Si el periodo ya termino.        
-        resume.years = parseFloat(years.toFixed(2));
-
-
 
       return resume ;
 
