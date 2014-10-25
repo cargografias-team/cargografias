@@ -32,6 +32,7 @@ angular.module('cargoApp.controllers')
 
 
   $scope.load = function(params){
+      $scope.clearAll();
       processParameters(params);
         //light add all persons from url
         if(parsedParams){
