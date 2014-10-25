@@ -84,11 +84,19 @@ angular.module('cargoApp.factories')
           }
         });
         shames.push({
-          name: 'Años en actividad',
+          name: 'Años en cargos',
           uom:'años',
-          expression:'-periods.years',
+          expression:'-periods.yearsCharges',
           getNumber: function(person){
-            return person.periods.years;
+            return person.periods.yearsCharges;
+          }
+        });
+        shames.push({
+          name: 'Años en política',
+          uom:'años',
+          expression:'-periods.yearsPolitics',
+          getNumber: function(person){
+            return person.periods.yearsPolitics;
           }
         });
 
@@ -324,8 +332,28 @@ angular.module('cargoApp.factories')
       var resume = {
           started: moment(a[a.length-1].start_date),
           last: a[0].end_date ? moment(a[0].end_date) : undefined,
-          years: parseFloat(yearsSum.toFixed(2))
+          yearsCharges: parseFloat(yearsSum.toFixed(2))
       };
+
+      var now =moment(); 
+        var years = 0;
+        if (resume.last){
+          //Si el periodo termina despues.
+          if (now.diff(resume.last, 'milliseconds', true) > 0){
+               years =resume.last.diff(resume.started, 'years', true);
+          }
+          else {
+            years = now.diff(resume.started , 'years', true);
+          }
+        }
+        else {
+          years = now.diff(resume.started , 'years', true);
+
+        }
+        //Si el periodo ya termino.        
+        resume.yearsPolitics = parseFloat(years.toFixed(2));
+
+
 
       return resume ;
 
