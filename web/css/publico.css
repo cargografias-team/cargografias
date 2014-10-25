@@ -402,3 +402,7 @@ div.box img {
   text-align: center;
   left: 50%;
 }
+
+a.hand{
+  cursor: pointer;
+}
