@@ -12,7 +12,7 @@ directive('ngCargobubbles', function() {
         bubble: {},
         link: function($rootScope, $scope, iElement, iAttrs, ctrl) {
 
-           /* var startBubbles = function(data) {
+            var startBubbles = function(data) {
                 // //BUG: Why is not working?
                  if (window.cargo.bubblePoderometro.started) {
                     console.log('update-bubbles');
@@ -25,8 +25,7 @@ directive('ngCargobubbles', function() {
                 }
 
             };
-            $rootScope.yearObserver.push(startBubbles); */
-
+            $rootScope.yearObserver.push(startBubbles); 
 
 
         }
