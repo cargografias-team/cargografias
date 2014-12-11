@@ -72,19 +72,15 @@ $  npm start
 
 # Como funciona?
 
-### Sensores a Server
-* Arduino utiliza 2 endpoints para comunicar informacion
-
-### Server a FrontEnd
-
-* NodeJs utiliza 2 mensajes de web sockets para informar a la visualizacion que tiene que actualizar.
+### 100% FrontEnd
+* La aplicacion carga toda la base de datos importada desde popoit en el comienzo de la carga y luego opera con ella en todas las visualizaciones. La principal interacion esta manejada por Angular.JS y los graficos con D3.
 
 
 
 
 PLANES FUTUROS 
 ========================
---
+
 - Mejorar la interfase y la performance del sitio 
 - Sumar otras fuentes de datos (DDJJ de La Nacion Data, por ej) 
 - Conseguir financiación para pagar gastos (hosting, galletitas, horas de programadores) 
