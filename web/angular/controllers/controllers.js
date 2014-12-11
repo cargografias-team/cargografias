@@ -86,7 +86,7 @@ angular.module('cargoApp.controllers')
 
 
   $scope.filterAutoPersons = function(q){
-    if (q.length > 4){
+    if (q.length > 3){
       $scope.showPresets= false;
       $scope.autoPersons =cargosFactory.getAutoPersons(q);
     }
